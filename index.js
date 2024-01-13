@@ -1,9 +1,10 @@
+require("dotenv").config(); 
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1:27017/ecommerce_project_one')
+mongoose.connect(process.env.MONGO_URL)
 
 //--------------------------------------------------------------------------------------------------------------------------------------------------
 
-require("dotenv").config(); 
+
 
 const express = require('express');
 const app = express();
