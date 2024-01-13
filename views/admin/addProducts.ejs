@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="/admin/images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="/admin/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/admin/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="/admin/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="/admin/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="/admin/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/admin/css/custom.css" />
+    <!-- calendar file css -->
+    <link rel="stylesheet" href="/admin/js/semantic.min.css" />
+    <!-- fancy box js -->
+    <link rel="stylesheet" href="/admin/css/jquery.fancybox.css" />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+
+
+    <!-- Add this script to your HTML -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('productImage').addEventListener('change', function (event) {
+            const container = document.getElementById('selectedImagesContainer');
+            container.innerHTML = ''; // Clear previous selection
+
+            const files = event.target.files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'img-thumbnail'; // Add Bootstrap img-thumbnail class
+                    img.style.width = '100px'; // Set width to 100px (adjust as needed)
+                    img.style.height = '100px'; // Set height to 100px (adjust as needed)
+                    container.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
+
+
+</head>
+
+<body class="inner_page tables_page">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <!-- <a href="index.html"><img class="logo_icon img-responsive" src="/admin/images/logo/logo_icon.png" alt="#" /></a> -->
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive"
+                                    src="/admin/images/layout_img/user_img.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>John David</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
+                                <span>Dashboard</span></a>
+                            <!-- <ul class="collapse list-unstyled" id="dashboard">
+                           <li>
+                              <a href="dashboard.html">> <span>Default Dashboard</span></a>
+                           </li>
+                           <li>
+                              <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
+                           </li>
+                        </ul> -->
+                        </li>
+                        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                        <li>
+                            <a href="/admin/category"><i class="fa fa-database"></i>
+                                <span>Category</span></a>
+                            <!-- <ul class="collapse list-unstyled" id="element">
+                           <li><a href="general_elements.html">> <span>General Elements</span></a></li>
+                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
+                           <li><a href="icons.html">> <span>Icons</span></a></li>
+                           <li><a href="invoice.html">> <span>Invoice</span></a></li>
+                        </ul> -->
+                        </li>
+                        <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
+                        <!-- <li>
+                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Apps</span></a>
+                        <ul class="collapse list-unstyled" id="apps">
+                           <li><a href="email.html">> <span>Email</span></a></li>
+                           <li><a href="calendar.html">> <span>Calendar</span></a></li>
+                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
+                        </ul>
+                     </li> -->
+                        <!-- <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
+                     <li>
+                        <a href="contact.html">
+                        <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
+                     </li>
+                     <li class="active">
+                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
+                        <ul class="collapse list-unstyled" id="additional_page">
+                           <li>
+                              <a href="profile.html">> <span>Profile</span></a>
+                           </li>
+                           <li>
+                              <a href="project.html">> <span>Projects</span></a>
+                           </li>
+                           <li>
+                              <a href="login.html">> <span>Login</span></a>
+                           </li>
+                           <li>
+                              <a href="404_error.html">> <span>404 Error</span></a>
+                           </li>
+                        </ul>
+                     </li>
+                     <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
+                     <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
+                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li> -->
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <!-- <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a> -->
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">John David</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont">
+                    <!-- Add this form section after the <th> tags -->
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>ADD PRODUCTS</h2>
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-body">
+
+                                        <form id="addProductForm" method="post" action="/admin/addProducts" enctype="multipart/form-data">
+
+                                            <div class="form-group">
+                                                <label for="productName">Product Name</label> 
+                                                <input type="text"
+                                                       placeholder="Name of Product" 
+                                                       class="form-control" 
+                                                       id="productName"
+                                                       name="productName" 
+                                                       required>
+                                                       <div id="nameError" style="color: red;"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="productDescription">Product Description</label>
+                                                <textarea class="form-control"
+                                                          placeholder="Description" 
+                                                          id="productDescription" 
+                                                          name="productDescription" 
+                                                          rows="3"></textarea>
+                                                          <div id="descriptionError" style="color: red;"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="productImage">Product Image</label>
+                                                <input type="file" 
+                                                       class="form-control" 
+                                                       id="productImage"
+                                                       name="image" 
+                                                       accept=".png, .jpg, .jpeg, .webp, .gif"
+                                                       multiple
+                                                       required>
+                                            </div>
+                                            <div id="selectedImagesContainer"></div>
+                                            
+                                            <% if (typeof message !== 'undefined') { %>
+                                                <p style="color: red;"><%- message %></p>
+                                            <% } %>
+
+                                            <div class="form-group">
+                                                <label for="productCategory">Product Category</label><br>
+                                                <select name="productCategory" class="form-select" style="width: 25%;">
+                                                    <option value="" selected disabled>Select Category</option>
+                                                    <% for(let category of categories) { %>
+                                                        <option value="<%= category._id %>">
+                                                            <%= category.name %>
+                                                        </option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                            
+
+                                            <div class="form-group">
+                                                <label for="productPrice">Product Price</label>
+                                                <input type="text" 
+                                                       placeholder="₹"
+                                                       class="form-control" 
+                                                       id="productPrice"
+                                                       name="productPrice" 
+                                                       pattern="[0-9]+([,.][0-9]+)?"
+                                                       required>
+                                                       <div id="priceError" style="color: red;"></div>
+                                            </div>
+                                         
+                                           
+
+                                            <div class="form-group">
+                                                <label for="productQuantity">Product Quantity</label>
+                                                <input type="text"
+                                                       placeholder="Count" 
+                                                       class="form-control" 
+                                                       id="productQuantity"
+                                                       name="productQuantity" 
+                                                       min="1"
+                                                       required>
+                                                       <div id="quantityError" style="color: red;"></div>
+                                            </div>
+                                           
+                                            <div class="form-group row">
+                                                <div class="col-sm-1">
+                                                    <button type="submit" class="btn btn-success">SUBMIT</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <a href="/admin/products">
+                                                        <button type="button" class="btn cur-p btn-danger">BACK</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- end dashboard inner -->
+        </div>
+    </div>
+    <!-- model popup -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end model popup -->
+    </div>
+    <!-- jQuery -->
+    <script src="/admin/js/jquery.min.js"></script>
+    <script src="/admin/js/popper.min.js"></script>
+    <script src="/admin/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="/admin/js/animate.js"></script>
+    <!-- select country -->
+    <script src="/admin/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="/admin/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="/admin/js/Chart.min.js"></script>
+    <script src="/admin/js/Chart.bundle.min.js"></script>
+    <script src="/admin/js/utils.js"></script>
+    <script src="/admin/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="/admin/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- fancy box js -->
+    <script src="/admin/js/jquery-3.3.1.min.js"></script>
+    <script src="/admin/js/jquery.fancybox.min.js"></script>
+    <!-- custom js -->
+    <script src="/admin/js/custom.js"></script>
+    <!-- calendar file css -->
+    <script src="/admin/js/semantic.min.js"></script>
+   <!-- Add this script to your HTML -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const priceInput = document.getElementById("productPrice");
+        const quantityInput = document.getElementById("productQuantity");
+        const nameInput = document.getElementById("productName");
+        const descriptionInput = document.getElementById("productDescription");
+
+        // Event listener for price input
+        priceInput.addEventListener("input", validatePrice);
+
+        // Event listener for quantity input
+        quantityInput.addEventListener("input", validateQuantity);
+
+        // Event listener for name input
+        nameInput.addEventListener("input", validateName);
+
+        // Event listener for description input
+        descriptionInput.addEventListener("input", validateDescription);
+
+        // Event listener for form submission
+        const form = document.getElementById("addProductForm");
+        form.addEventListener("submit", function (event) {
+            const isValidPrice = validatePrice();
+            const isValidQuantity = validateQuantity();
+            const isValidName = validateName();
+            const isValidDescription = validateDescription();
+
+            if (!isValidPrice || !isValidQuantity || !isValidName || !isValidDescription) {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+
+        function validatePrice() {
+            const priceError = document.getElementById("priceError");
+            const priceValue = parseFloat(priceInput.value);
+
+            if (isNaN(priceValue) || priceValue <= 0) {
+                priceError.textContent = "Enter valid Price";
+                priceInput.classList.add("is-invalid");
+                return false;
+            } else {
+                priceError.textContent = "";
+                priceInput.classList.remove("is-invalid");
+                return true;
+            }
+        }
+
+        function validateQuantity() {
+            const quantityError = document.getElementById("quantityError");
+            const quantityValue = parseInt(quantityInput.value);
+
+            if (isNaN(quantityValue) || quantityValue <= 0) {
+                quantityError.textContent = "Enter valid quantity";
+                quantityInput.classList.add("is-invalid");
+                return false;
+            } else {
+                quantityError.textContent = "";
+                quantityInput.classList.remove("is-invalid");
+                return true;
+            }
+        }
+
+        function validateName() {
+            const nameError = document.getElementById("nameError");
+            const nameValue = nameInput.value.trim();
+
+            if (nameValue === "") {
+                nameError.textContent = "Product Name cannot be empty";
+                nameInput.classList.add("is-invalid");
+                return false;
+            } else {
+                nameError.textContent = "";
+                nameInput.classList.remove("is-invalid");
+                return true;
+            }
+        }
+
+        function validateDescription() {
+            const descriptionError = document.getElementById("descriptionError");
+            const descriptionValue = descriptionInput.value.trim();
+
+            if (descriptionValue === "") {
+                descriptionError.textContent = "Product Description cannot be empty";
+                descriptionInput.classList.add("is-invalid");
+                return false;
+            } else {
+                descriptionError.textContent = "";
+                descriptionInput.classList.remove("is-invalid");
+                return true;
+            }
+        }
+    });
+</script>
+
+    
+    
+</body>
+
+</html>

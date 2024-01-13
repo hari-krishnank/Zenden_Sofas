@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/otpstyle.css">
+    <script src="/js/otp.js" defer></script>
+    <title>OTP Verification Page</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="/img/shield.png" alt="icon">
+        </header>
+        <h3>Enter OTP Code</h3>
+        <form method="post">
+            <div class="inputs">
+				<input type="hidden" name="email" value="<%= email %>">
+                <input type="number" name="one">
+                <input type="number" name="two" disabled>
+                <input type="number" name="three" disabled>
+                <input type="number" name="four" disabled>
+            </div>
+            <button class="btn">Verify OTP</button>
+        </form>
+        <% if (typeof message !== 'undefined') { %>
+            <h5 style="color: red;"><%= message %></h5>
+        <% } %>
+    </div>
+</body>  
+</html>
+
