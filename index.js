@@ -39,6 +39,7 @@ app.use('/',userRouter);
 
 
 var adminRouter = require('./routes/adminRoute');
+const { hydrate } = require('./models/userModel');
 app.use('/admin',adminRouter)
   
 
@@ -46,7 +47,7 @@ app.use('/admin',adminRouter)
 
 
 
-
+// hydrate
 
 
 
