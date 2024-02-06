@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="/admin/images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="/admin/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/admin/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="/admin/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="/admin/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="/admin/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/admin/css/custom.css" />
+    <!-- calendar file css -->
+    <link rel="stylesheet" href="/admin/js/semantic.min.css" />
+    <!-- fancy box js -->
+    <link rel="stylesheet" href="/admin/css/jquery.fancybox.css" />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            /* Adjust cell padding */
+            border: 1px solid #dee2e6;
+            /* Border color */
+            text-align: left;
+            /* Align text to the left */
+        }
+
+        .table th {
+            font-weight: 500;
+            color: black;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+            /* Alternate row background color */
+        }
+
+        .table tbody tr:hover {
+            background-color: #e2e2e2;
+            /* Hover background color */
+        }
+
+        .badge {
+            padding: 5px 8px;
+            border-radius: 15px;
+        }
+
+        .alert-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .alert-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .font-sm {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body class="inner_page tables_page">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive"
+                                    src="/admin/images/layout_img/user_img.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>John David</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
+                                <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                        <li>
+                            <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>
+                        </li>
+                        <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
+                        <li>
+                            <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+
+                        </li>
+                        <li>
+                            <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i>
+                                <span>Offers</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                        </li>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <!-- <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a> -->
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">John David</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+
+                                    <h2>OFFERS </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row -->
+                        <div class="row">
+
+                            <!-- table section -->
+                            <div class="col-md-12">
+                                <div class="white_shd full margin_bottom_30">
+                                    <div class="full graph_head">
+                                        <div class="heading1 margin_0">
+                                            <a href="/admin/addOffers" class="btn cur-p btn-outline-primary">ADD
+                                                OFFERS</a>
+                                            <h2></h2>
+
+                                        </div>
+                                    </div>
+                                    <div class="table_section padding_infor_info">
+                                        <div class="table-responsive-sm">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            TYPE</th>
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            NAME</th>
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            OFFER NAME</th>
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            DISCOUNT</th>
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            OFFER STARTING</th>
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            EXPIRE ON</th>
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            STATUS</th>
+
+
+                                                        <th
+                                                            style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                            ACTION</th>
+
+                                                        <th></th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="font-weight: 400; color: black;">
+                                                    <% Offers.forEach(offer=> { %>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>
+                                                                <%= offer.items[0].itemType %>
+                                                            </td>
+                                                            <td>
+                                                                <%= offer.items[0].itemName %>
+                                                            </td>
+                                                            <td>
+                                                                <%= offer.name %>
+                                                            </td>
+                                                            <td>
+                                                                <%= offer.percentage %> % OFF
+                                                            </td>
+                                                            <td>
+                                                                <%= moment(offer.startingDate).format('DD/MM/YYYY') %>
+                                                            </td>
+                                                            <td>
+                                                                <%= moment(offer.expiryDate).format('DD/MM/YYYY') %>
+
+                                                            </td>
+                                                            <td>
+                                                                <span id="">
+                                                                    <% if(offer.status===true ){ %>
+                                                                        <span
+                                                                            class="badge rounded-pill alert-success">Active</span>
+                                                                        <% }else{ %>
+                                                                            <span
+                                                                                class="badge rounded-pill alert-warning">Not
+                                                                                Acive</span>
+                                                                            <% } %>
+                                                            </td>
+                                                            <td>
+                                                                <a href="#"
+                                                                    class="btn btn-sm btn-danger rounded font-sm mt-15"
+                                                                    onclick="applyOffer('<%= offer._id %>', '<%= offer.items[0].itemType %>', '<%= offer.items[0].itemId %>')">APPLY
+                                                                    OFFER</a>
+                                                            </td>
+
+                                                            <td>
+                                                                <a href="#"
+                                                                    class="btn btn-sm btn-danger rounded font-sm mt-15"
+                                                                    onclick="removeOffer('<%= offer._id %>', '<%= offer.items[0].itemType %>', '<%= offer.items[0].itemId %>')">REMOVE
+                                                                    OFFER</a>
+                                                            </td>
+
+                                                        </tr>
+                                                        <% }); %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer -->
+                    <div class="container-fluid">
+
+                    </div>
+                </div>
+                <!-- end dashboard inner -->
+            </div>
+        </div>
+        <!-- model popup -->
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Modal body..
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end model popup -->
+    </div>
+    <!-- jQuery -->
+    <script src="/admin/js/jquery.min.js"></script>
+    <script src="/admin/js/popper.min.js"></script>
+    <script src="/admin/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="/admin/js/animate.js"></script>
+    <!-- select country -->
+    <script src="/admin/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="/admin/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="/admin/js/Chart.min.js"></script>
+    <script src="/admin/js/Chart.bundle.min.js"></script>
+    <script src="/admin/js/utils.js"></script>
+    <script src="/admin/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="/admin/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- fancy box js -->
+    <script src="/admin/js/jquery-3.3.1.min.js"></script>
+    <script src="/admin/js/jquery.fancybox.min.js"></script>
+    <!-- custom js -->
+    <script src="/admin/js/custom.js"></script>
+    <!-- calendar file css -->
+    <script src="/admin/js/semantic.min.js"></script>
+
+
+    <script>
+        function applyOffer(offerId, itemType, itemId) {
+
+            $.ajax({
+                url: '/admin/applyOffer',
+                type: 'POST',
+                data: {
+                    offerId: offerId,
+                    productId: (itemType === 'product') ? itemId : null,
+                    categoryId: (itemType === 'category') ? itemId : null
+                },
+                success: function (response) {
+
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+
+                    console.error(error);
+                }
+            });
+        }
+
+
+        function removeOffer(offerId, itemType, itemId) {
+            $.ajax({
+                url: '/admin/removeOffer',
+                type: 'POST',
+                data: {
+                    productId: (itemType === 'product') ? itemId : null,
+                    categoryId: (itemType === 'category') ? itemId : null
+                },
+                success: function (response) {
+                    
+                    console.log(response);
+                },
+                error: function (xhr, status, error) {
+                   
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

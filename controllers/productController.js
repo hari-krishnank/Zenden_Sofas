@@ -112,42 +112,47 @@ const loadEditProducts = async (req, res) => {
 
 const editProducts = async (req, res) => {
     try {
-        
-        const { id,productName, productCategory, productPrice, productQuantity, productDescription } = req.body
+
+        const { id, productName, productCategory, productPrice, productQuantity, productDescription } = req.body
 
         let existingProduct = await Product.findById(id);
-        let resizedImages = existingProduct.image || []
-
-        if (
-            existingProduct &&
-            existingProduct.image &&
-            existingProduct.image.length > 0
-        ) {
-            resizedImages = existingProduct.image;
-        }
+        let existingImages = existingProduct.image || []
+        let newImages = []
+        console.log('req.files:',req.files);
         if (req.files && req.files.length > 0) {
-            
-            const remainingSlots = 4 - resizedImages.length;
 
-            if (req.files.length !== remainingSlots) {
-                const categories = await Category.find(); 
-                return res.render('admin/editProducts', {
-                    message: "4 Image is Allowed",
-                    productData: { name: productName, description: productDescription, image: resizedImages, category: productCategory, price: productPrice, quantity: productQuantity },
+            const totalImages = existingImages.length + req.files.length;
+
+            if (totalImages > 4) {
+                const categories = await Category.find();
+                return res.render('admin/editProducts', { 
+                    message: "4 images are allowed",
+                    productData: { name: productName, description: productDescription, image: existingImages, category: productCategory, price: productPrice, quantity: productQuantity },
                     categories: categories
                 });
             }
-
             for (let i = 0; i < req.files.length; i++) {
                 const resizedPath = path.join(__dirname, '../public/resizedImages', req.files[i].filename)
-                await sharp(req.files[i].path).resize(1000, 1000, { fit: "fill" }).toFile(resizedPath)
-                resizedImages.push(req.files[i].filename)
+                await sharp(req.files[i].path).resize(510, 510, { fit: "fill" }).toFile(resizedPath)
+                newImages.push(req.files[i].filename)
             }
         }
 
+        // Handle deletion of images
+        if (req.body.deletedImages && req.body.deletedImages.length > 0) {
+            const deletedImages = req.body.deletedImages;
 
 
-        
+            // Remove deleted images from the filesystem
+            for (const imageName of deletedImages) {
+                fs.unlink(path.join(__dirname, '../public/resizedImages', imageName), () => { });
+            }
+            existingImages = existingImages.filter(img => !deletedImages.includes(img));
+        }
+
+        console.log('newImages:',newImages);
+
+
         await Product.findByIdAndUpdate(
             { _id: id },
             {
@@ -157,26 +162,28 @@ const editProducts = async (req, res) => {
                     price: productPrice,
                     quantity: productQuantity,
                     description: productDescription,
-                    image: resizedImages.slice(0, 4),
+
                 },
+                $push: { image: { $each: newImages } },
+
             }
         )
-            res.redirect('/admin/products')
+        res.redirect('/admin/products')
     } catch (error) {
         console.log(error.message);
     }
 }
 
-const deleteImage = async(req,res) =>{
+const deleteImage = async (req, res) => {
     try {
-        const { imageName,id:prdtId } = req.query;
+        const { imageName, id: prdtId } = req.query;
         console.log('Deleting image:', imageName, 'for product ID:', prdtId);
-        fs.unlink(path.join(__dirname,'../public/resizedImages',imageName),() => {});
+        fs.unlink(path.join(__dirname, '../public/resizedImages', imageName), () => { });
         await Product.updateOne(
-            {_id:prdtId},
-            {$pull:{image:imageName}}
+            { _id: prdtId },
+            { $pull: { image: imageName } }
         );
-        res.send({success:true});
+        res.send({ success: true });
 
     } catch (error) {
         console.log(error.message);

@@ -1,0 +1,684 @@
+<!--Website: wwww.codingdung.com-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoyalRetreat</title>
+    <link rel="stylesheet" href="css/userProfile">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>RoyalRetreat</title>
+    <link rel="icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <!-- <link rel="stylesheet" href="css/animate.css"> -->
+    <!-- owl carousel CSS -->
+    <!-- <link rel="stylesheet" href="css/owl.carousel.min.css"> -->
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/all.css">
+    <!-- flaticon CSS -->
+    <!-- <link rel="stylesheet" href="css/flaticon.css"> -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <!-- <link rel="stylesheet" href="css/slick.css"> -->
+    <!-- style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- css link here  -->
+    <link rel="stylesheet" href="/userAssets/css/swipper.css">
+    <link rel="stylesheet" href="/userAssets/css/select2.css">
+    <link rel="stylesheet" href="/userAssets/css/tailwind.css">
+    <link rel="stylesheet" href="/userAssets/css/styles.css">
+    <link rel="stylesheet" href="/userAssets/css/responsive.css">
+
+</head>
+
+<body>
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html"> <img src="" alt=""> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">HOME</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="shop" id="navbarDropdown_1">
+                                        SHOP
+                                    </a>
+                                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                        <a class="dropdown-item" href="category.html"> SHOP CATEGORY</a>
+                                        <a class="dropdown-item" href="single-product.html">product details</a>
+                                        
+                                    </div> -->
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link " href="blog.html" id="navbarDropdown_3">
+                                        ABOUT
+                                    </a>
+                                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="login.html"> login</a>
+                                        <a class="dropdown-item" href="tracking.html">tracking</a>
+                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
+                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
+                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
+                                        <a class="dropdown-item" href="elements.html">elements</a>
+                                    </div> -->
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html">CONTACT</a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <%= locals.User ? User.name.toUpperCase() : "PROFILE" %>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <% if (locals.User) { %>
+                                            <a class="dropdown-item" href="userProfile">MY PROFILE</a>
+                                            <a class="dropdown-item" href="logout">LOGOUT</a>
+
+                                            <% } else { %>
+
+                                                <a class="dropdown-item" href="login">LOGIN</a>
+                                                <% } %>
+                                                    <!-- <a class="dropdown-item" href="single-blog.html">Single blog</a> -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hearer_icon d-flex">
+
+                            <a href=""><i class="ti-heart"></i></a>
+                            <div class="dropdown cart">
+                                <a href="cart" role="button">
+                                    <i class="fas fa-cart-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>MY PROFILE</h2>
+                            <p>HOME<span>-</span>MANAGE ADDRESS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="user bg-red-600">
+        <div class="container">
+            <div class="usermenu flex flex-col md:flex-row justify-between md:items-center">
+                <!-- Tabs -->
+                <ul id="tabs" class="inline-flex flex-col md:flex-row w-full">
+
+                    <li>
+                        <a id="default-tab" href="/userProfile"
+                            class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">My
+                            Profile</a>
+                    </li>
+
+                    <li>
+                        <a href="/userOrders"
+                            class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Order
+                            History</a>
+                    </li>
+
+                    <li class="border-b-2 border-accents">
+                        <a href="/addressManage"
+                            class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black">Address
+                            Manage</a>
+                    </li>
+
+                    <li>
+                        <a href="/wishlist"
+                            class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Wishlist</a>
+                    </li>
+                </ul>
+                <a href="logout"
+                    class="font-display text-[16px] leading-[110%] font-medium capitalize text-[#636270] px-4 py-4 md:px-0">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Tab Contents -->
+        <div id="tab-contents">
+            <div class="px-6 py-6 overflow-x-auto">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="card-title" style="font-size: 25px; font-weight: 500; text-align: center;">SELECT SHIPPING ADDRESS</h2>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button type="button" class="btn_3" style="font-size: 14px; border-radius: 5px;"
+                            onclick="toggleFormVisibility()"><span style="font-weight: bold; font-size:small;">ADD NEW
+                                ADDRESS</span></button>
+                    </div>
+                    <div class="col-lg-12 col-md-8" style="margin-top: 20px;">
+
+                        <form id="newAddressForm" action="/addAddress" method="post" style="display: block;"
+                            class="border p-4">
+                            <h3 class="mt-10" style="font-size: medium;">ADD A NEW ADDRESS</h3>
+
+                            <div class="mt-30">
+                                <input type="text" name="name" placeholder="Name" onfocus="this.placeholder = 'Name'"
+                                    onblur="this.placeholder = 'Name'" required class="single-input-primary">
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" name="mobile" placeholder="10-digit Mobile Number"
+                                    onfocus="this.placeholder = '10-digit Mobile Number'"
+                                    onblur="this.placeholder = '10-digit Mobile Number'" required
+                                    class="single-input-primary">
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" name="pincode" placeholder="pincode"
+                                    onfocus="this.placeholder = 'pincode'" onblur="this.placeholder = 'pincode'"
+                                    required class="single-input-primary">
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" name="address" placeholder="Address"
+                                    onfocus="this.placeholder = 'Address'" onblur="this.placeholder = 'Address'"
+                                    required class="single-input-primary">
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" name="city" placeholder="City/District/Town"
+                                    onfocus="this.placeholder = 'City/District/Town'"
+                                    onblur="this.placeholder = 'City/District/Town'" required
+                                    class="single-input-primary">
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" name="state" placeholder="State" onfocus="this.placeholder = 'State'"
+                                    onblur="this.placeholder = 'State'" required class="single-input-primary">
+                            </div>
+
+
+                            <div class="mt-10">
+                                <input type="text" name="landmark" placeholder="Landmark "
+                                    onfocus="this.placeholder = 'Landmark '" onblur="this.placeholder = 'Landmark '"
+                                    required class="single-input-primary">
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" name="alternateMobile" placeholder="Alternate Phone"
+                                    onfocus="this.placeholder = 'Alternate Phone'"
+                                    onblur="this.placeholder = 'Alternate Phone'" required class="single-input-primary">
+                            </div>
+                            <div class="mt-30"></div>
+                            <button type="submit" class="btn_3" style="font-size: 14px; border-radius: 5px;"><span
+                                    style="font-weight: bold; font-size:small;">SAVE
+                                    ADDRESS</span></button>
+
+
+
+                        </form>
+
+                    </div>
+                </div><br>
+
+                <form id="selectAddressForm" action="/addressManage" method="POST">
+
+
+                    <!-- <input type="hidden" name="selectedAddress" id="selectedAddress"> -->
+                    <div class="form-check" >
+                        <% if (user.Address && user.Address.length> 0) { %>
+                            <% user.Address.forEach((address, index)=> { %>
+                                <div class="address-item">
+                                    <input class="form-check-input" type="radio" name="address" id="address<%= index %>"
+                                        value="<%= address.name %>, <%= address.mobile %>,<%= address.address %>, <%= address.city %>, <%= address.state %>,<%= address.pincode %>,<%= address.landmark %>,<%= address.alternateMobile %>"
+                                        <% if (index===0) { %> checked <% } %>>
+                                        <input type="hidden" name="selectedAddress" id="selectedAddress">
+
+                                        <label class="form-check-label col-lg-12 " for="address<%= index %>">
+                                            <strong>
+                                                <%= address.name %>
+                                            </strong><br>
+                                            <%= address.mobile %>,<br>
+                                                <%= address.address %>,<br>
+                                                    <%= address.city %>,<br>
+                                                        <%= address.state %> - <%= address.pincode %>
+                                                                ,<br>
+                                                                <%= address.landmark %>,<br>
+                                                                    <%= address.alternateMobile %>
+                                                                        <br><br>
+                                                                        <button type="button"
+                                                                            class="btn_3" style="font-size: 14px; border-radius: 5px;"
+                                                                            onclick="toggleEditFormVisibility('<%= index %>')"><span
+                                                                                style="font-weight: bold; font-size:small;">EDIT</span></button>
+                                                                        <button type="button"
+                                                                            class="btn_3" style="font-size: 14px; border-radius: 5px;"
+                                                                            onclick="deleteAddress('<%= index %>')">
+                                                                            <span
+                                                                                style="font-weight: bold; font-size:small;">DELETE</span>
+                                                                        </button>
+                                                                        
+                                                                        <div class="col-lg-12 col-md-8 mt-3 edit-address-form border p-4"
+                                                                            style="margin-top: 20px; display: none;"
+                                                                            id="editAddressForm<%= index %>">
+
+                                                                            <form id="editAddressForm"
+                                                                                action="/addressManage" method="post"
+                                                                                style="display: block;"
+                                                                               >
+                                                                                <h3 class="mt-10"
+                                                                                    style="font-size: medium;">
+                                                                                    EDIT ADDRESS</h3>
+                                                                                <input type="hidden"
+                                                                                    id="addressId<%= index %>" name="id"
+                                                                                    value="<%= address._id %>">
+
+                                                                                <div class="mt-30">
+                                                                                    <input type="text" name="name"
+                                                                                        id="name<%= index %>"
+                                                                                        placeholder="Name"
+                                                                                        onfocus="this.placeholder = 'Name'"
+                                                                                        onblur="this.placeholder = 'Name'"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.name %>">
+                                                                                </div>
+
+                                                                                <div class="mt-10">
+                                                                                    <input type="text" name="mobile"
+                                                                                        id="mobile<%= index %>"
+                                                                                        placeholder="10-digit Mobile Number"
+                                                                                        onfocus="this.placeholder = '10-digit Mobile Number'"
+                                                                                        onblur="this.placeholder = '10-digit Mobile Number'"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.mobile %>">
+                                                                                </div>
+
+                                                                                <div class="mt-10">
+                                                                                    <input type="text" name="pincode"
+                                                                                        id="pincode<%= index %>"
+                                                                                        placeholder="pincode"
+                                                                                        onfocus="this.placeholder = 'pincode'"
+                                                                                        onblur="this.placeholder = 'pincode'"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.pincode %>">
+                                                                                </div>
+
+                                                                                <div class="mt-10">
+                                                                                    <input type="text" name="address"
+                                                                                        id="address<%= index %>"
+                                                                                        placeholder="Address"
+                                                                                        onfocus="this.placeholder = 'Address'"
+                                                                                        onblur="this.placeholder = 'Address'"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.address %>">
+                                                                                </div>
+
+                                                                                <div class="mt-10">
+                                                                                    <input type="text" name="city"
+                                                                                        id="city<%= index %>"
+                                                                                        placeholder="City/District/Town"
+                                                                                        onfocus="this.placeholder = 'City/District/Town'"
+                                                                                        onblur="this.placeholder = 'City/District/Town'"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.city %>">
+                                                                                </div>
+
+                                                                                <div class="mt-10">
+                                                                                    <input type="text" name="state"
+                                                                                        id="state<%= index %>"
+                                                                                        placeholder="State"
+                                                                                        onfocus="this.placeholder = 'State'"
+                                                                                        onblur="this.placeholder = 'State'"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.state %>">
+                                                                                </div>
+
+
+                                                                                <div class="mt-10">
+                                                                                    <input type="text" name="landmark"
+                                                                                        id="landmark<%= index %>"
+                                                                                        placeholder="Landmark"
+                                                                                        onfocus="this.placeholder = 'Landmark '"
+                                                                                        onblur="this.placeholder = 'Landmark '"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.landmark %>">
+                                                                                </div>
+
+                                                                                <div class="mt-10">
+                                                                                    <input type="text"
+                                                                                        name="alternateMobile"
+                                                                                        id="alternateMobile<%= index %>"
+                                                                                        placeholder="Alternate Phone"
+                                                                                        onfocus="this.placeholder = 'Alternate Phone'"
+                                                                                        onblur="this.placeholder = 'Alternate Phone'"
+                                                                                        required
+                                                                                        class="single-input-primary"
+                                                                                        value=" <%= address.alternateMobile %>">
+                                                                                </div>
+                                                                                <div class="mt-30">
+                                                                                </div>
+                                                                                <button type="button"
+                                                                                    class="btn_3" style="font-size: 14px; border-radius: 5px;"
+                                                                                    onclick="editAddress('<%= index %>')">
+                                                                                    <span
+                                                                                        style="font-weight: bold; font-size:small;">SAVE</span>
+                                                                                </button>
+
+
+
+
+                                                                            </form>
+
+                                                                        </div>
+                                        </label>
+
+                                </div><br><br>
+                                <% }); %>
+                                    <% } else { %>
+                                        <p style="font-size: 18px; text-align: center; font-weight: 500;">No Addresses found in your account! <br>
+                                            Add a delivery address.
+                                        </p>
+                                        <% } %>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+     <!--::footer_part start::-->
+     <footer class="footer_part">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Top Products</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Managed Website</a></li>
+                            <li><a href="">Manage Reputation</a></li>
+                            <li><a href="">Power Tools</a></li>
+                            <li><a href="">Marketing Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Quick Links</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">Brand Assets</a></li>
+                            <li><a href="">Investor Relations</a></li>
+                            <li><a href="">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Features</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">Brand Assets</a></li>
+                            <li><a href="">Investor Relations</a></li>
+                            <li><a href="">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Resources</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Guides</a></li>
+                            <li><a href="">Research</a></li>
+                            <li><a href="">Experts</a></li>
+                            <li><a href="">Agencies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_footer_part">
+                        <h4>Newsletter</h4>
+                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+                        </p>
+                        <div id="mc_embed_signup">
+                            <form target="_blank"
+                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                method="get" class="subscribe_form relative mail_part">
+                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = ' Email Address '">
+                                <button type="submit" name="submit" id="newsletter-submit"
+                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                <div class="mt-10 info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="copyright_text">
+                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </P>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="footer_icon social_icon">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--::footer_part end::-->
+
+
+
+
+
+
+
+
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+    <!-- jquery plugins here-->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- slick js -->
+    <script src="js/slick.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+    <script>
+
+        function toggleFormVisibility() {
+            var form = $("#newAddressForm");
+
+
+            form.toggle();
+        }
+
+        $(document).ready(function () {
+
+            toggleFormVisibility();
+        });
+    </script>
+
+
+
+
+    <script>
+        function toggleEditFormVisibility(index) {
+
+            var editFormClass = ".edit-address-form";
+            var targetEditForm = $(editFormClass).eq(index);
+
+
+            targetEditForm.toggle();
+        }
+    </script>
+    <script>
+
+        function editAddress(index) {
+            const id = $('#addressId' + index).val();
+            const name = $('#name' + index).val(); // Get the updated name value
+            const mobile = $('#mobile' + index).val();
+            const pincode = $('#pincode' + index).val();
+            const address = $('#address' + index).val();
+            const city = $('#city' + index).val();
+            const state = $('#state' + index).val();
+            const landmark = $('#landmark' + index).val();
+            const alternateMobile = $('#alternateMobile' + index).val();
+
+            // Send AJAX request to the server
+            $.ajax({
+                url: '/editAddress',
+                method: 'POST',
+                data: { id, name, mobile, pincode, address, city, state, landmark, alternateMobile },
+                success: function (response) {
+                    console.log('Success:', response);
+                    if (response && response.redirectUrl) {
+                        window.location.href = response.redirectUrl;
+                    } else {
+                        console.error('Invalid response:', response);
+                    }
+                },
+                error: function (error) {
+                    console.error('Error editing address:', error);
+                }
+            });
+        }
+
+
+    </script>
+
+
+
+
+    <script>
+        function deleteAddress(index) {
+            const addressId = $('#addressId' + index).val();
+
+            // Show SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are You sure to Delete the address..!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    $.ajax({
+                        url: '/deleteAddress',
+                        method: 'POST',
+                        data: { id: addressId },
+                        success: function (response) {
+                            console.log('Success:', response);
+
+
+                            if (response && response.redirectUrl) {
+
+                                window.location.href = response.redirectUrl;
+                            } else {
+
+                                console.error('Invalid response:', response);
+                            }
+                        },
+                        error: function (error) {
+                            console.error('Error deleting address:', error);
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

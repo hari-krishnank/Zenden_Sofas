@@ -27,48 +27,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/zoomify/1.4.0/zoomify.min.css"
     integrity="sha256-H2RRaz3D3T/dmiZZ0Et0oKTt1wbQlHsZXy8+jxb1SFo=" crossorigin="anonymous" />
 
-  <!-- Include jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <style>
+    .full-heart {
+      color: red;
 
-  <!-- Include Zoomify JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/zoomify/1.4.0/zoomify.min.js"
-    integrity="sha256-ZT9dLcTP+ncc4nBuP2s5yY/VXweTsIcLVW+fLbq0V9A=" crossorigin="anonymous"></script>
+    }
 
-  <!-- Custom Zoom Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const productImages = document.querySelectorAll('#vertical img');
-      let isZoomed = false;
+    
 
-      productImages.forEach((img) => {
-        img.addEventListener('mouseover', function () {
-          // Apply zoom effect on mouseover
-          if (!isZoomed) {
-            img.style.transform = 'scale(2.3)';
-            img.style.transition = 'transform 0.3s ease'; // Optional: Add a transition for a smooth effect
-            isZoomed = true;
-          }
-        });
+    .swal2-popup.swal2-custom-size {
+      width: 400px;
+      font-size: 12px;
+      height: auto;
+      
+    }
+  </style>
 
-        img.addEventListener('mousemove', function (e) {
-          if (isZoomed) {
-            const boundingBox = img.getBoundingClientRect();
-            const offsetX = (e.clientX - boundingBox.left) / boundingBox.width;
-            const offsetY = (e.clientY - boundingBox.top) / boundingBox.height;
-
-            // Move the image according to mouse movement
-            img.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
-          }
-        });
-
-        img.addEventListener('mouseleave', function () {
-          // Reset to normal size on mouseleave
-          img.style.transform = 'scale(1)';
-          isZoomed = false;
-        });
-      });
-    });
-  </script>
 </head>
 
 <body>
@@ -126,6 +100,7 @@
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                     <% if (locals.User) { %>
+                      <a class="dropdown-item" href="userProfile">MY PROFILE</a>
                       <a class="dropdown-item" href="logout">LOGOUT</a>
                       <% } else { %>
 
@@ -207,8 +182,21 @@
             <h3>
               <%= product.name %>
             </h3>
-            <h2>₹ <%= product.price %>
-            </h2>
+            <span class="stext-105 cl3">
+              <% if (product.offer || product.category?.offer) { %>
+                  <span>
+                      <b style="color: rgb(27, 218, 68); font-size: 23px;">₹ <%= product.offerPrice %></b>
+                  </span>
+                  <span style="text-decoration: line-through; color: red; font-size: 23px;">₹ <%= product.price %></span><br>
+                  <% if (product.offer) { %>
+                      <span style="color: red; font-weight: 500; font-size: 23px;"><%= product.offer.percentage %> % OFF</span>
+                  <% } else { %>
+                      <span style="color: red; font-weight: 500; font-size: 23px;"><%= product.category.offer.percentage %> % OFF</span>
+                  <% } %>
+              <% } else { %>
+                  <b style="font-size: 23px;">₹ <%= product.price %></b>
+              <% } %>
+          </span>
             <ul class="list">
               <li>
                 <a class="active" href="#">
@@ -235,7 +223,9 @@
               </div>
               <button class="btn_3" onclick="addToCart('<%= product._id %>')">add to cart</button>
 
-              <a href="#" class="like_us"> <i class="ti-heart"></i> </a>
+              <a href="#" class="like_us" onclick="addToWishlist('<%= product._id %>')"> <i id="heartIcon"
+                  class="ti-heart"></i> </a>
+
             </div>
           </div>
         </div>
@@ -393,6 +383,48 @@
   <!-- Include SweetAlert library -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- Include Zoomify JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zoomify/1.4.0/zoomify.min.js"
+    integrity="sha256-ZT9dLcTP+ncc4nBuP2s5yY/VXweTsIcLVW+fLbq0V9A=" crossorigin="anonymous"></script>
+
+  <!-- Custom Zoom Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const productImages = document.querySelectorAll('#vertical img');
+      let isZoomed = false;
+
+      productImages.forEach((img) => {
+        img.addEventListener('mouseover', function () {
+          // Apply zoom effect on mouseover
+          if (!isZoomed) {
+            img.style.transform = 'scale(2.3)';
+            img.style.transition = 'transform 0.3s ease'; // Optional: Add a transition for a smooth effect
+            isZoomed = true;
+          }
+        });
+
+        img.addEventListener('mousemove', function (e) {
+          if (isZoomed) {
+            const boundingBox = img.getBoundingClientRect();
+            const offsetX = (e.clientX - boundingBox.left) / boundingBox.width;
+            const offsetY = (e.clientY - boundingBox.top) / boundingBox.height;
+
+            // Move the image according to mouse movement
+            img.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
+          }
+        });
+
+        img.addEventListener('mouseleave', function () {
+          // Reset to normal size on mouseleave
+          img.style.transform = 'scale(1)';
+          isZoomed = false;
+        });
+      });
+    });
+  </script>
 
   <script>
     async function addToCart(productId) {
@@ -406,6 +438,9 @@
           icon: 'error',
           title: 'Invalid quantity',
           text: 'Please enter a valid quantity.',
+          customClass: {
+            popup: 'swal2-custom-size',
+          },
         });
         return;
       }
@@ -422,33 +457,94 @@
         const data = await response.json();
 
         if (data.success) {
-          // Show success SweetAlert
+          // Show success SweetAlert with two buttons
           Swal.fire({
             icon: 'success',
             title: 'Product added to cart',
-            showConfirmButton: false,
-            timer: 1500,
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            cancelButtonText: 'Go to Cart',
+            customClass: {
+              popup: 'swal2-custom-size',
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Handle OK button click: No action needed
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+              // Handle "Go to Cart" button click
+              window.location.href = '/cart';
+            }
           });
 
-          // Redirect to the cart page after a delay
-          setTimeout(() => {
-            window.location.href = '/cart';
-          }, 1500);
         } else {
           // Show error SweetAlert with specific message
           Swal.fire({
             icon: 'error',
             title: 'Failed to add product to cart',
             text: data.message || 'Please login and continue',
+            customClass: {
+              popup: 'swal2-custom-size',
+            },
           });
         }
       } catch (error) {
         console.error('Error adding product to cart:', error);
       }
     }
-
-
   </script>
+  <script>
+    async function addToWishlist(productId) {
+      try {
+        const response = await fetch('/wishlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productId }),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Show success message using SweetAlert with custom class
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Product added to wishlist',
+            customClass: {
+              popup: 'custom-popup-class',
+              confirmButton: 'custom-confirm-button-class',
+              cancelButton: 'custom-cancel-button-class'
+            }
+          });
+          // Change heart icon color to red
+          document.getElementById('heartIcon').classList.add('full-heart');
+        } else {
+          // Show error message using SweetAlert with custom class
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: data.message,
+            customClass: {
+              popup: 'custom-popup-class',
+              confirmButton: 'custom-confirm-button-class',
+              cancelButton: 'custom-cancel-button-class'
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error adding product to wishlist:', error);
+      }
+    }
+  </script>
+
+<style>
+  .custom-popup-class {
+      width: 400px;
+      font-size: 12px;
+      height: auto;
+    }
+</style>
 
 </body>
 

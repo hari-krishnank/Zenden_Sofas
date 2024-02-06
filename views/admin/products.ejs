@@ -38,6 +38,79 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
 
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+   <style>
+      .table {
+         width: 100%;
+         border-collapse: collapse;
+      }
+
+      .table th,
+      .table td {
+         padding: 10px;
+         /* Adjust cell padding */
+         border: 1px solid #dee2e6;
+         /* Border color */
+         text-align: left;
+         /* Align text to the left */
+      }
+
+      .table th {
+         font-weight: 500;
+         color: black;
+      }
+
+      .table tbody tr:nth-child(even) {
+         background-color: #f2f2f2;
+         /* Alternate row background color */
+      }
+
+      .table tbody tr:hover {
+         background-color: #e2e2e2;
+         /* Hover background color */
+      }
+
+      .badge {
+         padding: 5px 8px;
+         border-radius: 15px;
+      }
+
+      .alert-success {
+         background-color: #28a745;
+         color: white;
+      }
+
+      .alert-danger {
+         background-color: #dc3545;
+         color: white;
+      }
+
+
+
+      .btn-success {
+         background-color: #28a745;
+         color: white;
+      }
+
+      .btn-danger {
+         background-color: #dc3545;
+         color: white;
+      }
+
+      .btn-info {
+         background-color: #17a2b8;
+         color: white;
+      }
+
+      .btn-sm {
+         padding: 5px 10px;
+         font-size: 12px;
+      }
+
+      .font-sm {
+         font-size: 12px;
+      }
+   </style>
 </head>
 
 <body class="inner_page tables_page">
@@ -46,11 +119,6 @@
          <!-- Sidebar  -->
          <nav id="sidebar">
             <div class="sidebar_blog_1">
-               <div class="sidebar-header">
-                  <div class="logo_section">
-                     <!-- <a href="index.html"><img class="logo_icon img-responsive" src="/admin/images/logo/logo_icon.png" alt="#" /></a> -->
-                  </div>
-               </div>
                <div class="sidebar_user_info">
                   <div class="icon_setting"></div>
                   <div class="user_profle_side">
@@ -69,60 +137,22 @@
                   <li class="active">
                      <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
                         <span>Dashboard</span></a>
-                     <!-- <ul class="collapse list-unstyled" id="dashboard">
-                           <li>
-                              <a href="dashboard.html">> <span>Default Dashboard</span></a>
-                           </li>
-                           <li>
-                              <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
-                           </li>
-                        </ul> -->
                   </li>
                   <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
                   <li>
                      <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>
-                     <!-- <ul class="collapse list-unstyled" id="element">
-                           <li><a href="general_elements.html">> <span>General Elements</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                           <li><a href="icons.html">> <span>Icons</span></a></li>
-                           <li><a href="invoice.html">> <span>Invoice</span></a></li>
-                        </ul> -->
                   </li>
                   <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
-                     <!-- <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Apps</span></a>
-                        <ul class="collapse list-unstyled" id="apps">
-                           <li><a href="email.html">> <span>Email</span></a></li>
-                           <li><a href="calendar.html">> <span>Calendar</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                        </ul>
-                     </li> -->
-                     <!-- <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
-                     <li>
-                        <a href="contact.html">
-                        <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
-                     </li>
-                     <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                           <li>
-                              <a href="profile.html">> <span>Profile</span></a>
-                           </li>
-                           <li>
-                              <a href="project.html">> <span>Projects</span></a>
-                           </li>
-                           <li>
-                              <a href="login.html">> <span>Login</span></a>
-                           </li>
-                           <li>
-                              <a href="404_error.html">> <span>404 Error</span></a>
-                           </li>
-                        </ul>
-                     </li>
-                     <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-                     <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li> -->
-               </ul>
+                  <li>
+                     <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+
+                  </li>
+                  <li>
+                     <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i> <span>Offers</span></a>
+                  </li>
+                  <li>
+                     <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                  </li> 
             </div>
          </nav>
          <!-- end sidebar -->
@@ -183,128 +213,139 @@
                         <div class="white_shd full margin_bottom_30">
                            <div class="full graph_head">
                               <div class="heading1 margin_0">
-                                <a href="/admin/addProducts" class="btn cur-p btn-outline-primary">ADD PRODUCTS</a>
-                                <h2></h2>
+                                 <a href="/admin/addProducts" class="btn cur-p btn-outline-primary">ADD PRODUCTS</a>
+                                 <h2></h2>
 
                               </div>
                            </div>
                            <div class="table_section padding_infor_info">
                               <div class="table-responsive-sm">
-                                 <table class="table">
+                                 <table class="table" id="productTable">
                                     <thead>
                                        <tr>
+                                          <th></th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">NAME</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">IMAGE</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">CATEGORY</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">PRICE</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">STATUS</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">QUANTITY</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">DATE</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">ACTION</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">EDIT </th>
 
-                                          <th style="font-weight: 500; color: black; width: 50%;">NAME</th>
-                                          <th style="font-weight: 500; color: black; ">IMAGE</th>
-                                          <th style="font-weight: 500; color: black; width: 15%;">CATEGORY</th>
-                                          <th style="font-weight: 500; color: black; width: 10%">PRICE</th>
-                                          <th style="font-weight: 500; color: black; width: 5%;">STATUS</th>
-                                          <th style="font-weight: 500; color: black; width: 5%;">QUANTITY</th>
-                                          <th style="font-weight: 500; color: black; width: 5%;">DATE</th>
-                                          <th style="font-weight: 500; color: black; width: 5%;">ACTION</th>
-                                          <th style="font-weight: 500; color: black; width: 5%;">EDIT/DELETE</th>
-                                          
                                        </tr>
                                     </thead>
-                                    <tbody>
-                                       <% if (products.length > 0 ) {%> <% for (let productData of products) { %>
-                                          <tr>
+                                    <tbody style="font-weight: 400; color: black;">
+                                       <% let serialNumber=1; %>
+                                       <% if (products.length> 0 ) {%> <% for (let productData of products) { %>
+                                             <tr>
+                                                <td><%= serialNumber %></td>
+                                                <td>
+                                                   <%= productData.name %>
+                                                </td>
 
-                                             <td><%= productData.name %></td>
+                                                <td><img src="/webImages/<%= productData.image[0] %>"
+                                                      alt="<%= productData.name %>" style="width: 100px; height: 75px;">
+                                                </td>
 
-                                             <td><img src="/webImages/<%= productData.image[0] %>" alt="<%= productData.name %>" style="width: 100px; height: 75px;"></td>
+                                                <td>
+                                                   <%= productData.category?.name %>
+                                                </td>
 
-                                             <td><%= productData.category?.name %></td>
-
-                                             <td><%= productData.price %></td>
-
-                                            
-                                             <td width="15%">
-                                                <% if(productData.is_listed) { %>
-                                                    <span class="badge rounded-pill alert-success">Listed</span>
-                                                <% } else { %>
-                                                    <span class="badge rounded-pill alert-danger">Unlisted</span>
-                                                <% } %>
-                                            </td>
-
-                                             <td><%= productData.quantity %></td>
-
-                                             <!-- <td><%= productData.date %></td> -->
-                                             <td>
-                                                <% if (productData.date) { %>
-                                                    <% const dateObject = new Date(productData.date); %>
-                                                    <%= dateObject.toLocaleDateString('en-US') %>
-                                                <% } else { %>
-                                                    N/A <!-- or any default value or message you want to display -->
-                                                <% } %>
-                                            </td>
-
-                                             <td class="text">
-                                                <% if(productData.is_listed === 0) { %>
-                                                    <a href="/admin/listProducts?id=<%= productData._id %>" class="btn btn-sm btn-success rounded font-sm mt-15">List</a>
-                                                <% } else { %>
-                                                    <a href="/admin/listProducts?id=<%= productData._id %>" class="btn btn-sm btn-danger rounded font-sm mt-15">Unlist</a>
-                                                <% } %>
-                                            </td>
+                                                <td>
+                                                   <%= productData.price %>
+                                                </td>
 
 
-                                            <td class="text">
-                                             <div class="dropdown">
-                                                 <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
-                                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                     <!-- Three dots icon -->
-                                                     <i class="fa fa-ellipsis-v"></i>
-                                                 </button>
-                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                     <!-- Dropdown menu items -->
-                                                     <a class="dropdown-item " href="/admin/editProducts?id=<%= productData._id %>">Edit</a>
-                                                     <a class="dropdown-item" href="#">Delete</a>
-                                                     
-                                                 </div>
-                                             </div>
-                                         </td>
-                                             
-                                          </tr>
-                                          <% } %>
-                                          <% } %>
-                                    </tbody>
-                                 </table>
+                                                <td width="15%">
+                                                   <% if(productData.is_listed) { %>
+                                                      <span class="badge rounded-pill alert-success">Listed</span>
+                                                      <% } else { %>
+                                                         <span class="badge rounded-pill alert-danger">Unlisted</span>
+                                                         <% } %>
+                                                </td>
+
+                                                <td>
+                                                   <%= productData.quantity %>
+                                                </td>
+
+                                                <!-- <td><%= productData.date %></td> -->
+                                                <td>
+                                                   <% if (productData.date) { %>
+                                                      <% const dateObject=new Date(productData.date); %>
+                                                         <%= dateObject.toLocaleDateString('en-US') %>
+                                                            <% } else { %>
+                                                               N/A
+                                                               <!-- or any default value or message you want to display -->
+                                                               <% } %>
+                                                </td>
+
+                                                <td class="text">
+                                                   <% if(productData.is_listed===0) { %>
+                                                      <a href="/admin/listProducts?id=<%= productData._id %>"
+                                                         class="btn btn-sm btn-success rounded font-sm mt-15">List</a>
+                                                      <% } else { %>
+                                                         <a href="/admin/listProducts?id=<%= productData._id %>"
+                                                            class="btn btn-sm btn-danger rounded font-sm mt-15">Unlist</a>
+                                                         <% } %>
+                                                </td>
+
+
+                                                <td class="text">
+
+
+                                                   <!-- Dropdown menu items -->
+                                                   <a class="btn btn-sm btn-info rounded font-sm mt-15"
+                                                      href="/admin/editProducts?id=<%= productData._id %>">Edit</a>
+                                                   <!-- <a class="dropdown-item" href="#">Delete</a> -->
+
+
                               </div>
+                              </td>
+
+                              </tr>
+                              <% serialNumber++; %>
+                              <% } %>
+                                 <% } %>
+                                    </tbody>
+                                    </table>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-               <!-- footer -->
-               <div class="container-fluid">
-                 
-               </div>
             </div>
-            <!-- end dashboard inner -->
-         </div>
-      </div>
-      <!-- model popup -->
-      <!-- The Modal -->
-      <div class="modal fade" id="myModal">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <!-- Modal Header -->
-               <div class="modal-header">
-                  <h4 class="modal-title">Modal Heading</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-               </div>
-               <!-- Modal body -->
-               <div class="modal-body">
-                  Modal body..
-               </div>
-               <!-- Modal footer -->
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               </div>
+            <!-- footer -->
+            <div class="container-fluid">
+
             </div>
          </div>
+         <!-- end dashboard inner -->
       </div>
-      <!-- end model popup -->
+   </div>
+   <!-- model popup -->
+   <!-- The Modal -->
+   <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+               <h4 class="modal-title">Modal Heading</h4>
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+               Modal body..
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end model popup -->
    </div>
    <!-- jQuery -->
    <script src="/admin/js/jquery.min.js"></script>
@@ -333,7 +374,16 @@
    <script src="/admin/js/custom.js"></script>
    <!-- calendar file css -->
    <script src="/admin/js/semantic.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+   <script>
+      $(document).ready(function () {
+          $('#productTable').DataTable({
+              "paging": true 
+          });
+      });
+  </script>
 
 </body>
 

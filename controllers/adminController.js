@@ -51,15 +51,6 @@ const adminLogout = async(req,res)=>{
     }
 }
 
-//------------------------------------DASHBOARD--------------------------------------------------
-
-const adminDashboard = async(req,res) =>{
-    try {
-        res.render('admin/dashboard')
-    } catch (error) {
-        console.log(error.message)
-    }
-}
 
 
 
@@ -95,7 +86,6 @@ const blockUser = async(req,res)=>{
 
 
 module.exports={
-    adminDashboard,
     adminLogin,
     adminLoginVerify,
     adminLogout,

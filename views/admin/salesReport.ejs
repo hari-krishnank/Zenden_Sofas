@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="/admin/images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="/admin/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/admin/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="/admin/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="/admin/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="/admin/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/admin/css/custom.css" />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <style>
+        thead th {
+            font-weight: 600;
+            color: rgb(205, 67, 67);
+            width: auto;
+            background-color: #f8f9fa;
+            /* Light gray background */
+            border: 1px solid #dee2e6;
+            /* Border color */
+            padding: 8px;
+            /* Adjust cell padding */
+        }
+
+        tbody {
+            font-weight: 400;
+            color: black;
+            background-color: #ffffff;
+            /* White background */
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+            /* Alternate row background color */
+        }
+
+        tbody tr:hover {
+            background-color: #f0f0f0;
+            /* Hover background color */
+        }
+
+        tbody td,
+        tbody th {
+            padding: 8px;
+            /* Adjust cell padding */
+            border: 1px solid #dee2e6;
+            /* Border color */
+        }
+    </style>
+
+</head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive"
+                                    src="/admin/images/layout_img/user_img.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>John David</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
+                                <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                        <li>
+                            <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>
+                        </li>
+                        <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
+                        <li>
+                            <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i>
+                                <span>Offers</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <!-- <a href="index.html"><img class="img-responsive" src="/admin/images/logo/logo.png" alt="#" /></a> -->
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle"
+                                                    src="/admin/images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">John David</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title"
+                                    style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h2>SALES REPORT</h2>
+                                    <a href="dashboard" class="btn cur-p btn-outline-primary"
+                                        style="font-weight: 600; padding: 10px 20px; font-size: 14px;">BACK</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                data-toggle="dropdown">DOWNLOAD</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" onclick="downloadPDF('printThisDiv')"
+                                    style="color: green; font-weight: 600;">Download as PDF</a>
+                                <a class="dropdown-item" href="#" onclick="downloadExcel('printThisDiv')"
+                                    style="color: green; font-weight: 600;">Download as Excel</a>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <!-- table section -->
+                            <div class="col-md-12">
+                                <div class="row mt-4">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="startDatePicker" style="font-weight: 500; color: green;">Select
+                                                start date:</label>
+                                            <input type="date" id="startDatePicker" class="form-control"
+                                                min="<%= firstOrder %>" max="<%= lastOrder %>" onchange="selectedDate()"
+                                                required />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="endDatePicker" style="font-weight: 500; color: green;">Select
+                                                end date:</label>
+                                            <input type="date" id="endDatePicker" class="form-control"
+                                                min="<%= firstOrder %>" max="<%= lastOrder %>" onchange="selectedDate()"
+                                                required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="white_shd full margin_bottom_30">
+
+                                    <div class="table_section padding_infor_info">
+                                        <div class="table-responsive-sm">
+                                            <div id="reportContainer">
+                                                <div id="printThisDiv">
+                                                    <% if (salesReport && salesReport.length> 0) { %>
+                                                        <table class="table">
+                                                            <thead id="reportHeader">
+                                                                <tr>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        SI.NO
+                                                                    </th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        EMAIL
+                                                                    </th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        MOBILE
+                                                                    </th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        ADDRESS
+                                                                    </th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        ORDER
+                                                                        ID</th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        DATE
+                                                                    </th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        PAYMENT
+                                                                        METHOD</th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        TOTAL
+                                                                    </th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        STATUS
+                                                                    </th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        QUANTITY</th>
+                                                                    <th
+                                                                        style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">
+                                                                        PRODUCT
+                                                                        NAME </th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="reportBody">
+                                                                <% let serialNumber=1; %>
+                                                                    <% salesReport.forEach(order=> { %>
+                                                                        <% order.items.forEach(item=> { %>
+                                                                            <% if(item.ordered_status==="delivered" && order.user_id ) {
+                                                                                %>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <%= serialNumber %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.user_id.email %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.user_id.mobile %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.delivery_address%>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order._id %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.date %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.payment %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.total_amount %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.items[0].ordered_status
+                                                                                            %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.items.reduce((acc,
+                                                                                            item)=>
+                                                                                            acc +
+                                                                                            item.quantity, 0) %>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <%= order.items[0].product_id.name
+                                                                                            %>
+                                                                                    </td>
+
+                                                                                </tr>
+                                                                                <% serialNumber++; %>
+                                                                                    <% } %>
+                                                                                        <% }) %>
+                                                                                            <% }) %>
+                                                            </tbody>
+
+                                                        </table>
+                                                        <% } else { %>
+                                                            <p class="text-center">No sales</p>
+                                                            <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- footer -->
+
+            </div>
+            <!-- end dashboard inner -->
+        </div>
+    </div>
+    </div>
+    <!-- jQuery -->
+    <script src="/admin/js/jquery.min.js"></script>
+    <script src="/admin/js/popper.min.js"></script>
+    <script src="/admin/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="/admin/js/animate.js"></script>
+    <!-- select country -->
+    <script src="/admin/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="/admin/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="/admin/js/Chart.min.js"></script>
+    <script src="/admin/js/Chart.bundle.min.js"></script>
+    <script src="/admin/js/utils.js"></script>
+    <script src="/admin/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="/admin/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- custom js -->
+    <script src="/admin/js/chart_custom_style1.js"></script>
+    <script src="/admin/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+    <script>
+        const selectedDate = async () => {
+            let startDate = document.getElementById("startDatePicker").value;
+            let endDate = document.getElementById("endDatePicker").value;
+
+
+            if (!startDate) {
+                // SweetAlert for empty dates
+                showToast("Please select both start and end dates", "error");
+                console.log("haaai");
+                return false;
+            }
+
+            let startDateObj = new Date(startDate);
+            let endDateObj = new Date(endDate);
+
+            if (startDateObj > endDateObj) {
+                // SweetAlert for start date greater than end date
+                showToast("Start date cannot be greater than end date", "error");
+                console.log('hi');
+                return false;
+            }
+
+            const today = new Date();
+
+            if (endDateObj > today) {
+                // SweetAlert for end date in the future
+                showToast("End date cannot be in the future", "error");
+                return false;
+            }
+
+            function showToast(message, type) {
+                Swal.fire({
+                    text: message,
+                    icon: type,
+                    position: "top",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    background: "#FFFFFF",
+                    customClass: {
+                        popup: 'your-custom-class',
+                        content: 'your-custom-content-class',
+                    },
+                });
+            }
+
+
+
+            const response = await axios.post("/admin/salesReport", {
+                startDate,
+                endDate,
+            });
+
+            console.log(response.data);
+            const salesReport = response.data.selectedDate;
+
+            console.log('salesReport:', salesReport)
+
+            const reportBody = document.getElementById("reportBody");
+            console.log('hdgshdgshdg:', reportBody);
+            reportBody.innerHTML = salesReport
+
+                .map((order) =>
+
+                    `
+                                <tr>
+                                    <td>${order.user[0].email}</td>
+                                    <td>${order.user[0].mobile}</td>
+                                    <td>${order.delivery_address}</td>
+                                    <td>${order.order_id}</td>
+                                    <td>${order.date}</td>
+                                    <td>${order.payment}</td>
+                                    <td>${order.total}</td>
+                                    <td>${order.ordered_status}</td>
+                                    <td>${order.quantity}</td>
+                                    <td>${order.product}</td>
+                                </tr>`
+                ).join("");
+
+
+            const tableHeader = `
+                                <tr>
+                                
+                                <th>EMAIL</th>
+                                <th>MOBILE</th>
+                                <th>ADDRESS</th>
+                                <th>ORDER ID</th>
+                                <th>DATE</th>
+                                <th>PAYMENT METHOD</th>
+                                <th>TOTAL</th>
+                                <th>STATUS</th>
+                                <th>QUANTITY</th>
+                                <th>PRODUCT NAME</th>
+                                </tr>`;
+
+            const reportHeader = document.getElementById("reportHeader");
+            reportHeader.innerHTML = tableHeader;
+            console.log('gdfddfdf:', reportHeader.innerHTML)
+
+        };
+    </script>
+
+    <script>
+
+        function downloadPDF(divName) {
+            const printContents = document.getElementById(divName).innerHTML;
+            const originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+
+        function downloadExcel(divName) {
+            const table = document.getElementById(divName);
+            const rows = table.getElementsByTagName('tr');
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+
+            for (const row of rows) {
+                const cells = row.getElementsByTagName('td');
+                const cellValues = [];
+                for (const cell of cells) {
+                    cellValues.push(cell.textContent);
+                }
+                csvContent += cellValues.join(',') + '\n';
+            }
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'data.csv');
+            document.body.appendChild(link);
+
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -50,3 +50,51 @@ inputs.forEach((input, index1) => {
 window.addEventListener("load", () => inputs[0].focus());
 
 
+window.addEventListener("load",resendOTP );
+
+function resendOTP() {
+  const email = document.querySelector('input[name="email"]').value;
+  const resendLink = document.getElementById('resendLink');
+  const countdownElement = document.getElementById('countdown');
+  const expirationMessageElement = document.getElementById('expirationMessage');
+
+  resendLink.style.pointerEvents = 'none';
+
+  fetch('/resendOtp', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.message);
+      // You can update the UI here if needed
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // Handle error if needed
+    });
+
+  // Set the timer for 30 seconds
+  let seconds = 60;
+  let countdownInterval = setInterval(() => {
+    seconds--;
+
+    // Update the countdown display
+    countdownElement.textContent = `OTP expires in ${seconds} seconds`;
+    expirationMessageElement.textContent = `You Can Resend OTP after The Expiration...!`;
+
+    // Check if the countdown has reached 0
+    if (seconds <= 0) {
+      // Enable the resend link and clear the interval
+      resendLink.style.pointerEvents = 'auto';
+      countdownElement.textContent = '';
+      expirationMessageElement.textContent = '';
+      clearInterval(countdownInterval);
+    }
+  }, 1000);
+
+}
+

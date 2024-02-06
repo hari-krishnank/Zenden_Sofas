@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/preloader.css">
+
 </head>
 
 <body>
@@ -39,6 +41,7 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="menu_icon"><i class="fas fa-bars"></i></span>
                         </button>
+                        <div class="preloader"></div>
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
@@ -81,10 +84,13 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                         <% if (locals.User) { %>
+                                            <a class="dropdown-item" href="userProfile">MY PROFILE</a>
                                             <a class="dropdown-item" href="logout">LOGOUT</a>
+
                                             <% } else { %>
 
                                                 <a class="dropdown-item" href="login">LOGIN</a>
+                                                <a class="dropdown-item" href="signup">SIGN UP</a>
                                                 <% } %>
                                                     <!-- <a class="dropdown-item" href="single-blog.html">Single blog</a> -->
                                     </div>
@@ -93,7 +99,7 @@
                         </div>
                         <div class="hearer_icon d-flex">
                             <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <a href=""><i class="ti-heart"></i></a>
+                            <a href="wishlist"><i class="ti-heart"></i></a>
                             <div class="dropdown cart">
                                 <a href="cart" role="button">
                                     <i class="fas fa-cart-plus"></i>
@@ -717,6 +723,7 @@
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <script src="js/preloader.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="/admin/images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="/admin/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/admin/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="/admin/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="/admin/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="/admin/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/admin/css/custom.css" />
+    <!-- calendar file css -->
+    <link rel="stylesheet" href="/admin/js/semantic.min.css" />
+    <!-- fancy box js -->
+    <link rel="stylesheet" href="/admin/css/jquery.fancybox.css" />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body class="inner_page tables_page">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive"
+                                    src="/admin/images/layout_img/user_img.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>John David</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
+                                <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                        <li>
+                            <a href="/admin/category"><i class="fa fa-database"></i>
+                                <span>Category</span></a>
+                        </li>
+                        <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
+                        <li>
+                            <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+
+                        </li>
+                        <li>
+                            <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i> <span>Offers</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                        </li> 
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <!-- <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a> -->
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">John David</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont">
+                    <!-- Add this form section after the <th> tags -->
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="page_title">
+                                    <h2>ADD OFFERS</h2><br>
+                                    <p style="font-size: medium;">[PRODUCTS / CATEGORIES]<p>
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-body">
+
+                                        <form id="addOfferForm" method="POST" action="/admin/offers" >
+
+                                            <div class="form-group">
+                                                <label for="offerName">Offer Name</label> 
+                                                <input type="text"
+                                                       placeholder="Name of Offer" 
+                                                       class="form-control" 
+                                                       id="offerName"
+                                                       name="name" 
+                                                       required>
+                                                       <div id="nameError" style="color: red;"></div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="description">Description</label>
+                                                <textarea class="form-control"
+                                                          placeholder="Description" 
+                                                          id="description" 
+                                                          name="description" 
+                                                          rows="3"></textarea>
+                                                          <div id="descriptionError" style="color: red;"></div>
+                                            </div><br>
+
+                                            <div class="form-group">
+                                                <p style="font-size: 18px; color: black; font-weight: 400;">Select Product / Category for Offers</p>
+                                                <input type="radio" id="categoryOffer" name="offerType" value="categoryOffer" onclick="toggleForm('categoryForm', 'productForm')">
+                                                <label for="categoryOffer">Category</label><br>
+                                                <input type="radio" id="productOffer" name="offerType" value="productOffer" onclick="toggleForm('productForm', 'categoryForm')">
+                                                <label for="productOffer">Product</label><br>
+                                            </div>
+                                            
+                                            <% if (typeof message !== 'undefined') { %>
+                                                <p style="color: red;"><%- message %></p>
+                                            <% } %>
+                                            
+                                            <div id="categoryForm" class="form-group">
+                                                <label for="category">Category</label><br>
+                                                <select name="category" class="form-select" style="width: 25%;" disabled>
+                                                    <option value="" selected disabled>Select Category</option>
+                                                    <% for(let category of categories) { %>
+                                                        <option value="<%= category._id %>">
+                                                            <%= category.name %>
+                                                        </option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                            
+                                            <div id="productForm" class="form-group">
+                                                <label for="product">Product</label><br>
+                                                <select name="product" class="form-select" style="width: 25%;" disabled>
+                                                    <option value="" selected disabled>Select Product</option>
+                                                    <% for(let product of products) { %>
+                                                        <option value="<%= product._id %>">
+                                                            <%= product.name %>
+                                                        </option>
+                                                    <% } %>
+                                                </select>
+                                            </div>
+                                            
+                                            
+
+                                            <div class="form-group">
+                                                <label for="discount">Percentage Of Discount</label>
+                                                <input type="text" 
+                                                       placeholder="Discount"
+                                                       class="form-control" 
+                                                       id="discount"
+                                                       name="percentage" 
+                                                       min="0"
+                                                       max="100"
+                                                       required>
+                                                       <div id="priceError" style="color: red;"></div>
+                                            </div>
+                                            
+                                            
+                                            <div class="form-group">
+                                                <label for="startingDate">Starting Date</label>
+                                                <input type="date" 
+                                                       placeholder="startingDate"
+                                                       class="form-control" 
+                                                       id="startingDate"
+                                                       name="startingDate" 
+                                                       
+                                                       required>
+                                                       <div id="priceError" style="color: red;"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="expireDate">Expire Date</label>
+                                                <input type="date" 
+                                                       placeholder="expireDate"
+                                                       class="form-control" 
+                                                       id="expireDate"
+                                                       name="expiryDate" 
+                                                       
+                                                       required>
+                                                       <div id="priceError" style="color: red;"></div>
+                                            </div>
+                                           
+                                            <div class="form-group row">
+                                                <div class="col-sm-1">
+                                                    <button type="submit" class="btn btn-success">SUBMIT</button>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <a href="/admin/offers">
+                                                        <button type="button" class="btn cur-p btn-danger">BACK</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- end dashboard inner -->
+        </div>
+    </div>
+    <!-- model popup -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end model popup -->
+    </div>
+    <!-- jQuery -->
+    <script src="/admin/js/jquery.min.js"></script>
+    <script src="/admin/js/popper.min.js"></script>
+    <script src="/admin/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="/admin/js/animate.js"></script>
+    <!-- select country -->
+    <script src="/admin/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="/admin/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="/admin/js/Chart.min.js"></script>
+    <script src="/admin/js/Chart.bundle.min.js"></script>
+    <script src="/admin/js/utils.js"></script>
+    <script src="/admin/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="/admin/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- fancy box js -->
+    <script src="/admin/js/jquery-3.3.1.min.js"></script>
+    <script src="/admin/js/jquery.fancybox.min.js"></script>
+    <!-- custom js -->
+    <script src="/admin/js/custom.js"></script>
+    <!-- calendar file css -->
+    <script src="/admin/js/semantic.min.js"></script>
+    <script>
+        function toggleForm(formToShow, formToHide) {
+            document.getElementById(formToShow).style.display = 'block';
+            document.getElementById(formToShow).querySelector('select').removeAttribute('disabled');
+    
+            document.getElementById(formToHide).style.display = 'block';
+            document.getElementById(formToHide).querySelector('select').setAttribute('disabled', 'disabled');
+        }
+    </script>
+    
+</body>
+
+</html>

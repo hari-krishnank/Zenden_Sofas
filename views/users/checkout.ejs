@@ -29,6 +29,44 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
+<style>
+    /* Styles for demonstration purposes only, adjust as needed */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
 <body>
     <!--::header part start::-->
     <header class="main_menu home_menu">
@@ -84,6 +122,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                         <% if (locals.User) { %>
+                                            <a class="dropdown-item" href="userProfile">MY PROFILE</a>
                                             <a class="dropdown-item" href="logout">LOGOUT</a>
                                             <% } else { %>
 
@@ -161,14 +200,30 @@
                                     <td class="product-image"><a href="#"><img
                                                 src="/resizedImages/<%= product.product_id.image[0] %>" alt=""
                                                 style="width: 100px; height: auto;"></a></td>
-                                    <!-- Add other table rows as needed -->
 
-                                    <!-- Example row displaying name, price, quantity, and total -->
                                     <td>
                                         <%= product.product_id.name %>
                                     </td>
-                                    <td>₹<%= product.product_id.price %>
+                                    <td>
+                                        <% if (product.product_id.offer || product.product_id.category?.offer) { %>
+                                            <b style="color: rgb(27, 218, 68); font-size: 15px;">₹ <%=
+                                                    product.product_id.offerPrice %></b>
+                                            <span style="text-decoration: line-through; color: red;">₹ <%=
+                                                    product.product_id.price %></span>
+                                            <% if (product.product_id.offer) { %>
+                                                <span style="color: red; font-weight: 500;">
+                                                    <%= product.product_id.offer.percentage %> % OFF
+                                                </span>
+                                                <% } else { %>
+                                                    <span style="color: red; font-weight: 500;">
+                                                        <%= product.product_id.category.offer.percentage %> % OFF
+                                                    </span>
+                                                    <% } %>
+                                                        <% } else { %>
+                                                            <b>₹ <%= product.product_id.price %></b>
+                                                            <% } %>
                                     </td>
+
                                     <td>
                                         <!-- <%= product.quantity %> -->
                                         <div class="product_count">
@@ -176,35 +231,68 @@
                                                 min="1" max="100" name="quantity" readonly>
                                         </div>
                                     </td>
-                                    <td>₹<%= product.product_id.price * product.quantity %>
+                                    <td>₹<%= product.product_id.offerPrice*product.quantity %>
                                     </td>
                                 </tr>
 
                                 <% }) %>
                                     <% } else { %>
                                         <tr>
-                                            <td colspan="4">Cart is empty</td>
+                                            <td colspan="4" style="color: red; font-weight: 500;">YOUR CART IS EMPTY.
+                                                CONTINUE TO SHOP AND PURCHASE.</td>
                                         </tr>
                                         <% } %>
 
                     </tbody>
                 </table>
             </div>
+
             <!-- Address Selection Form -->
-            <div class="row"> 
+            <div class="row">
                 <div class="col-lg-8">
-                    
+
+                    <div class="cupon_area">
+                        <div class="check_title">
+                            <h2>
+                                Have a coupon?
+                                <a href="#" id="openModal">Click here to enter your code</a>
+                            </h2>
+                        </div>
+                        <input type="text" style="margin-left: 1px;" placeholder="Enter coupon code" id="code" required
+                            name="code" value=""/>
+                        <a class="btn_3" href="#" style="margin-left: 1px;"
+                            onclick="applyCoupon($('#code').val())">Apply Coupon</a>
+                    </div>
+
+                    <div id="couponModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <p>Available Coupons:</p>
+                            <% if (coupons.length> 0) { %>
+                                <% coupons.forEach(coupon=> { %>
+                                    <p>
+                                        <%= coupon.couponCode %>: <%= coupon.couponDescription %>
+                                    </p>
+                                    <!-- You can display any other coupon details here -->
+                                    <% }); %>
+                                        <% } else { %>
+                                            <p>No coupons available at the moment.</p>
+                                            <% } %>
+                        </div>
+                    </div>
 
 
                     <div class="card mb-3">
+
                         <div class="card-body">
-            <form action="/submitOrder" method="POST">
-               
+                            <form action="/submitOrder" method="POST">
+
                                 <h5 class="card-title">Select Shipping Address</h5>
                                 <div class="form-check">
                                     <% if (userAddresses && userAddresses.length> 0) { %>
                                         <% userAddresses.forEach((address)=> { %>
-                                            <input class="form-check-input" type="radio" name="address" id="address">
+                                            <input class="form-check-input" type="radio" name="address" id="address"
+                                                value="<%= address.name %>, <%= address.mobile %>,<%= address.address %>, <%= address.city %>, <%= address.state %>,<%= address.pincode %>,<%= address.landmark %>,<%= address.alternateMobile %>">
                                             <label class="form-check-label" for="address">
                                                 <strong>
                                                     <%= address.name %>
@@ -223,138 +311,175 @@
                                                     <% } %>
                                 </div>
                             </form>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <button type="button" class="btn btn_1 genric-btn success-border radius"
-                                    onclick="toggleFormVisibility()">ADD NEW ADDRESS</button>
-                            </div>
-
-                           
-                        </div>
-                        <div class="mt-30"></div>
-                        <div class="col-lg-12 col-md-8">
-            
-                            <form id="newAddressForm" action="/checkout" method="post" style="display: none;" class="border p-4">
-                                <h3 class="mt-10" style="font-size: medium;">ADD A NEW ADDRESS</h3>
-            
-                                <div class="mt-30">
-                                    <input type="text" name="name" placeholder="Name" onfocus="this.placeholder = 'Name'"
-                                        onblur="this.placeholder = 'Name'" required class="single-input-primary">
-                                </div>
-            
-                                <div class="mt-10">
-                                    <input type="text" name="mobile" placeholder="10-digit Mobile Number"
-                                        onfocus="this.placeholder = '10-digit Mobile Number'"
-                                        onblur="this.placeholder = '10-digit Mobile Number'" required class="single-input-primary">
-                                </div>
-            
-                                <div class="mt-10">
-                                    <input type="text" name="pincode" placeholder="pincode" onfocus="this.placeholder = 'pincode'"
-                                        onblur="this.placeholder = 'pincode'" required class="single-input-primary">
-                                </div>
-            
-                                <div class="mt-10">
-                                    <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = 'Address'"
-                                        onblur="this.placeholder = 'Address'" required class="single-input-primary">
-                                </div>
-            
-                                <div class="mt-10">
-                                    <input type="text" name="city" placeholder="City/District/Town"
-                                        onfocus="this.placeholder = 'City/District/Town'"
-                                        onblur="this.placeholder = 'City/District/Town'" required class="single-input-primary">
-                                </div>
-            
-                                <div class="mt-10">
-                                    <input type="text" name="state" placeholder="State" onfocus="this.placeholder = 'State'"
-                                        onblur="this.placeholder = 'State'" required class="single-input-primary">
-                                </div>
-            
-            
-                                <div class="mt-10">
-                                    <input type="text" name="landmark" placeholder="Landmark (optional)"
-                                        onfocus="this.placeholder = 'Landmark (optional)'"
-                                        onblur="this.placeholder = 'Landmark (optional)'" required class="single-input-primary">
-                                </div>
-            
-                                <div class="mt-10">
-                                    <input type="text" name="alternateMobile" placeholder="Alternate Phone (optional)"
-                                        onfocus="this.placeholder = 'Alternate Phone (optional)'"
-                                        onblur="this.placeholder = 'Alternate Phone (optional)'" required
-                                        class="single-input-primary">
-                                </div>
-                                <div class="mt-30"></div>
-                                <button type="submit" class="genric-btn primary-border">SAVE AND DELIVER HERE</button>
-            
-            
-                                <div class="mt-30" id="message"></div>
-                            </form>
-            
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="order_box">
-                          <h2>Your Order</h2>
-                          <ul class="list">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <button type="button" class="btn btn_1 genric-btn success-border radius"
+                                onclick="toggleFormVisibility()">ADD NEW ADDRESS</button>
+                        </div>
+
+
+                    </div>
+                    <div class="mt-30"></div>
+                    <div class="col-lg-12 col-md-8">
+
+                        <form id="newAddressForm" style="display: none;" class="border p-4">
+                            <h3 class="mt-10" style="font-size: medium;">ADD A NEW ADDRESS</h3>
+
+                            <div class="mt-30">
+                                <input type="text" id="name" name="name" placeholder="Name"
+                                    onfocus="this.placeholder = 'Name'" onblur="this.placeholder = 'Name'"
+                                    class="single-input-primary">
+                                <span id="nameError" class="error" style="color: red;"></span>
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" id="housename" name="housename" placeholder="House Name"
+                                    onfocus="this.placeholder = 'House Name'" onblur="this.placeholder = 'House Name'"
+                                    class="single-input-primary">
+                                <span id="housenameError" class="error" style="color: red;"></span>
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" id="city" name="city" placeholder="City/District/Town"
+                                    onfocus="this.placeholder = 'City/District/Town'"
+                                    onblur="this.placeholder = 'City/District/Town'" class="single-input-primary">
+                                <span id="cityError" class="error" style="color: red;"></span>
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" id="state" name="state" placeholder="State"
+                                    onfocus="this.placeholder = 'State'" onblur="this.placeholder = 'State'"
+                                    class="single-input-primary">
+                                <span id="stateError" class="error" style="color: red;"></span>
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" id="phone" name="phone" placeholder="10-digit Mobile Number"
+                                    onfocus="this.placeholder = '10-digit Mobile Number'"
+                                    onblur="this.placeholder = '10-digit Mobile Number'" class="single-input-primary">
+                                <span id="phoneError" class="error" style="color: red;"></span>
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" id="pincode" name="pincode" placeholder="Pin Code"
+                                    onfocus="this.placeholder = 'Pin Code'" onblur="this.placeholder = 'Pin Code'"
+                                    class="single-input-primary">
+                                <span id="pincodeError" class="error" style="color: red;"></span>
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" id="landmark" name="landmark" placeholder="Landmark"
+                                    onfocus="this.placeholder = 'Landmark '" onblur="this.placeholder = 'Landmark '"
+                                    class="single-input-primary">
+                            </div>
+
+                            <div class="mt-10">
+                                <input type="text" id="alternateMobile" name="alternateMobile"
+                                    placeholder="Alternate Phone " onfocus="this.placeholder = 'Alternate Phone '"
+                                    onblur="this.placeholder = 'Alternate Phone '" class="single-input-primary">
+                            </div>
+
+                            <div class="mt-30"></div>
+                            <button type="submit" class="genric-btn primary-border">SAVE AND DELIVER HERE</button>
+
+                            <div class="mt-30" id="message"></div>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="order_box">
+                        <h2>Your Order</h2>
+                        <ul class="list">
                             <% if (cart && cart.items) { %>
-                                <% cart.items.forEach((product) => { %>
+                                <% cart.items.forEach((product)=> { %>
                                     <li>
-                                        <p><strong><%= product.product_id.name %></strong></p>
-                                        <p>Quantity: <%= product.quantity %></p>
-                                        <p>Price: ₹<%= product.product_id.price %></p>
+                                        <p><strong>
+                                                <%= product.product_id.name %>
+                                            </strong></p>
+                                        <p>Quantity: <%= product.quantity %>
+                                        </p>
+                                        <p>Price: <% if (product.product_id.offer || product.product_id.category?.offer)
+                                                { %>
+                                                <b style="color: rgb(27, 218, 68); font-size: 15px;">₹ <%=
+                                                        product.product_id.offerPrice %></b>
+                                                <span style="text-decoration: line-through; color: red;">₹ <%=
+                                                        product.product_id.price %></span>
+                                                <% if (product.product_id.offer) { %>
+                                                    <span style="color: red; font-weight: 500;">
+                                                        <%= product.product_id.offer.percentage %> % OFF
+                                                    </span>
+                                                    <% } else { %>
+                                                        <span style="color: red; font-weight: 500;">
+                                                            <%= product.product_id.category.offer.percentage %> % OFF
+                                                        </span>
+                                                        <% } %>
+                                                            <% } else { %>
+                                                                <b>₹ <%= product.product_id.price %></b>
+                                                                <% } %>
+                                        </p>
                                         <br>
                                     </li>
-                                <% }) %>
-                            <% } else { %>
-                                <li>No items in your cart</li>
-                            <% } %>
+                                    <% }) %>
+                                        <% } else { %>
+                                            <li>No items in your cart</li>
+                                            <% } %>
                         </ul>
-                        
-                          <ul class="list list_2">
+
+                        <ul class="list list_2">
                             <li>
-                              <a >SUBTOTAL  
-                                <span> -  ₹<%= subTotal  %></span>
-                              </a>
+                                <a>SUBTOTAL
+                                    <span id="totalAmount"> - ₹<%= subTotal %></span>
+                                </a>
                             </li>
                             <li>
-                              <a >DELIVERY CHARGES
-                                <span>-  Free</span>
-                              </a>
+                                <a>DELIVERY CHARGES
+                                    <span id="discount">- Free</span>
+                                </a>
                             </li><br>
                             <li>
-                              <a >Total
-                                <span>-  ₹<%= subTotal  %> </span>
-                              </a>
+                                <a>Total
+                                    <span id="total" value="subTotal">- ₹<%= subTotal %> </span>
+                                </a>
                             </li>
-                          </ul>
-                          <br><br>
-                          <div class="payment_item">
+                        </ul>
+                        <br><br>
+                        <div class="payment_item">
                             <h5>SELECT PAYMENT METHOD</h5>
                             <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="selector" />
+                                <input type="radio" id="f-option5" name="payment" value="COD" />
                                 <label for="f-option5">Cash on delivery</label>
                                 <div class="check"></div>
                             </div>
+                            <div class="radion_btn">
+                                <input type="radio" id="razor-pay" name="payment" value="RazorPay" />
+                                <label for="razor-pay">online payment </label>
+                                <div class="check"></div>
+                            </div>
                         </div>
-                        
-                     
-                         
-                          <div class="checkout_btn_inner mt-30">
-                            <button type="submit" class="btn_1 genric-btn success-border radius">PROCEED TO
+
+
+
+
+                        <!-- ... your form content ... -->
+                        <div class="checkout_btn_inner mt-30">
+                            <button type="submit" id="btn_1" class=" genric-btn success-border radius">PROCEED TO
                                 PAYMENT</button>
                         </div>
-                        </div>
-                      </div> 
+
+                    </div>
                 </div>
+            </div>
 
-                        
-                     
 
-                    
 
-            
-           
+
+
+
+
+
         </div>
     </section>
     <!--================End Checkout Area =================-->
@@ -488,6 +613,91 @@
     <script src="js/price_rangs.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        function validateAddressForm() {
+            // Reset all error messages
+            document.getElementById('nameError').innerHTML = '';
+            document.getElementById('housenameError').innerHTML = '';
+            document.getElementById('cityError').innerHTML = '';
+            document.getElementById('stateError').innerHTML = '';
+            document.getElementById('phoneError').innerHTML = '';
+            document.getElementById('pincodeError').innerHTML = '';
+
+            var name = document.getElementById('name').value;
+            var housename = document.getElementById('housename').value;
+            var city = document.getElementById('city').value;
+            var state = document.getElementById('state').value;
+            var phone = document.getElementById('phone').value;
+            var pincode = document.getElementById('pincode').value;
+
+            // Check if any field is empty
+            if (!name.trim()) {
+                document.getElementById('nameError').innerHTML = 'Name is required.';
+                return false;
+            }
+
+            if (!housename.trim()) {
+                document.getElementById('housenameError').innerHTML = 'House Name is required.';
+                return false;
+            }
+
+            if (!city.trim()) {
+                document.getElementById('cityError').innerHTML = 'City is required.';
+                return false;
+            }
+
+            if (!state.trim()) {
+                document.getElementById('stateError').innerHTML = 'State is required.';
+                return false;
+            }
+
+            if (!phone.trim()) {
+                document.getElementById('phoneError').innerHTML = 'Phone is required.';
+                return false;
+            }
+
+            if (!pincode.trim()) {
+                document.getElementById('pincodeError').innerHTML = 'Pin Code is required.';
+                return false;
+            }
+
+            // Validate phone and pincode as numbers
+            if (isNaN(phone)) {
+                document.getElementById('phoneError').innerHTML = 'Phone must be a number.';
+                return false;
+            }
+
+            if (isNaN(pincode)) {
+                document.getElementById('pincodeError').innerHTML = 'Pin Code must be a number.';
+                return false;
+            }
+
+            // Validate phone length
+            if (phone.length !== 10) {
+                document.getElementById('phoneError').innerHTML = 'Phone must be 10 digits.';
+                return false;
+            }
+
+            // Validate pincode length
+            if (pincode.length !== 6) {
+                document.getElementById('pincodeError').innerHTML = 'Pin Code must be 6 digits.';
+                return false;
+            }
+
+            if (/\d/.test(name)) {
+                document.getElementById('nameError').innerHTML = 'Name should not contain numbers.';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+
+
     <script>
         function toggleFormVisibility() {
             var form = document.getElementById("newAddressForm");
@@ -500,29 +710,255 @@
             event.preventDefault();
 
             // Use AJAX to send the form data to the server
-            $.ajax({
-                type: "POST",
-                url: "/checkout", // Adjust the URL based on your server configuration
-                data: $(this).serialize(),
-                dataType: "json",
-                success: function (response) {
-                    console.log('Response:', response);
+            if (validateAddressForm()) {
+                $.ajax({
+                    type: "POST",
+                    url: "/checkout", // Adjust the URL based on your server configuration
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function (response) {
+                        console.log('Response:', response);
 
-                    if (response.success) {
-                        $("#message").text(response.message);
-                    } else {
-                        console.error(response.message);
+                        if (response.success) {
+                            $("#message").text(response.message);
+                            window.location.reload()
+                        } else {
+                            console.error(response.message);
+                        }
+                    },
+                    error: function (error) {
+                        console.error("Error:", error);
                     }
-                },
-                error: function (error) {
-                    console.error("Error:", error);
-                }
-            });
+                });
+
+            }
+
         });
 
     </script>
+
     <script>
-        
+     
+        document.getElementById('btn_1').addEventListener('click', async (event) => {
+            event.preventDefault();
+            console.log('Button clicked!');
+
+            const couponCode = document.getElementById('code').value;
+            applyCoupon(couponCode);
+            console.log('coupon:',couponCode);
+            // Get the selected address ID and user ID from your form
+            // Validate address selection
+            const selectedAddress = document.querySelector('input[name="address"]:checked');
+            if (!selectedAddress) {
+                // Display SweetAlert for address not selected
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please select a shipping address!',
+                });
+                return; // Stop further execution
+            }
+            // Validate payment method selection
+            const selectPayment = document.querySelector('input[name="payment"]:checked');
+            if (!selectPayment) {
+                // Display SweetAlert for payment method not selected
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please select a payment method!',
+                });
+                return; // Stop further execution
+            }
+
+            const userId = '<%= User && User._id %>'; // Replace this with the actual user ID
+
+            // Make a POST request to place the order
+            const response = await fetch('/placeOrder', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+
+                body: JSON.stringify({
+                    userId,
+                    address: selectedAddress.value,
+                    payment: selectPayment.value,
+                    couponCode
+
+                }),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                if (selectPayment.value === "COD") {
+                    // Redirect to the order success page for COD
+                    const param = result.params;
+                    window.location.href = '/orderSuccess/' + param;
+                } else {
+                    const razorpayOrder = result.razorpayOrder; // Assuming this is how the order object is returned
+                    console.log("RazorPay Order:", razorpayOrder);
+                    console.log("Redirect or handle other payment methods here");
+                    razorpayPayment(razorpayOrder)
+                    function razorpayPayment(razorpayOrder) {
+                        console.log("Inside razorpayPayment function");
+                        console.log("Razorpay Order:", razorpayOrder);
+                        var options = {
+                            "key": "rzp_test_cPBTEr8pcbniS3", // Enter the Key ID generated from the Dashboard
+                            "amount": razorpayOrder.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                            "currency": "INR",
+                            "name": "Zenden Sofa", //your business name
+                            "description": "Test Transaction",
+                            "image": "https://example.com/your_logo",
+                            "order_id": razorpayOrder.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                            "handler": function (response) {
+                                // alert(response.razorpay_payment_id);
+                                // alert(response.razorpay_order_id);
+                                // alert(response.razorpay_signature)
+                                verifyPayment(response, razorpayOrder)
+                                console.log('response:', response)
+                            },
+                            "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
+                                "name": name, //your customer's name
+                                "email": "gaurav.kumar@example.com",
+                                "contact": "9000090000"  //Provide the customer's phone number for better conversion rates 
+                            },
+                            "notes": {
+                                "address": "Razorpay Corporate Office"
+                            },
+                            "theme": {
+                                "color": "#3399cc"
+                            }
+                        };
+                        var rzp1 = new Razorpay(options);
+
+                        rzp1.open();
+
+                    }
+                    function verifyPayment(payment, razorpayOrder) {
+                        $.ajax({
+                            url: '/verify-payment',
+                            method: 'post',
+                            data: {
+                                payment,
+                                razorpayOrder
+                            },
+                            success: (response) => {
+                                if (response.success == true) {
+                                    const param = response.params;
+                                    window.location.href = '/orderSuccess/' + param;
+                                }
+                            }
+                        })
+                    }
+                }
+            } else {
+                // Handle the error (show an error message, redirect, etc.)
+                console.error(result.message);
+
+                // Check if it's a quantity error
+                if (result.errors && result.errors.length > 0) {
+                    // Display quantity error messages using SweetAlert
+                    const errorMessage = result.errors.join('\n');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Quantity Error',
+                        text: errorMessage,
+                    });
+                } else {
+                    // Display a generic error message
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Product is not available in sufficient quantity.Please availability of product in Shop',
+                    });
+                }
+            }
+        });
+
+    </script>
+
+
+
+    <script>
+        document.getElementById("openModal").addEventListener("click", function () {
+            document.getElementById("couponModal").style.display = "block";
+        });
+
+        document.getElementsByClassName("close")[0].addEventListener("click", function () {
+            document.getElementById("couponModal").style.display = "none";
+        });
+
+        window.addEventListener("click", function (event) {
+            if (event.target == document.getElementById("couponModal")) {
+                document.getElementById("couponModal").style.display = "none";
+            }
+        });
+    </script>
+
+
+    <script>
+        function applyCoupon(code) {
+            console.log('Applying coupon with code:', code);
+
+            const amountElement = document.getElementById('total');
+            if (!amountElement) {
+                console.error("Element with id 'total' not found.");
+                return;
+            }
+            const amountText = amountElement.innerText.replace('₹', '').trim();
+            const subTotal = parseFloat(amountText.replace('-', ''));
+            if (isNaN(subTotal)) {
+                console.error("Failed to parse amount:", amountText);
+                return;
+            }
+
+            $.ajax({
+                url: '/applyCoupon',
+                data: {
+                    code: code,
+                    subTotal: subTotal
+                },
+                method: "post",
+                success: (response) => {
+                    console.log("my resssy:", response);
+                    if (response.couponClaimed) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops !!',
+                            text: 'This coupon already used!'
+                        })
+                    } else if (response.maxAmount) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops !!',
+                            text: 'You cant use the coupon...Buy more'
+                        })
+                    } else if (response.applied) {
+                        document.getElementById('totalAmount').innerHTML = "₹" + response.updatedSubTotal;  // Update total
+                        document.getElementById('discount').innerHTML = "₹" + response.discountAmount;
+                        document.getElementById('total').innerHTML = "₹" + response.updatedSubTotal;  // Update total
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Discount redeemed',
+
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops !!!',
+                            text: 'Invalid Coupon!!!'
+                        })
+                    }
+
+                }
+            })
+
+        }
     </script>
 </body>
 

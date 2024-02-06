@@ -1,0 +1,127 @@
+@media (max-width:1023px) {
+  .hamburger-btn {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .breadcrumb {
+    padding: 48px 0px;
+  }
+}
+
+@media(max-width:480px) {
+  .breadcrumb {
+    background-color: var(--bg-breadcum);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 10px 0px;
+  }
+
+  .sign_in {
+    width: auto;
+  }
+
+  .error_wrapper {
+    /* padding-top: 202px; */
+    padding: 17px 0px;
+  }
+
+  .error_wrapper h1 {
+    color: var(--gray-black);
+    font-weight: 700;
+    font-size: 200px;
+    line-height: 100%;
+    font-family: 'DM Sans';
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .error_wrapper p {
+    color: var(--gray-black);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    font-family: 'DM Sans';
+    text-align: center;
+    text-transform: capitalize;
+    padding-top: 12px;
+  }
+
+  .error_wrapper span {
+    color: var(--dark-gray);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+    font-family: 'DM Sans';
+    text-align: center;
+    text-transform: capitalize;
+    display: block;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width:380px){
+  .nav-menu{
+    width: 100%;
+  }
+}
+@media(min-width:1536px){
+  .breadcrumb{
+    margin: 0px 4.6%;
+  }
+}
+@media (max-width: 767px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+  .sign_in {
+    width: auto;
+  }
+  .gallery-container,
+  .gallery-main{
+    width: 100%;
+    height: auto;
+  }
+  .breadcrumb{
+    padding: 48px 0px;
+  }
+}
+
+
+
+@media (min-width: 480px) {
+  .portfoliolist {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (min-width: 767px) {
+  .portfoliolist {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfoliolist {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+@media (min-width:1860px) {
+  .banner-slider-button{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 1399px) {
+  .gallery-container{
+    margin: 0px auto 50px;
+  }
+  .right-side{
+    max-width: 730px;
+  }
+}

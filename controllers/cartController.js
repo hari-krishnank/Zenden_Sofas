@@ -12,25 +12,54 @@ const loadCart = async (req, res) => {
             const id = req.session.userId;
             user = await User.findOne({ _id: id });
         }
-
+ 
         if (!user) {
             res.redirect('/login')
 
         } else {
 
-            const cartDetails = await Cart.findOne({ user_id: user._id }).populate({ path: 'items.product_id' })
+            const cartDetails = await Cart.findOne({ user_id: user._id }).populate({
+                path: 'items.product_id',
+                populate: [
+                    {
+                      path: "offer",
+                    },
+                    {
+                      path: "category",
+                      populate: {
+                        path: "offer",
+                      },
+                    },
+                  ],
+            });
+           
             const userData = await User.findOne({ _id: user._id })
 
-            let originalAmount = 0;
+            let subtotal = 0;
 
             if (cartDetails) {
                 cartDetails.items.forEach((cartItem) => {
-                    let itemTotalPrice = cartItem.total_price;
-                    originalAmount += itemTotalPrice;
-                })
+                   
+
+                    let product = cartItem.product_id;
+
+                    if (product.offer) {
+                        // Calculate discounted price based on product's offer percentage
+                        let discount = Math.round(product.price * (product.offer.percentage / 100));
+                        product.offerPrice = product.price - discount;
+                    } else if (product.category && product.category.offer) {
+                        // Calculate discounted price based on category's offer percentage
+                        let discount = Math.round(product.price * (product.category.offer.percentage / 100));
+                        product.offerPrice = product.price - discount;
+                    } else {
+                        product.offerPrice = product.price;
+                    }
+                    subtotal += product.offerPrice * cartItem.quantity;
+                });
             }
-            console.log('cart:',cartDetails);
-            res.render('users/cart', { User: userData, cartDetails, subTotal: originalAmount })
+
+            
+            res.render('users/cart', { User: userData, cartDetails, subtotal})
         }
 
 
@@ -57,7 +86,7 @@ const addToCart = async (req, res) => {
             return;
             // res.redirect('/login')
         } else {
-            const product = await Product.findOne({ _id: productId })
+            const product = await Product.findOne({ _id: productId }).populate({ path: 'category', populate: { path: 'offer' } }).populate('offer');
             console.log('Product:', product);
             const id = user._id;
             const cart = await Cart.findOne({ user_id: id })

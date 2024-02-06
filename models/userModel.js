@@ -24,8 +24,13 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    token: {
+        type: String,
+        default: ''
+    },
     Address: [
         {
+
             name: {
                 type: String,
             },
@@ -50,13 +55,19 @@ const userSchema = new mongoose.Schema({
             alternateMobile: {
                 type: Number,
             },
-            addressType: {
-                type: String,
-            }
+            
 
         }
-    ]
+    ],
+    wishlist: [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Product'
+        }
+    ],
 
-})
+},
+    { timestamps: true }
+)
 
 module.exports = mongoose.model('User', userSchema)

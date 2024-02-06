@@ -1,53 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- site icon -->
-      <link rel="icon" href="/admin/images/fevicon.png" type="image/png" />
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
-      <!-- site css -->
-      <link rel="stylesheet" href="/admin/css/style.css" />
-      <!-- responsive css -->
-      <link rel="stylesheet" href="/admin/css/responsive.css" />
-      <!-- color css -->
-      <link rel="stylesheet" href="/admin/css/colors.css" />
-      <!-- select bootstrap -->
-      <link rel="stylesheet" href="/admin/css/bootstrap-select.css" />
-      <!-- scrollbar css -->
-      <link rel="stylesheet" href="/admin/css/perfect-scrollbar.css" />
-      <!-- custom css -->
-      <link rel="stylesheet" href="/admin/css/custom.css" />
-      <!-- calendar file css -->
-      <link rel="stylesheet" href="/admin/js/semantic.min.css" />
-      <!-- fancy box js -->
-      <link rel="stylesheet" href="/admin/css/jquery.fancybox.css" />
-      <!--[if lt IE 9]>
+
+<head>
+   <!-- basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- mobile metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- site metas -->
+   <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- site icon -->
+   <link rel="icon" href="/admin/images/fevicon.png" type="image/png" />
+   <!-- bootstrap css -->
+   <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
+   <!-- site css -->
+   <link rel="stylesheet" href="/admin/css/style.css" />
+   <!-- responsive css -->
+   <link rel="stylesheet" href="/admin/css/responsive.css" />
+   <!-- color css -->
+   <link rel="stylesheet" href="/admin/css/colors.css" />
+   <!-- select bootstrap -->
+   <link rel="stylesheet" href="/admin/css/bootstrap-select.css" />
+   <!-- scrollbar css -->
+   <link rel="stylesheet" href="/admin/css/perfect-scrollbar.css" />
+   <!-- custom css -->
+   <link rel="stylesheet" href="/admin/css/custom.css" />
+   <!-- calendar file css -->
+   <link rel="stylesheet" href="/admin/js/semantic.min.css" />
+   <!-- fancy box js -->
+   <link rel="stylesheet" href="/admin/css/jquery.fancybox.css" />
+   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+   <style>
+      .table {
+         width: 100%;
+         border-collapse: collapse;
+      }
+
+      .table th,
+      .table td {
+         padding: 10px;
+         /* Adjust cell padding */
+         border: 1px solid #dee2e6;
+         /* Border color */
+         text-align: left;
+         /* Align text to the left */
+      }
+
+      .table th {
+         font-weight: 500;
+         color: black;
+      }
+
+      .table tbody tr:nth-child(even) {
+         background-color: #f2f2f2;
+         /* Alternate row background color */
+      }
+
+      .table tbody tr:hover {
+         background-color: #e2e2e2;
+         /* Hover background color */
+      }
+
+      .table tbody td {
+         vertical-align: middle;
+         /* Align content vertically in the middle */
+      }
+
+      .badge {
+         padding: 5px 8px;
+         /* Adjust badge padding */
+         border-radius: 10px;
+         /* Rounded corners for badge */
+         font-size: 12px;
+         /* Adjust badge font size */
+      }
+
+      .alert-success {
+         background-color: #28a745;
+         /* Success badge background color */
+         color: white;
+         /* Success badge text color */
+      }
+
+      .alert-danger {
+         background-color: #dc3545;
+         /* Danger badge background color */
+         color: white;
+         /* Danger badge text color */
+      }
+
+      .btn {
+         padding: 5px 10px;
+         /* Adjust button padding */
+         border: none;
+         cursor: pointer;
+         text-decoration: none;
+         /* Remove default button underline */
+      }
+
+      .btn-danger {
+         background-color: #dc3545;
+         /* Danger button background color */
+         color: white;
+         /* Danger button text color */
+      }
+
+      .btn-success {
+         background-color: #28a745;
+         /* Success button background color */
+         color: white;
+         /* Success button text color */
+      }
+
+      .font-sm {
+         font-size: 12px;
+         /* Adjust font size for buttons */
+      }
+
+      .text-center {
+         text-align: center;
+         /* Align text to the center */
+      }
+   </style>
+
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script>
+      document.addEventListener('DOMContentLoaded', function () {
+         // Block user confirmation
+         $('.btn-danger').on('click', function (e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
 
-      <script>
-         document.addEventListener('DOMContentLoaded', function () {
-           // Block user confirmation
-           $('.btn-danger').on('click', function (e) {
-             e.preventDefault();
-             const href = $(this).attr('href');
-       
-             Swal.fire({
+            Swal.fire({
                title: 'Are you sure?',
                text: 'You want to block this user',
                icon: 'warning',
@@ -55,20 +148,20 @@
                confirmButtonColor: '#d33',
                cancelButtonColor: '#3085d6',
                confirmButtonText: 'Yes, block it!'
-             }).then((result) => {
+            }).then((result) => {
                if (result.isConfirmed) {
-                 // Continue with your block action
-                 window.location.href = href;
+                  // Continue with your block action
+                  window.location.href = href;
                }
-             });
-           });
-       
-           // Unblock user confirmation
-           $('.btn-success').on('click', function (e) {
-             e.preventDefault();
-             const href = $(this).attr('href');
-       
-             Swal.fire({
+            });
+         });
+
+         // Unblock user confirmation
+         $('.btn-success').on('click', function (e) {
+            e.preventDefault();
+            const href = $(this).attr('href');
+
+            Swal.fire({
                title: 'Are you sure?',
                text: 'You want to unblock this user!',
                icon: 'info',
@@ -76,290 +169,258 @@
                confirmButtonColor: '#3085d6',
                cancelButtonColor: '#d33',
                confirmButtonText: 'Yes, unblock it!'
-             }).then((result) => {
+            }).then((result) => {
                if (result.isConfirmed) {
-                  
-                 // Continue with your unblock action
-                 window.location.href = href;
+
+                  // Continue with your unblock action
+                  window.location.href = href;
                }
-             });
-           });
+            });
          });
-       </script>
-       
+      });
+   </script>
 
-   </head>
-   <body class="inner_page tables_page">
-      <div class="full_container">
-         <div class="inner_container">
-            <!-- Sidebar  -->
-            <nav id="sidebar">
-               <div class="sidebar_blog_1">
-                  <div class="sidebar-header">
+
+</head>
+
+<body class="inner_page tables_page">
+   <div class="full_container">
+      <div class="inner_container">
+         <!-- Sidebar  -->
+         <nav id="sidebar">
+            <div class="sidebar_blog_1">
+               <div class="sidebar_user_info">
+                  <div class="icon_setting"></div>
+                  <div class="user_profle_side">
+                     <div class="user_img"><img class="img-responsive" src="/admin/images/layout_img/user_img.jpg"
+                           alt="#" /></div>
+                     <div class="user_info">
+                        <h6>John David</h6>
+                        <p><span class="online_animation"></span> Online</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="sidebar_blog_2">
+               <h4>General</h4>
+               <ul class="list-unstyled components">
+                  <li class="active">
+                     <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
+                        <span>Dashboard</span></a>
+                  </li>
+                  <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                  <li>
+                     <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>
+                  </li>
+                  <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
+                  <li>
+                     <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+                  </li>
+                  <li>
+                     <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i> <span>Offers</span></a>
+                  </li>
+                  <li>
+                     <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <!-- end sidebar -->
+
+         
+         <!-- right content -->
+         <div id="content">
+            <!-- topbar -->
+            <div class="topbar">
+               <nav class="navbar navbar-expand-lg navbar-light">
+                  <div class="full">
+                     <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                           class="fa fa-bars"></i></button>
                      <div class="logo_section">
-                        <!-- <a href="index.html"><img class="logo_icon img-responsive" src="/admin/images/logo/logo_icon.png" alt="#" /></a> -->
+                        <!-- <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a> -->
                      </div>
-                  </div>
-                  <div class="sidebar_user_info">
-                     <div class="icon_setting"></div>
-                     <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="/admin/images/layout_img/user_img.jpg" alt="#" /></div>
-                        <div class="user_info">
-                           <h6>John David</h6>
-                           <p><span class="online_animation"></span> Online</p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="sidebar_blog_2">
-                  <h4>General</h4>
-                  <ul class="list-unstyled components">
-                     <li class="active">
-                        <a href="/admin/dashboard"  class=""><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
-                        <!-- <ul class="collapse list-unstyled" id="dashboard">
-                           <li>
-                              <a href="dashboard.html">> <span>Default Dashboard</span></a>
-                           </li>
-                           <li>
-                              <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
-                           </li>
-                        </ul> -->
-                     </li>
-                     <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
-                     <li>
-                        <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>
-                        <!-- <ul class="collapse list-unstyled" id="element">
-                           <li><a href="general_elements.html">> <span>General Elements</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                           <li><a href="icons.html">> <span>Icons</span></a></li>
-                           <li><a href="invoice.html">> <span>Invoice</span></a></li>
-                        </ul> -->
-                     </li>
-                     <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
-                     <!-- <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Apps</span></a>
-                        <ul class="collapse list-unstyled" id="apps">
-                           <li><a href="email.html">> <span>Email</span></a></li>
-                           <li><a href="calendar.html">> <span>Calendar</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                        </ul>
-                     </li> -->
-                     <!-- <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
-                     <li>
-                        <a href="contact.html">
-                        <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
-                     </li>
-                     <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                           <li>
-                              <a href="profile.html">> <span>Profile</span></a>
-                           </li>
-                           <li>
-                              <a href="project.html">> <span>Projects</span></a>
-                           </li>
-                           <li>
-                              <a href="login.html">> <span>Login</span></a>
-                           </li>
-                           <li>
-                              <a href="404_error.html">> <span>404 Error</span></a>
-                           </li>
-                        </ul>
-                     </li>
-                     <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-                     <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li> -->
-                  </ul>
-               </div>
-            </nav>
-            <!-- end sidebar -->
-            <!-- right content -->
-            <div id="content">
-               <!-- topbar -->
-               <div class="topbar">
-                  <nav class="navbar navbar-expand-lg navbar-light">
-                     <div class="full">
-                        <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                           <!-- <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a> -->
-                        </div>
-                        <div class="right_topbar">
-                           <div class="icon_info">
-                              <ul>
-                                 <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                 <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                 <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                              </ul>
-                              <ul class="user_profile_dd">
-                                 <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
-                                    <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="profile.html">My Profile</a>
-                                       <a class="dropdown-item" href="settings.html">Settings</a>
-                                       <a class="dropdown-item" href="help.html">Help</a>
-                                       <a class="dropdown-item" href="logout"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                     </div>
-                  </nav>
-               </div>
-               <!-- end topbar -->
-               <!-- dashboard inner -->
-               <div class="midde_cont">
-                  <div class="container-fluid">
-                     <div class="row column_title">
-                        <div class="col-md-12">
-                           <div class="page_title">
-                              <h2></h2>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- row -->
-                     <div class="row">
-                        
-                        <!-- table section -->
-                        <div class="col-md-12">
-                           <div class="white_shd full margin_bottom_30">
-                              <div class="full graph_head">
-                                 <div class="heading1 margin_0">
-                                    <h2>LIST OF USERS </h2>
+                     <div class="right_topbar">
+                        <div class="icon_info">
+                           <ul>
+                              <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
+                              <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                              <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
+                           </ul>
+                           <ul class="user_profile_dd">
+                              <li>
+                                 <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                       class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg"
+                                       alt="#" /><span class="name_user">John David</span></a>
+                                 <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                                    <a class="dropdown-item" href="settings.html">Settings</a>
+                                    <a class="dropdown-item" href="help.html">Help</a>
+                                    <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                          class="fa fa-sign-out"></i></a>
                                  </div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </nav>
+            </div>
+            <!-- end topbar -->
+            <!-- dashboard inner -->
+            <div class="midde_cont">
+               <div class="container-fluid">
+                  <div class="row column_title">
+                     <div class="col-md-12">
+                        <div class="page_title">
+                           <h2></h2>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- row -->
+                  <div class="row">
+
+                     <!-- table section -->
+                     <div class="col-md-12">
+                        <div class="white_shd full margin_bottom_30">
+                           <div class="full graph_head">
+                              <div class="heading1 margin_0">
+                                 <h2>LIST OF USERS </h2>
                               </div>
-                              <div class="table_section padding_infor_info">
-                                 <div class="table-responsive-sm">
-                                    <table class="table">
+                           </div>
+                           <div class="table_section padding_infor_info">
+                              <div class="table-responsive-sm">
+                                 <table class="table">
 
-                                       <thead>
-                                          <tr>
-                                            
-                                             <th style="font-weight: 500; color: black; ">Name</th>
-                                             <th style="font-weight: 500; color: black;">Email</th>
-                                             <th style="font-weight: 500; color: black;">Mobile</th>
-                                             <th style="font-weight: 500; color: black;">Status</th>
-                                             <th style="font-weight: 500; color: black;">Action</th>
-                                             
-                                          </tr>
-                                       </thead> 
+                                    <thead>
+                                       <tr>
+                                          <th></th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">NAME</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">EMAIL</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">MOBILE</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">STATUS</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">ACTION</th>
 
-                                       <tbody>
-                                        <% if ( users.length > 0 ) { %> <% for(let i=0; i < users.length; i++) {
-                                            %>
-                                            <tr>
+                                       </tr>
+                                    </thead>
 
-                                                   <td width="15%"><%= users[i].name %></td>
+                                    <tbody style="font-weight: 400; color: black;">
+                                       <% let serialNumber=1; %>
+                                       <% if ( users.length> 0 ) { %> <% for(let i=0; i < users.length; i++) { %>
+                                             <tr>
+                                                <td><%= serialNumber %></td>
+                                                <td width="15%">
+                                                   <%= users[i].name %>
+                                                </td>
 
-                                                   <td width="30%"><%= users[i].email %></td>
+                                                <td width="30%">
+                                                   <%= users[i].email %>
+                                                </td>
 
-                                                   <td width="25%"><%= users[i].mobile %></td>
+                                                <td width="25%">
+                                                   <%= users[i].mobile %>
+                                                </td>
 
 
-                                                   <td width="15%"><%= users[i].Status %>
-                                                   
+                                                <td width="15%">
+                                                   <%= users[i].Status %>
+
                                                       <% if (users[i].isBlocked) { %>
                                                          <span class="badge rounded-pill alert-danger">Blocked</span>
                                                          <% } else { %>
-                                                         <span class="badge rounded-pill alert-success">Active</span>
+                                                            <span class="badge rounded-pill alert-success">Active</span>
+                                                            <% } %>
+                                                </td>
+
+                                                <td class="text" width="15%">
+                                                   <% if(users[i].isBlocked===0){ %>
+                                                      <a href="/admin/blockUser?id=<%=users[i]._id %>"
+                                                         class="btn btn-sm btn-danger rounded font-sm mt-15">Block</a>
+                                                      <% } else { %>
+                                                         <a href="/admin/blockUser?id=<%=users[i]._id %>"
+                                                            class="btn btn-sm btn-success rounded font-sm mt-15">Unblock</a>
                                                          <% } %>
-                                                   </td>
-                                                    
-                                                   <td class="text" width="15%">
-                                                        <% if(users[i].isBlocked === 0){ %>
-                                                        <a
-                                                          href="/admin/blockUser?id=<%=users[i]._id %>"
-                                                          class="btn btn-sm btn-danger rounded font-sm mt-15" 
-                                                          
-                                                          >Block</a
-                                                        >
-                                                        <% } else { %>
-                                                        <a
-                                                          href="/admin/blockUser?id=<%=users[i]._id %>"
-                                                          class="btn btn-sm btn-success rounded font-sm mt-15"
-                                                          
-                                                          >Unblock</a
-                                                        >
-                                                        <% } %>
-                                                   </td>
+                                                </td>
+                                               
+                                             </tr>
+                                             <% serialNumber++; %>
+                                             <% } %>
+                                                <% } else { %>
+                                                   <tr>
+                                                      <td colspan="4" class="text-center">Users Not Found</td>
+                                                   </tr>
+                                                   <% } %>
 
-                                            </tr>
-                                                <% } %> <% } else { %>
-                                            <tr>
-                                                <td colspan="4" class="text-center">Users Not Found</td>
-                                            </tr>
-                                                <% } %>
-                                        
-                                       </tbody>
+                                    </tbody>
 
-                                    </table>
-                                 </div>
+                                 </table>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
-                  <!-- footer -->
-                  <div class="container-fluid">
-                     <!-- <div class="footer">
+               </div>
+               <!-- footer -->
+               <div class="container-fluid">
+                  <!-- <div class="footer">
                         <p>Copyright © 2018 Designed by html.design. All rights reserved.</p>
                      </div> -->
-                  </div>
-               </div>
-               <!-- end dashboard inner -->
-            </div>
-         </div>
-         <!-- model popup -->
-         <!-- The Modal -->    
-         <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-               <div class="modal-content">
-                  <!-- Modal Header -->
-                  <div class="modal-header">
-                     <h4 class="modal-title">Modal Heading</h4>
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  </div>
-                  <!-- Modal body -->
-                  <div class="modal-body">
-                     Modal body..
-                  </div>
-                  <!-- Modal footer -->
-                  <div class="modal-footer">
-                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                  </div>
                </div>
             </div>
+            <!-- end dashboard inner -->
          </div>
-         <!-- end model popup -->
       </div>
-      <!-- jQuery -->
-      <script src="/admin/js/jquery.min.js"></script>
-      <script src="/admin/js/popper.min.js"></script>
-      <script src="/admin/js/bootstrap.min.js"></script>
-      <!-- wow animation -->
-      <script src="/admin/js/animate.js"></script>
-      <!-- select country -->
-      <script src="/admin/js/bootstrap-select.js"></script>
-      <!-- owl carousel -->
-      <script src="/admin/js/owl.carousel.js"></script> 
-      <!-- chart js -->
-      <script src="/admin/js/Chart.min.js"></script>
-      <script src="/admin/js/Chart.bundle.min.js"></script>
-      <script src="/admin/js/utils.js"></script>
-      <script src="/admin/js/analyser.js"></script>
-      <!-- nice scrollbar -->
-      <script src="/admin/js/perfect-scrollbar.min.js"></script>
-      <script>
-         var ps = new PerfectScrollbar('#sidebar');
-      </script>
-      <!-- fancy box js -->
-      <script src="/admin/js/jquery-3.3.1.min.js"></script>
-      <script src="/admin/js/jquery.fancybox.min.js"></script>
-      <!-- custom js -->
-      <script src="/admin/js/custom.js"></script>
-      <!-- calendar file css -->    
-      <script src="/admin/js/semantic.min.js"></script>
-     
+      <!-- model popup -->
+      <!-- The Modal -->
+      <div class="modal fade" id="myModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title">Modal Heading</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+               <div class="modal-body">
+                  Modal body..
+               </div>
+               <!-- Modal footer -->
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- end model popup -->
+   </div>
+   <!-- jQuery -->
+   <script src="/admin/js/jquery.min.js"></script>
+   <script src="/admin/js/popper.min.js"></script>
+   <script src="/admin/js/bootstrap.min.js"></script>
+   <!-- wow animation -->
+   <script src="/admin/js/animate.js"></script>
+   <!-- select country -->
+   <script src="/admin/js/bootstrap-select.js"></script>
+   <!-- owl carousel -->
+   <script src="/admin/js/owl.carousel.js"></script>
+   <!-- chart js -->
+   <script src="/admin/js/Chart.min.js"></script>
+   <script src="/admin/js/Chart.bundle.min.js"></script>
+   <script src="/admin/js/utils.js"></script>
+   <script src="/admin/js/analyser.js"></script>
+   <!-- nice scrollbar -->
+   <script src="/admin/js/perfect-scrollbar.min.js"></script>
+   <script>
+      var ps = new PerfectScrollbar('#sidebar');
+   </script>
+   <!-- fancy box js -->
+   <script src="/admin/js/jquery-3.3.1.min.js"></script>
+   <script src="/admin/js/jquery.fancybox.min.js"></script>
+   <!-- custom js -->
+   <script src="/admin/js/custom.js"></script>
+   <!-- calendar file css -->
+   <script src="/admin/js/semantic.min.js"></script>
 
-   </body>
+
+</body>
+
 </html>

@@ -37,7 +37,53 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+   <style>
+      .table {
+         width: 100%;
+         border-collapse: collapse;
+      }
 
+      .table th,
+      .table td {
+         padding: 10px;
+         /* Adjust cell padding */
+         border: 1px solid #ddd;
+         /* Border color */
+         text-align: left;
+         /* Align text to the left */
+      }
+
+      .table th {
+         font-weight: 500;
+         color: black;
+      }
+
+      .table tbody tr:nth-child(even) {
+         background-color: #f2f2f2;
+         /* Alternate row background color */
+      }
+
+      .table tbody tr:hover {
+         background-color: #e2e2e2;
+         /* Hover background color */
+      }
+
+
+      .badge {
+         padding: 5px 8px;
+         border-radius: 15px;
+      }
+
+      .alert-success {
+         background-color: #28a745;
+         color: white;
+      }
+
+      .alert-danger {
+         background-color: #dc3545;
+         color: white;
+      }
+   </style>
 
    <script>
       async function deleteCategory(categoryId) {
@@ -64,11 +110,6 @@
          <!-- Sidebar  -->
          <nav id="sidebar">
             <div class="sidebar_blog_1">
-               <div class="sidebar-header">
-                  <div class="logo_section">
-                     <!-- <a href="index.html"><img class="logo_icon img-responsive" src="/admin/images/logo/logo_icon.png" alt="#" /></a> -->
-                  </div>
-               </div>
                <div class="sidebar_user_info">
                   <div class="icon_setting"></div>
                   <div class="user_profle_side">
@@ -86,60 +127,22 @@
                <ul class="list-unstyled components">
                   <li class="active">
                      <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
-                        <span>Dashboard</span></a>
-                     <!-- <ul class="collapse list-unstyled" id="dashboard">
-                           <li>
-                              <a href="dashboard.html">> <span>Default Dashboard</span></a>
-                           </li>
-                           <li>
-                              <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
-                           </li>
-                        </ul> -->
+                        <span>Dashboard</span></a>                 
                   </li>
                   <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
                   <li>
-                     <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>
-                     <!-- <ul class="collapse list-unstyled" id="element">
-                           <li><a href="general_elements.html">> <span>General Elements</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                           <li><a href="icons.html">> <span>Icons</span></a></li>
-                           <li><a href="invoice.html">> <span>Invoice</span></a></li>
-                        </ul> -->
+                     <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>               
                   </li>
                   <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
-                     <!-- <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Apps</span></a>
-                        <ul class="collapse list-unstyled" id="apps">
-                           <li><a href="email.html">> <span>Email</span></a></li>
-                           <li><a href="calendar.html">> <span>Calendar</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                        </ul>
-                     </li> -->
-                     <!-- <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
-                     <li>
-                        <a href="contact.html">
-                        <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
-                     </li>
-                     <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                           <li>
-                              <a href="profile.html">> <span>Profile</span></a>
-                           </li>
-                           <li>
-                              <a href="project.html">> <span>Projects</span></a>
-                           </li>
-                           <li>
-                              <a href="login.html">> <span>Login</span></a>
-                           </li>
-                           <li>
-                              <a href="404_error.html">> <span>404 Error</span></a>
-                           </li>
-                        </ul>
-                     </li>
-                     <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-                     <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li> -->
+                  <li>
+                     <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+                  </li>
+                  <li>
+                     <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i> <span>Offers</span></a>
+                  </li>
+                  <li>
+                     <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                  </li>                 
                </ul>
             </div>
          </nav>
@@ -211,29 +214,29 @@
 
                                     <thead>
                                        <tr>
-
-                                          <th style="font-weight: 500; color: black; ">Name</th>
-                                          <th style="font-weight: 500; color: black;">Description</th>
-                                          <th style="font-weight: 500; color: black;">Edit</th>
-                                          <th style="font-weight: 500; color: black;">Delete</th>
-                                          <th style="font-weight: 500; color: black;">Status</th>
-                                          <th style="font-weight: 500; color: black;">Action</th>
+                                          <th></th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">NAME</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">DESCRIPTION</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">EDIT</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">DELETE</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">STATUS</th>
+                                          <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">ACTION</th>
 
                                        </tr>
                                     </thead>
 
-                                    <tbody>
-
+                                    <tbody style="font-weight: 400; color: black;">
+                                       <% let serialNumber=1; %>
                                        <% if(categories.length> 0){%> <% for(let i=0; i < categories.length; i++){ %>
                                              <tr>
-
+                                                <td><%=serialNumber%></td>
                                                 <td width="15%">
                                                    <%= categories[i].name %>
                                                 </td>
 
                                                 <td width="20%">
                                                    <%= categories[i].description %>
-                                                </td >
+                                                </td>
                                                 <td class="text" width="15%">
                                                    <%= categories[i].edit %>
 
@@ -270,6 +273,7 @@
                                                          <% } %>
                                                 </td>
                                              </tr>
+                                             <% serialNumber++; %>
                                              <% } %>
                                                 <% } %>
                                     </tbody>
@@ -282,7 +286,7 @@
                </div>
                <!-- footer -->
                <div class="container-fluid">
-                 
+
                </div>
             </div>
             <!-- end dashboard inner -->

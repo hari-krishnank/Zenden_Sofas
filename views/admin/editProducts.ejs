@@ -54,11 +54,6 @@
             <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar_blog_1">
-                    <div class="sidebar-header">
-                        <div class="logo_section">
-                            <!-- <a href="index.html"><img class="logo_icon img-responsive" src="/admin/images/logo/logo_icon.png" alt="#" /></a> -->
-                        </div>
-                    </div>
                     <div class="sidebar_user_info">
                         <div class="icon_setting"></div>
                         <div class="user_profle_side">
@@ -77,60 +72,22 @@
                         <li class="active">
                             <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
                                 <span>Dashboard</span></a>
-                            <!-- <ul class="collapse list-unstyled" id="dashboard">
-                           <li>
-                              <a href="dashboard.html">> <span>Default Dashboard</span></a>
-                           </li>
-                           <li>
-                              <a href="dashboard_2.html">> <span>Dashboard style 2</span></a>
-                           </li>
-                        </ul> -->
                         </li>
                         <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
                         <li>
                             <a href="/admin/category"><i class="fa fa-database"></i>
                                 <span>Category</span></a>
-                            <!-- <ul class="collapse list-unstyled" id="element">
-                           <li><a href="general_elements.html">> <span>General Elements</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                           <li><a href="icons.html">> <span>Icons</span></a></li>
-                           <li><a href="invoice.html">> <span>Invoice</span></a></li>
-                        </ul> -->
                         </li>
                         <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
-                        <!-- <li>
-                        <a href="#apps" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>Apps</span></a>
-                        <ul class="collapse list-unstyled" id="apps">
-                           <li><a href="email.html">> <span>Email</span></a></li>
-                           <li><a href="calendar.html">> <span>Calendar</span></a></li>
-                           <li><a href="media_gallery.html">> <span>Media Gallery</span></a></li>
-                        </ul>
-                     </li> -->
-                        <!-- <li><a href="price.html"><i class="fa fa-briefcase blue1_color"></i> <span>Pricing Tables</span></a></li>
-                     <li>
-                        <a href="contact.html">
-                        <i class="fa fa-paper-plane red_color"></i> <span>Contact</span></a>
-                     </li>
-                     <li class="active">
-                        <a href="#additional_page" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-clone yellow_color"></i> <span>Additional Pages</span></a>
-                        <ul class="collapse list-unstyled" id="additional_page">
-                           <li>
-                              <a href="profile.html">> <span>Profile</span></a>
-                           </li>
-                           <li>
-                              <a href="project.html">> <span>Projects</span></a>
-                           </li>
-                           <li>
-                              <a href="login.html">> <span>Login</span></a>
-                           </li>
-                           <li>
-                              <a href="404_error.html">> <span>404 Error</span></a>
-                           </li>
-                        </ul>
-                     </li>
-                     <li><a href="map.html"><i class="fa fa-map purple_color2"></i> <span>Map</span></a></li>
-                     <li><a href="charts.html"><i class="fa fa-bar-chart-o green_color"></i> <span>Charts</span></a></li>
-                     <li><a href="settings.html"><i class="fa fa-cog yellow_color"></i> <span>Settings</span></a></li> -->
+                        <li>
+                            <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i> <span>Offers</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                        </li> 
                     </ul>
                 </div>
             </nav>
@@ -299,9 +256,7 @@
                                 </div>
                             </div>
                         </div>
-                   
-
-
+                 
                 
             </div>
             <!-- end dashboard inner -->
@@ -362,7 +317,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('productImage').addEventListener('change', function (event) {
                 const container = document.getElementById('selectedImagesContainer');
-                container.innerHTML = ''; // Clear previous selection
+                // container.innerHTML = ''; // Clear previous selection
     
                 const files = event.target.files;
                 for (let i = 0; i < files.length; i++) {
@@ -376,6 +331,17 @@
                         img.style.width = '100px'; // Set width to 100px (adjust as needed)
                         img.style.height = '100px'; // Set height to 100px (adjust as needed)
                         container.appendChild(img);
+                        const deleteBtn = document.createElement('a');
+                    deleteBtn.href = '#';
+                    deleteBtn.className = 'btn btn-danger btn-sm mt-2';
+                    deleteBtn.innerText = 'Delete';
+                    deleteBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        imgContainer.remove(); // Remove the image container
+                    });
+                    imgContainer.appendChild(deleteBtn);
+
+                    container.appendChild(imgContainer);
                     };
     
                     reader.readAsDataURL(file);

@@ -6,27 +6,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>aranaz</title>
-  <link rel="icon" href="img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <!-- animate CSS -->
-  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="/css/animate.css">
   <!-- owl carousel CSS -->
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/css/owl.carousel.min.css">
   <!-- nice select CSS -->
-  <link rel="stylesheet" href="css/nice-select.css">
+  <link rel="stylesheet" href="/css/nice-select.css">
   <!-- font awesome CSS -->
-  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="/css/all.css">
   <!-- flaticon CSS -->
-  <link rel="stylesheet" href="css/flaticon.css">
-  <link rel="stylesheet" href="css/themify-icons.css">
+  <link rel="stylesheet" href="/css/flaticon.css">
+  <link rel="stylesheet" href="/css/themify-icons.css">
   <!-- font awesome CSS -->
-  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="/css/magnific-popup.css">
   <!-- swiper CSS -->
-  <link rel="stylesheet" href="css/slick.css">
-  <link rel="stylesheet" href="css/price_rangs.css">
+  <link rel="stylesheet" href="/css/slick.css">
+  <link rel="stylesheet" href="/css/price_rangs.css">
   <!-- style CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
@@ -48,7 +48,7 @@
                   <a class="nav-link" href="/">HOME</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link" href="shop" id="navbarDropdown_1">
+                  <a class="nav-link" href="/shop" id="navbarDropdown_1">
                     SHOP
                   </a>
                   <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
@@ -58,7 +58,7 @@
                                 </div> -->
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link " href="blog.html" id="navbarDropdown_3">
+                  <a class="nav-link " href="/blog.html" id="navbarDropdown_3">
                     ABOUT
                   </a>
                   <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
@@ -73,20 +73,21 @@
 
 
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">CONTACT</a>
+                  <a class="nav-link" href="/contact.html">CONTACT</a>
                 </li>
 
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2" role="button"
+                  <a class="nav-link dropdown-toggle" href="/blog.html" id="navbarDropdown_2" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= locals.User ? User.name.toUpperCase() : "PROFILE" %>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                     <% if (locals.User) { %>
-                      <a class="dropdown-item" href="logout">LOGOUT</a>
+                      <a class="dropdown-item" href="/userProfile">MY PROFILE</a>
+                      <a class="dropdown-item" href="/logout">LOGOUT</a>
                       <% } else { %>
 
-                        <a class="dropdown-item" href="login">LOGIN</a>
+                        <a class="dropdown-item" href="/login">LOGIN</a>
                         <% } %>
                           <!-- <a class="dropdown-item" href="single-blog.html">Single blog</a> -->
                   </div>
@@ -126,8 +127,8 @@
         <div class="col-lg-8">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>Order Confirmation</h2>
-              <p>Home <span>-</span> Order Confirmation</p>
+              <h2>ORDER CONFIRMATION</h2>
+              <p>HOME <span>-</span> ORDER CONFIRMATION</p>
             </div>
           </div>
         </div>
@@ -142,114 +143,78 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="confirmation_tittle">
-            <span>Thank you. Your order has been received.</span>
+            <span style="font-size: medium; font-weight: bold;">THANK YOU. YOUR ORDER HAS BEEN RECIEVED.</span>
           </div>
         </div>
-        <div class="col-lg-6 col-lx-4">
-          <div class="single_confirmation_details">
-            <h4>order info</h4>
-            <ul>
-              <li>
-                <p>order number</p><span>: 60235</span>
-              </li>
-              <li>
-                <p>data</p><span>: Oct 03, 2017</span>
-              </li>
-              <li>
-                <p>total</p><span>: USD 2210</span>
-              </li>
-              <li>
-                <p>mayment methord</p><span>: Check payments</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-6 col-lx-4">
-          <div class="single_confirmation_details">
-            <h4>Billing Address</h4>
-            <ul>
-              <li>
-                <p>Street</p><span>: 56/8</span>
-              </li>
-              <li>
-                <p>city</p><span>: Los Angeles</span>
-              </li>
-              <li>
-                <p>country</p><span>: United States</span>
-              </li>
-              <li>
-                <p>postcode</p><span>: 36952</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-6 col-lx-4">
-          <div class="single_confirmation_details">
-            <h4>shipping Address</h4>
-            <ul>
-              <li>
-                <p>Street</p><span>: 56/8</span>
-              </li>
-              <li>
-                <p>city</p><span>: Los Angeles</span>
-              </li>
-              <li>
-                <p>country</p><span>: United States</span>
-              </li>
-              <li>
-                <p>postcode</p><span>: 36952</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="order_details_iner">
-            <h3>Order Details</h3>
-            <table class="table table-borderless">
+        <div class="table-responsive">
+          <% if (order && order.items) { %>
+            <table class="table">
+
               <thead>
                 <tr>
-                  <th scope="col" colspan="2">Product</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Total</th>
+                  <th scope="product-image" style="font-weight: bold;">PRODUCT</th>
+                  <th scope="product-name" style="font-weight: bold;">NAME</th>
+                  <th scope="product-price" style="font-weight: bold;">PRICE</th>
+                  <th scope="product-quantity" style="font-weight: bold;">QUANTITY</th>
+                  <th scope="product-total" style="font-weight: bold;">TOTAL</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
-                </tr>
-                <tr>
-                  <th colspan="2"><span>Pixelstore fresh Blackberry</span></th>
-                  <th>x02</th>
-                  <th> <span>$720.00</span></th>
-                </tr>
-                <tr>
-                  <th colspan="3">Subtotal</th>
-                  <th> <span>$2160.00</span></th>
-                </tr>
-                <tr>
-                  <th colspan="3">shipping</th>
-                  <th><span>flat rate: $50.00</span></th>
-                </tr>
+                <% order.items.forEach((product)=> { %>
+                  <tr class="table-body-row">
+                    <td class="product-image"><img src="/resizedImages/<%= product.product_id.image[0] %>" alt="img"
+                        style="width: 100px; height: auto;">
+                    </td>
+                    <td class="product-name">
+                      <%= product.product_id.name %>
+                    </td>
+                    <td class="product-price">₹<%= product.price %>
+                    </td>
+                    <td class="quantity">
+                      <div class="input-group mb-3" style="width: 80px; position: relative; ">
+                        <input style="text-align: center;" type="text" name="quantity"
+                          class="quantity form-control input-number" min="1" max="100" value="<%= product.quantity %>"
+                          readonly>
+                      </div>
+                    </td>
+                    <td class="product-total">₹<%= product.total_price %>
+                    </td>
+                  </tr>
               </tbody>
-              <tfoot>
-                <tr>
-                  <th scope="col" colspan="3">Quantity</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </tfoot>
+              <% } )%>
             </table>
-          </div>
         </div>
-      </div>
+        <% } %>
+          <div class="col-lg-6 col-lx-4">
+            <div class="single_confirmation_details">
+              <h4>ORDER SUMMARY</h4>
+              <ul>
+                <li>
+                  <p>Order Id</p><span>: <%= order && order._id %></span>
+                </li><br>
+                <li>
+                  <p>Delivery Address</p><span>: <%= order && order.delivery_address %></span>
+                </li><br>
+                <li>
+                  <p>payment Method</p><span>: <%= order && order.payment %></span>
+                </li><br>
+                <li>
+                  <p>Date</p><span>: <%= order && order.date %> </span>
+                </li><br>
+                <li>
+                  <p>Total Amount of Order</p><span>: <%= order && order.total_amount %> </span>
+                </li><br>
+                <li>
+                  <p>Expected Delivery</p><span>: <%= order && order.expected_delivery%> </span>
+                </li><br>
+              </ul>
+            </div>
+          </div>
+
+
+        </div><br>
+        <a class="btn_1 genric-btn primary-border radius" href="/userOrders" style="font-weight: bold;">VIEW ORDERS</a>
+
     </div>
   </section>
   <!--================ confirmation part end =================-->
@@ -330,8 +295,12 @@
           <div class="col-lg-8">
             <div class="copyright_text">
               <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></P>
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+                with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                  target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </P>
             </div>
           </div>
           <div class="col-lg-4">
@@ -352,43 +321,33 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
   <!-- jquery plugins here-->
   <!-- jquery -->
-  <script src="js/jquery-1.12.1.min.js"></script>
+  <script src="/js/jquery-1.12.1.min.js"></script>
   <!-- popper js -->
-  <script src="js/popper.min.js"></script>
+  <script src="/js/popper.min.js"></script>
   <!-- bootstrap js -->
-  <script src="js/bootstrap.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
   <!-- easing js -->
-  <script src="js/jquery.magnific-popup.js"></script>
+  <script src="/js/jquery.magnific-popup.js"></script>
   <!-- swiper js -->
-  <script src="js/swiper.min.js"></script>
+  <script src="/js/swiper.min.js"></script>
   <!-- swiper js -->
-  <script src="js/masonry.pkgd.js"></script>
+  <script src="/js/masonry.pkgd.js"></script>
   <!-- particles js -->
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.nice-select.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.nice-select.min.js"></script>
   <!-- slick js -->
-  <script src="js/slick.min.js"></script>
-  <script src="js/jquery.counterup.min.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/contact.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/stellar.js"></script>
-  <script src="js/price_rangs.js"></script>
+  <script src="/js/slick.min.js"></script>
+  <script src="/js/jquery.counterup.min.js"></script>
+  <script src="/js/waypoints.min.js"></script>
+  <script src="/js/contact.js"></script>
+  <script src="/js/jquery.ajaxchimp.min.js"></script>
+  <script src="/js/jquery.form.js"></script>
+  <script src="/js/jquery.validate.min.js"></script>
+  <script src="/js/mail-script.js"></script>
+  <script src="/js/stellar.js"></script>
+  <script src="/js/price_rangs.js"></script>
   <!-- custom js -->
-  <script src="js/custom.js"></script>
+  <script src="/js/custom.js"></script>
 </body>
-
-</html>
-
-</html>
-
-</html>
-
-</html>
-
-</html>
 
 </html>

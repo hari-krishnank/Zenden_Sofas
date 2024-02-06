@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="/admin/images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/admin/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="/admin/css/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="/admin/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="/admin/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="/admin/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="/admin/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="/admin/css/custom.css" />
+    <!-- calendar file css -->
+    <link rel="stylesheet" href="/admin/js/semantic.min.css" />
+    <!-- fancy box js -->
+    <link rel="stylesheet" href="/admin/css/jquery.fancybox.css" />
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-wL8GvuC/94Lr5/Jr6Ze5J46G9Njv3SNiV77y7q6lFHAPObC7Qq6Y6sRbxX+q6SP" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: 10px;
+            /* Adjust cell padding */
+            border: 1px solid #dee2e6;
+            /* Border color */
+            text-align: left;
+            /* Align text to the left */
+        }
+
+        .table th {
+            font-weight: 600;
+            color: black;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+            /* Alternate row background color */
+        }
+
+        .table tbody tr:hover {
+            background-color: #e2e2e2;
+            /* Hover background color */
+        }
+
+        .table img {
+            width: 100px;
+            /* Adjust image width */
+            height: 75px;
+            /* Adjust image height */
+        }
+
+        .form-select {
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-danger:focus {
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.5);
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .font-sm {
+            font-size: 12px;
+        }
+
+        .text-end {
+            text-align: end;
+        }
+    </style>
+
+</head>
+
+<body class="inner_page tables_page">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive"
+                                    src="/admin/images/layout_img/user_img.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>John David</h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>General</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="/admin/dashboard" class=""><i class="fa fa-dashboard yellow_color"></i>
+                                <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
+                        <li>
+                            <a href="/admin/category"><i class="fa fa-database"></i> <span>Category</span></a>
+                        </li>
+                        <li><a href="/admin/products"><i class="fa fa-heart-o"></i> <span>Products</span></a></li>
+                        <li>
+                            <a href="/admin/orders"><i class="fa fa-briefcase blue1_color"></i> <span>Orders</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/offers"><i class="fa fa-object-group blue2_color"></i> <span>Offers</span></a>
+                        </li>
+                        <li>
+                            <a href="/admin/coupon"><i class="fa fa-spinner"></i> <span>Coupons</span></a>
+                        </li> 
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i
+                                    class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <!-- <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a> -->
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a>
+                                        </li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a>
+                                        </li>
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img
+                                                    class="img-responsive rounded-circle"
+                                                    src="images/layout_img/user_img.jpg" alt="#" /><span
+                                                    class="name_user">John David</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                                <a class="dropdown-item" href="help.html">Help</a>
+                                                <a class="dropdown-item" href="logout"><span>Log Out</span> <i
+                                                        class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title">
+
+                                    <h2>ORDERS </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- row -->
+                        <div class="row">
+
+                            <!-- table section -->
+                            <div class="col-md-12">
+                                <div class="white_shd full margin_bottom_30">
+                                    <div class="full graph_head">
+                                        <div class="heading1 margin_0">
+
+                                            <h2></h2>
+
+                                        </div>
+                                    </div>
+                                    <div class="table_section padding_infor_info">
+                                        <div class="table-responsive-sm">
+                                            <table class="table" id="ordersTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">ORDER ID</th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">PRODUCT</th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">CUSTOMER</th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">TOTAL PRICE</th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">ORDER DATE</th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">PAYMENT METHOD</th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">STATUS</th>
+                                                        <th style="font-weight: 600; color: rgb(205, 67, 67); width: auto;">ORDER ITEMS</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="font-weight: 400; color: black;">
+                                                    <% let serialNumber=1; %>
+                                                    <% orders.forEach(order=> { %>
+                                                        <% order.items.forEach(item=> { %>
+                                                            <% if (order.status!=='pending' ) { %>
+
+                                                                <tr>
+                                                                    <td><%= serialNumber %></td>
+                                                                    <td>
+                                                                        <%=order._id %>
+                                                                    </td>
+                                                                    <td><img src="/resizedImages/<%=item.product_id.image[0] %>"
+                                                                            alt="" style="width: 100px; height: 75px;">
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=order.user_name%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=order.total_amount%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=order.date%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=order.payment%>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="input-group">
+                                                                            <select class="form-select statusSelector"
+                                                                                style="background-color: #f0f0f0;color: black; border-radius: 5px;"
+                                                                                name="statusSelector"
+                                                                                onchange="updateOrderStatus(this.value, '<%= order._id %>', '<%= item._id %>')">
+                                                                                <option value="placed"
+                                                                                    <%=item.ordered_status==='placed'
+                                                                                    ? 'selected' : '' %>>Placed</option>
+                                                                                <option value="shipped"
+                                                                                    <%=item.ordered_status==='shipped'
+                                                                                    ? 'selected' : '' %>>Shipped
+                                                                                </option>
+                                                                                <option value="out_for_delivery"
+                                                                                    <%=item.ordered_status==='out_for_delivery'
+                                                                                    ? 'selected' : '' %>>Out for
+                                                                                    Delivery</option>
+                                                                                <option value="delivered"
+                                                                                    <%=item.ordered_status==='delivered'
+                                                                                    ? 'selected' : '' %>>Delivered
+                                                                                </option>
+                                                                                <option value="request_return"
+                                                                                    <%=item.ordered_status==='request_return'
+                                                                                    ? 'selected' : '' %>>Request Return
+                                                                                </option>
+                                                                                <option value="returned"
+                                                                                    <%=item.ordered_status==='returned'
+                                                                                    ? 'selected' : '' %>>Returned
+                                                                                </option>
+                                                                                <option value="request_cancellation"
+                                                                                    <%=item.ordered_status==='request_cancellation'
+                                                                                    ? 'selected' : '' %>>Request
+                                                                                    Cancellation</option>
+                                                                                <option value="cancelled"
+                                                                                    <%=item.ordered_status==='cancelled'
+                                                                                    ? 'selected' : '' %>>Cancelled
+                                                                                </option>
+
+                                                                            </select>
+
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        
+                                                                        <div class="text-end">
+                                                                            <a
+                                                                                href="/admin/order-details?orderId=<%= order._id %>&itemId=<%= item._id %>"><button
+                                                                                    class="btn btn-danger btn-sm font-sm list-products"
+                                                                                    data-product-id="">VIEW</button></a>
+
+                                                                            <!-- Button to show cancellation reason -->
+
+                                                                            <!-- <% if
+                                                                                (item.ordered_status==='request_cancellation'
+                                                                                ||
+                                                                                item.ordered_status==='request_return' )
+                                                                                { %>
+
+                                                                                <button
+                                                                                    class="btn btn-light rounded btn-sm font-sm show-reason"
+                                                                                    data-cancellation-reason="<%= item.cancellationReason %>">Reason</button>
+
+                                                                                <% } %> -->
+
+
+                                                                        </div>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <% serialNumber++; %>
+                                                                <% } %>
+                                                                    <% }); %>
+                                                                        <% }) %>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- footer -->
+                    <div class="container-fluid">
+
+                    </div>
+                </div>
+                <!-- end dashboard inner -->
+            </div>
+        </div>
+        <!-- model popup -->
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Modal body..
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end model popup -->
+    </div>
+    <!-- jQuery -->
+    <script src="/admin/js/jquery.min.js"></script>
+    <script src="/admin/js/popper.min.js"></script>
+    <script src="/admin/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="/admin/js/animate.js"></script>
+    <!-- select country -->
+    <script src="/admin/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="/admin/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="/admin/js/Chart.min.js"></script>
+    <script src="/admin/js/Chart.bundle.min.js"></script>
+    <script src="/admin/js/utils.js"></script>
+    <script src="/admin/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="/admin/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- fancy box js -->
+    <script src="/admin/js/jquery-3.3.1.min.js"></script>
+    <script src="/admin/js/jquery.fancybox.min.js"></script>
+    <!-- custom js -->
+    <script src="/admin/js/custom.js"></script>
+    <!-- calendar file css -->
+    <script src="/admin/js/semantic.min.js"></script>
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Include DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+         $(document).ready(function() {
+             // Initialize DataTable
+             $('#ordersTable').DataTable({
+                 paging: true // Enable pagination
+             });
+         });
+    </script>
+
+    <script>
+        function updateOrderStatus(newStatus, orderId, itemId) {
+            $.ajax({
+                type: 'POST',
+                url: '/admin/updateOrderStatus',
+                data: {
+                    orderId: orderId,
+                    itemId: itemId,
+                    newStatus: newStatus
+                },
+                success: function (response) {
+                    if (response.success) {
+
+                        $(`#status-${orderId}-${itemId}`).text(newStatus);
+
+                    } else {
+                        console.error('Failed to update order status:', response.error);
+                    }
+                },
+                error: function (error) {
+                    console.error('Failed to update order status:', error);
+                }
+            });
+        }
+
+    </script>
+    <script>
+        const updatedStatusElement = $(`#status-${orderId}-${itemId}`);
+        if (updatedStatusElement) {
+            updatedStatusElement.text(newStatus);
+        }
+
+    </script>
+
+
+</body>
+
+</html>

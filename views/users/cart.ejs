@@ -27,7 +27,64 @@
   <link rel="stylesheet" href="css/price_rangs.css">
   <!-- style CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+  
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: #f2f2f2;
+    }
+  
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  
+    .product-image img {
+      width: 100px;
+      height: auto;
+    }
+  
+    .product_count {
+      display: flex;
+      align-items: center;
+    }
+  
+    .quantity-decrement, .quantity-increment {
+      cursor: pointer;
+    }
+  
+    .btn-danger {
+      background-color: #dc3545;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+  
+    .bottom_button td {
+      text-align: right;
+    }
+  
+    .cupon_text {
+      text-align: right;
+    }
 
+    
+  </style>
+  
 
 </head>
 
@@ -148,14 +205,15 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="product-image" style="font-weight: bold;">PRODUCT</th>
-                  <th scope="product-name" style="font-weight: bold;">NAME</th>
-                  <th scope="product-price" style="font-weight: bold;">PRICE</th>
-                  <th scope="product-quantity" style="font-weight: bold;">QUANTITY</th>
-                  <th scope="product-total" style="font-weight: bold;">TOTAL</th>
+                  <th scope="product-image" style="font-weight: 600; color: rgb(205, 67, 67);">PRODUCT</th>
+                  <th scope="product-name" style="font-weight: 600; color: rgb(205, 67, 67);">NAME</th>
+                  <th scope="product-price" style="font-weight: 600; color: rgb(205, 67, 67);">PRICE</th>
+                  <th scope="product-quantity" style="font-weight: 600; color: rgb(205, 67, 67);">QUANTITY</th>
+                  <th scope="product-total" style="font-weight: 600; color: rgb(205, 67, 67);">TOTAL</th>
+                  <th style="font-weight: 600; color: rgb(205, 67, 67); ">ACTION</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="font-weight: 500; color: black;">
                 <% let totalQuantity=0; let totalProductPrice=0; cartDetails.items.forEach((cartItem)=> {
                   const itemTotalPrice = cartItem.product_id.price * cartItem.quantity;
                   totalQuantity += cartItem.quantity;
@@ -170,8 +228,25 @@
                     <td>
                       <%= cartItem.product_id.name %>
                     </td>
-                    <td>₹<%= cartItem.product_id.price %>
-                    </td>
+                    <td>
+                     
+                      <% if (cartItem.product_id.offer || cartItem.product_id.category?.offer) { %>
+                         
+                          <b style="color: rgb(27, 218, 68); font-size: 15px;">₹ <%= cartItem.product_id.offerPrice %></b>
+                         
+                          <span style="text-decoration: line-through; color: red;">₹ <%= cartItem.product_id.price %></span>
+                          <% if (cartItem.product_id.offer) { %>
+                              
+                              <span style="color: red; font-weight: 500;"><%= cartItem.product_id.offer.percentage %> % OFF</span>
+                          <% } else { %>
+                             
+                              <span style="color: red; font-weight: 500;"><%= cartItem.product_id.category.offer.percentage %> % OFF</span>
+                          <% } %>
+                      <% } else { %>
+                          
+                          <b>₹ <%= cartItem.product_id.price %></b>
+                      <% } %>
+                  </td>
                     <td>
 
                       <!-- <%= cartItem.quantity %> -->
@@ -188,7 +263,7 @@
                         </span>
                       </div>
                     </td>
-                    <td>₹<%= cartItem.product_id.price * cartItem.quantity %>
+                    <td>₹<%= cartItem.product_id.offerPrice * cartItem.quantity %></td>
                     </td>
                     <td>
                       <form onsubmit="confirmDelete(event, '<%= cartItem._id %>')" action="/deleteItems" method="POST"
@@ -201,54 +276,40 @@
                   </tr>
                   <% }) %>
                   <tr class="bottom_button">
-                    <td>
+                    <td colspan="5">
                       <a class="btn_1 genric-btn success-border radius" href="shop">UPDATE CART</a>
                     </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td>
-                      <div class="cupon_text float-right">
+                      <div class="cupon_text">
                         <!-- <a class="btn_1 genric-btn success-border radius" href="#">Close Coupon</a> -->
                       </div>
                     </td>
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="4"></td>
                     <td>
                       <h5>Subtotal</h5>
                     </td>
                     <td>
-                      <h5>₹<%= totalProductPrice %></h5>
+                      <h5>₹<%= subtotal%></h5>
                     </td>
                   </tr>
                   <tr class="shipping_area">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="4"></td>
                     <td>
                       <h5>Shipping</h5>
                     </td>
                     <td>
                       <h5>₹ 0.00</h5>
                     </td>
-                   
                   </tr>
                   <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td colspan="4"></td>
                     <td>
                       <h5 style="font-weight: bold;">Total</h5>
                     </td>
                     <td>
-                      <h5 style="font-weight: bold;">₹<%= totalProductPrice %></h5>
+                      <h5 style="font-weight: bold;">₹<%= subtotal %></h5>
                     </td>
                   </tr>
               </tbody>
@@ -257,7 +318,13 @@
               <a class="btn_1 genric-btn success-border radius" href="shop">CONTINUE SHOPPING</a>
               <a class="btn_1 genric-btn success-border radius" href="checkout">PROCEED TO CHECKOUT</a>
             </div>
-            <% } %>
+            <% } else { %>
+              <div  class="text-center py-6">
+                <h2 style="font-size: 20px; font-weight: 600;">Your cart is empty!</h2>
+                <p style="font-size: 15px;font-weight: 400;">Add items to it now.</p><br>
+                <a href="/shop" class="btn_3" style="font-size: 14px;">SHOP NOW</a>
+              </div>
+              <% } %>
         </div>
       </div>
     </div>

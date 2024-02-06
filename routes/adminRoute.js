@@ -1,10 +1,13 @@
 var express  = require('express')
-var adminRouter = express.Router();
+var adminRouter = express.Router();  
 const adminController = require('../controllers/adminController')
 const categoryController = require('../controllers/categoryController')
 const productController = require('../controllers/productController')
 const adminAuth = require('../middlewares/adminAuth')
-
+const orderController = require('../controllers/orderController')
+const dashboardController = require('../controllers/dashboardController')
+const offerController = require('../controllers/offerController')
+const couponController = require('../controllers/couponController')
 
 const path = require('path')
 const multer = require('multer')
@@ -31,8 +34,6 @@ adminRouter.post('/',adminController.adminLoginVerify)
 
 adminRouter.get('/logout',adminAuth.isLogin,adminController.adminLogout)
 
-//------------------------DASHBOARD---------------------------
-adminRouter.get('/dashboard',adminAuth.isLogin,adminController.adminDashboard)
 
 //-------------------------LIST USERS-------------------------------
 adminRouter.get('/users',adminAuth.isLogin,adminController.userManagement)
@@ -71,6 +72,45 @@ adminRouter.put('/products/deleteImage',productController.deleteImage)
 
 adminRouter.get('/listProducts',productController.listProducts)
 
+
+//---------------------------------------ORDERS----------------------------------------------
+adminRouter.get('/orders',adminAuth.isLogin,orderController.loadOrders)
+
+adminRouter.get('/order-details',adminAuth.isLogin,orderController.loadSingleOrderDetails)
+
+adminRouter.post('/updateOrderStatus',orderController.updateOrderStatus)
+
+
+
+//------------------------DASHBOARD-----------------------------------------------------
+adminRouter.get('/dashboard',adminAuth.isLogin,dashboardController.adminDashboard)
+
+adminRouter.get('/salesReport',adminAuth.isLogin,dashboardController.salesReport)
+
+adminRouter.post('/salesReport',dashboardController.datePicker)
+
+
+//----------------------------------OFFERS--------------------------------------------
+adminRouter.get('/offers',adminAuth.isLogin,offerController.loadOffers)
+
+adminRouter.get('/addOffers',adminAuth.isLogin,offerController.loadAddOffers)
+
+adminRouter.post('/offers',adminAuth.isLogin,offerController.addOffers)
+
+adminRouter.post('/applyOffer',adminAuth.isLogin,offerController.applyOffer)
+
+adminRouter.post('/removeOffer',adminAuth.isLogin,offerController.removeOffer)
+
+
+
+//----------------------------------COUPONS-----------------------------------------
+adminRouter.get('/coupon',adminAuth.isLogin,couponController.loadCoupons)
+
+adminRouter.get('/addCoupon',adminAuth.isLogin,couponController.loadAddCoupon)
+
+adminRouter.post('/coupon',adminAuth.isLogin,couponController.addCoupon)
+
+adminRouter.get('/coupon/:id',adminAuth.isLogin,couponController.deleteCoupon)
 
 
 

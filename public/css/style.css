@@ -105,7 +105,7 @@ input:focus {
 
 /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
 .padding_top {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -510,11 +510,11 @@ ul {
   display: inline-block;
   padding: 9px 42px;
   border-radius: 50px;
-  background-color: #ff3368;
+  background-color: white;
   border: 1px solid #ecfdff;
   font-size: 15px;
   font-weight: 700;
-  color: #fff;
+  color: #ff3368;
   text-transform: uppercase;
   font-weight: 400;
   box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
@@ -525,7 +525,7 @@ ul {
 
 /* line 52, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_button.scss */
 .btn_3:hover {
-  background-color: red;
+  background-color: #ff3368;
   color: #fff;
 }
 
@@ -5332,10 +5332,13 @@ ul {
 
 /* line 1901, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .login_part .login_part_text {
-  background-image: -moz-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%);
-  background-image: -webkit-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%);
-  background-image: -ms-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%);
+  /* background-image: -moz-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%); */
+  /* background-image: -webkit-linear-gradient(16deg, #ff005a 0% 100%); */
+
+  /* background-image: -ms-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%); */
   background-size: 200% auto;
+  background-image: url('/img/Premium\ Photo\ _\ White\ textured\ background\ collection.jpeg');
+
 }
 
 /* line 1906, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
@@ -5343,28 +5346,29 @@ ul {
   font-size: 24px;
   font-weight: 700;
   line-height: 35px;
-  color: #fff;
+  color: black;
   margin-bottom: 17px;
 }
 
 /* line 1913, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .login_part .login_part_text p {
-  color: #fff;
+  color: black;
   line-height: 25px;
 }
 
 /* line 1917, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .login_part .login_part_text .btn_3 {
   border: 1px solid #ffc2d2;
-  background-color: transparent;
+  background-color: white;
+  color: #ff3368;
   font-size: 14px;
   margin-top: 28px;
 }
 
 /* line 1922, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .login_part .login_part_text .btn_3:hover {
-  background-color: #fff;
-  color: #ff3368;
+  background-color:  #ff3368;
+  color: white;
 }
 
 @media (max-width: 991px) {
@@ -7496,12 +7500,14 @@ h6 {
 /* line 2, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_footer.scss */
 .footer_part {
   padding: 130px 0px 25px;
+  
 }
 
 @media (max-width: 576px) {
   /* line 2, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_footer.scss */
   .footer_part {
     padding: 70px 0px 25px;
+    margin-left: 20px;
   }
 }
 

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZENDEN-SOFA</title>
+    <link rel="icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="css/nice-select.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/all.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/price_rangs.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/userAssets/css/tailwind.css">
+    <link rel="stylesheet" href="/userAssets/css/styles.css">
+
+    <style>
+        .btn_3 {
+            border-radius: 18px;
+            width: 180px;
+            height: 40px;
+            font-size: small;
+
+        }
+    </style>
+    <style>
+        .my-popup {
+            width: 400px !important;
+            height: auto !important;
+            font-size: small
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- header area start -->
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html"> <img src="" alt=""> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">HOME</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="shop" id="navbarDropdown_1">
+                                        SHOP
+                                    </a>
+                                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                        <a class="dropdown-item" href="category.html"> SHOP CATEGORY</a>
+                                        <a class="dropdown-item" href="single-product.html">product details</a>
+                                        
+                                    </div> -->
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link " href="blog.html" id="navbarDropdown_3">
+                                        ABOUT
+                                    </a>
+                                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="login.html"> login</a>
+                                        <a class="dropdown-item" href="tracking.html">tracking</a>
+                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
+                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
+                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
+                                        <a class="dropdown-item" href="elements.html">elements</a>
+                                    </div> -->
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html">CONTACT</a>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <%= locals.User ? User.name.toUpperCase() : "PROFILE" %>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <% if (locals.User) { %>
+                                            <a class="dropdown-item" href="userProfile">MY PROFILE</a>
+                                            <a class="dropdown-item" href="logout">LOGOUT</a>
+                                            <% } else { %>
+
+                                                <a class="dropdown-item" href="login">LOGIN</a>
+                                                <% } %>
+                                                    <!-- <a class="dropdown-item" href="single-blog.html">Single blog</a> -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hearer_icon d-flex" style="margin-right: 80px;">
+                            <!-- <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
+                            <a href=""><i class="ti-heart"></i></a>
+                            <div class="dropdown cart">
+                                <a href="cart" role="button">
+                                    <i class="fas fa-cart-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="search_input" id="search_input_box">
+            <div class="container ">
+                <form class="d-flex justify-content-between search-inner">
+                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                    <button type="submit" class="btn"></button>
+                    <span class="ti-close" id="close_search" title="Close Search"></span>
+                </form>
+            </div>
+        </div>
+    </header>
+    <!-- header area end -->
+
+    <!-- Breadcrumb Start -->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item"> 
+                            <h2>MY PROFILE</h2>
+                            <p>HOME<span>-</span> WISHLIST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb End -->
+    <div class="user bg-red-600">
+        <div class="container">
+            <div class="usermenu flex flex-col md:flex-row justify-between md:items-center">
+                <!-- Tabs -->
+                <ul id="tabs" class="inline-flex flex-col md:flex-row w-full">
+
+                    <li>
+                        <a id="default-tab" href="/userProfile" class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">My Profile</a>
+                    </li>
+
+                    <li>
+                        <a href="/userOrders" class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Order History</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/addressManage" class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black">Address Manage</a>
+                    </li>
+
+                    <li class="border-b-2 border-accents">
+                        <a href="/wishlist" class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Wishlist</a>
+                    </li>
+                </ul>
+                <a href="logout" class="font-display text-[16px] leading-[110%] font-medium capitalize text-[#636270] px-4 py-4 md:px-0">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container px-3 md:px-5 xl:px-0 xl:pt-10 xl:pb-20 py-8">
+            <!-- shopping cart start -->
+            <div class="shopping-cart">
+                <div class="px-6 py-6 overflow-x-auto">
+                    <% if (User.wishlist.length===0) { %>
+                        <div class="text-center py-6">
+                            <h2 style="font-size: 20px; font-weight: 600;">Empty Wishlist</h2>
+                            <p style="font-size: 15px;font-weight: 400;">You have no items in your wishlist. Start
+                                adding!</p><br>
+                            <a href="/shop" class="btn_3"style="font-size: 14px; border-radius: 5px;">SHOP NOW</a>
+
+                        </div>
+                        <% } else { %>
+                            <table class="min-w-[872px] w-full leading-normal">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%;"
+                                            class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[450px]">
+                                        </th>
+                                        <th style="width: 20%;"
+                                            class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[450px]">
+                                            Products
+                                        </th>
+                                        <th style="width: 40%;"
+                                            class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[450px]">
+                                        </th>
+                                        <th
+                                            class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-32">
+                                            Price
+                                        </th>
+                                        <th
+                                            class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[120px]">
+                                            Stock Status
+                                        </th>
+                                        <th
+                                            class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider">
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% User.wishlist.forEach(product=> { %>
+                                        <tr>
+                                            <td class="py-6 text-sm">
+                                                <button class="p-2 dismiss-btn" data-product-id="<%= product._id %>">
+                                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M2 2L6.00003 6M6.00003 6L10 2M6.00003 6L2 10M6.00003 6L10 10"
+                                                            stroke="#9A9CAA" stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <a href="/singleProduct?productId=<%= product._id %>">
+                                                    <img src="/resizedImages/<%= product.image[0] %>"
+                                                        alt="<%= product.name %>" style="width: 80px; height: 80px;">
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="/singleProduct?productId=<%= product._id %>">
+                                                    <%= product.name %>
+                                                </a>
+                                            </td>
+                                            <td class="py-6 text-sm">
+                                                <%= product.price %>
+                                            </td>
+                                            <td class="py-6 text-sm">
+                                                <% if (product.quantity> 0) { %>
+                                                    <p class="text-[#01AD5A] font-semibold">In Stock</p>
+                                                    <% } else { %>
+                                                        <p class="text-red-600 font-semibold" style="color: red;">Out of
+                                                            Stock</p>
+                                                        <% } %>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+                            <% } %>
+
+                </div>
+            </div>
+            <!-- shopping cart end -->
+        </div>
+    </section>
+    <!-- shoping cart List End -->
+
+    <!-- footer area start -->
+    <footer class="footer_part">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Top Products</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Managed Website</a></li>
+                            <li><a href="">Manage Reputation</a></li>
+                            <li><a href="">Power Tools</a></li>
+                            <li><a href="">Marketing Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Quick Links</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">Brand Assets</a></li>
+                            <li><a href="">Investor Relations</a></li>
+                            <li><a href="">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Features</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Jobs</a></li>
+                            <li><a href="">Brand Assets</a></li>
+                            <li><a href="">Investor Relations</a></li>
+                            <li><a href="">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4>Resources</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="">Guides</a></li>
+                            <li><a href="">Research</a></li>
+                            <li><a href="">Experts</a></li>
+                            <li><a href="">Agencies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_footer_part">
+                        <h4>Newsletter</h4>
+                        <p>Heaven fruitful doesn't over lesser in days. Appear creeping
+                        </p>
+                        <div id="mc_embed_signup">
+                            <form target="_blank"
+                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                method="get" class="subscribe_form relative mail_part">
+                                <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
+                                    class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = ' Email Address '">
+                                <button type="submit" name="submit" id="newsletter-submit"
+                                    class="email_icon newsletter-submit button-contactForm">subscribe</button>
+                                <div class="mt-10 info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="copyright_text">
+                            <P><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
+                                template is made with <i class="ti-heart" aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </P>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="footer_icon social_icon">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+                                <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer area end -->
+
+    <!-- script file here -->
+
+
+    <!-- jquery plugins here-->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- slick js -->
+    <script src="js/slick.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/stellar.js"></script>
+    <script src="js/price_rangs.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Function to handle dismissal of a product from wishlist
+        function dismiss(element) {
+            const productId = element.getAttribute('data-product-id');
+
+            // Show confirmation dialog with custom size
+            Swal.fire({
+                text: "Are you sure you want to remove this product?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                customClass: {
+                    popup: 'my-popup', // Define your custom CSS class here
+                    content: 'my-content',
+                    actions: 'my-actions',
+                    confirmButton: 'my-confirm-button',
+                    cancelButton: 'my-cancel-button'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If user confirms, send AJAX request to delete product from wishlist
+                    fetch('/deleteWishlistProduct', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productId: productId })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                
+                                element.closest('tr').remove();
+                                Swal.fire({
+                                    title: 'Deleted!',
+                                    text: 'Your product has been removed from wishlist.',
+                                    icon: 'success',
+                                    customClass: {
+                                        popup: 'my-popup',
+                                        content: 'my-content',
+                                        actions: 'my-actions',
+                                        confirmButton: 'my-confirm-button',
+                                        cancelButton: 'my-cancel-button'
+                                    }
+                                });
+                            } else {
+                                console.error(data.message);
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'Failed to remove the product from wishlist.',
+                                    icon: 'error',
+                                    customClass: {
+                                        popup: 'my-popup',
+                                        content: 'my-content',
+                                        actions: 'my-actions',
+                                        confirmButton: 'my-confirm-button',
+                                        cancelButton: 'my-cancel-button'
+                                    }
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Internal server error occurred.',
+                                icon: 'error',
+                                customClass: {
+                                    popup: 'my-popup',
+                                    content: 'my-content',
+                                    actions: 'my-actions',
+                                    confirmButton: 'my-confirm-button',
+                                    cancelButton: 'my-cancel-button'
+                                }
+                            });
+                        });
+                }
+            });
+        }
+
+        // Add event listener to all dismiss buttons
+        document.querySelectorAll('.dismiss-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                dismiss(this);
+            });
+        });
+    </script>
+
+
+
+
+
+</body>
+
+</html>

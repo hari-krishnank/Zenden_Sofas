@@ -27,7 +27,7 @@ body{
 .container header{
     width: 65px;
     height: 65px;
-    background-color: #5ce3cb;
+    background-color: #4cd3e3;
     border-radius: 50%;
 }
 .container h3{
@@ -60,7 +60,7 @@ form .inputs input::-webkit-outer-spin-button{
     cursor: pointer;
     border-radius: 8px;
     outline: none;
-    background: #6ffde3;
+    background: #4cd3e3;
     color: #fff;
     border: none;
     font-size: 1.2rem;
@@ -68,9 +68,24 @@ form .inputs input::-webkit-outer-spin-button{
     pointer-events: none;
 }
 .btn.active{
-    background: #509185;
+    background: #1a737d;
     pointer-events: auto;
 }
 .btn:hover{
-    background: #5ce3cb
+    background:#1a737d
+}
+
+
+
+#countdown {
+    font-size: 15px; 
+    color: red;
+    font-weight: bold;
+}
+
+
+#expirationMessage {
+    font-size: 15px; 
+    color: rgb(220, 94, 94);
+    font-weight: bold;
 }
