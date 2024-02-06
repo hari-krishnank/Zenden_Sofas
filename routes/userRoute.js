@@ -94,4 +94,7 @@ userRouter.post('/wishlist',userauth.isLogin,userauth.checkBlocked,wishlistContr
 
 userRouter.post('/deleteWishlistProduct',userauth.isLogin,userauth.checkBlocked,wishlistController.deleteWishlistProduct)
 
+
+userRouter.get('/wallet',userauth.isLogin,userController.loadWallet)
+
 module.exports = userRouter;      

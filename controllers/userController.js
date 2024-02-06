@@ -27,7 +27,8 @@ const userHome = async (req, res) => {
 
 const loadRegister = async (req, res) => {
     try {
-        res.render('users/signup')
+        const code = req.query.code;
+        res.render('users/signup',{ code })
     } catch (error) {
         console.log(error.message);
     }
@@ -46,7 +47,11 @@ const securePassword = async (password) => {
 const verifyRegister = async (req, res) => {
     try {
         console.log(req.body);
-        const { name, email, mobileNumber } = req.body;
+        const { name, email, mobileNumber,code } = req.body;
+        console.log('cooooooooooodeeeeee:',code);
+        if(code){
+            req.session.referralCode = code;
+        }
         const existUser = await User.findOne({ email: req.body.email })
         if (existUser && existUser.is_Verified) {
 
@@ -63,6 +68,9 @@ const verifyRegister = async (req, res) => {
             }
             const bodyPassword = req.body.password
             const sPassword = await securePassword(bodyPassword);
+            const referralCode = generateReferralCode();
+            console.log("Referral code:", referralCode);
+            console.log(referralCode);
             const user = new User({
                 name: req.body.name,
                 email: req.body.email,
@@ -70,6 +78,7 @@ const verifyRegister = async (req, res) => {
                 password: sPassword,
                 confirmPassword: req.body.confirmPassword,
                 is_Admin: 0,
+                referralCode:referralCode
             })
             // console.log(req.body);
 
@@ -83,7 +92,7 @@ const verifyRegister = async (req, res) => {
             console.log('userdata', userData);
 
             if (userData) {
-                await sendOTPVerificationEmail(userData.email)
+                await sendOTPVerificationEmail({ email: userData.email, referralCode: req.session.referralCode }, res);
             }
 
         }
@@ -92,10 +101,18 @@ const verifyRegister = async (req, res) => {
     }
 }
 
+//______________generate referral code________
+
+function generateReferralCode() {
+    const referralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+    console.log("Generated referral code:", referralCode);
+    return referralCode;
+}
+
 
 // send OTP Verification Email -------------------------------------------------------
 
-const sendOTPVerificationEmail = async ({ email }, res) => {
+const sendOTPVerificationEmail = async ({ email,referralCode }, res) => {
     try {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -159,7 +176,7 @@ const sendOTPVerificationEmail = async ({ email }, res) => {
 
 
 
-        res.redirect(`/verifyOTP?email=${email}`);
+        res.redirect(`/verifyOTP?email=${email}&referralCode=${referralCode}`);
 
     } catch (error) {
         console.log(error.message);
@@ -171,7 +188,7 @@ const sendOTPVerificationEmail = async ({ email }, res) => {
 const loadOtpPage = async (req, res) => {
     try {
         const email = req.query.email
-
+        
         res.render('users/verifyOTP', { email: email })
     } catch (error) {
         console.log(error.message);
@@ -207,8 +224,41 @@ const verifyOtp = async (req, res) => {
             await UserOTPVerification.deleteOne({ email: email })
 
             req.session.userId = userData._id
+            const referralCode = req.session.referralCode;
+
+            console.log('reeeeeeeeeeeeeeeeeeeeeeef',referralCode);
+            const userId = req.session.userId;
+            console.log('useeeeeeeeeeeeeerrrrrrrrrIIIIIIId',userId);
 
 
+            if(referralCode){
+                await User.findOneAndUpdate(
+                    {referralCode:referralCode},
+                    {
+                        $inc:{wallet:200},
+                        $push:{
+                            wallet_history:{
+                                date:new Date(),
+                                amount:200,
+                                description:`Referral Bonus for refferring ${userData.user_name}`
+                            }
+                        }
+                    }
+                );
+                await User.findOneAndUpdate(
+                    {_id:userId},
+                    {
+                        $inc:{wallet:100},
+                        $push:{
+                            wallet_history:{
+                                date:new Date(),
+                                amount:100,
+                                description:`Welcome Bonus for Using Referral link`
+                            }
+                        }
+                    }
+                )
+            }
 
             res.redirect('/home')
 
@@ -311,95 +361,10 @@ const loadBlockedUser = async (req, res) => {
 
 
 
-// const loadShop = async (req, res) => {
-//     try {
-//         const allCategories = await Category.find({ is_listed: 1 }).populate('offer');
-//         console.log('all...................cat.....:', allCategories);
-//         const selectedCategoryId = req.query.category;
-
-
-
-//         let user;
-//         console.log(req.session.userId);
-//         if (req.session.userId) {
-//             const id = req.session.userId;
-//             user = await User.findOne({ _id: id });
-//         }
-
-
-
-//         let products;
-//         if (selectedCategoryId) {
-//             const category = await Category.findById(selectedCategoryId);
-//             if (category && category.is_listed) {
-//                 products = await Product.find({
-//                     category: selectedCategoryId,
-//                     is_listed: 1
-//                 }).populate('category').populate('offer');;
-//             } else {
-//                 products = [];
-//             }
-//         } else {
-//             const listedCategoryIds = allCategories.map(category => category._id);
-//             products = await Product.find({
-//                 'category': { $in: listedCategoryIds },
-//                 is_listed: 1
-//             }).populate({ path: 'category', populate: { path: 'offer' } }).populate('offer');
-
-//         }
-//         // console.log('all...............Products.........:', products);
-
-
-
-//         products.forEach(product => {
-            
-//             if (product.offer) {
-
-//                 // Calculate discounted price based on product's offer percentage
-
-//                 let discount = Math.round(product.price * (product.offer.percentage / 100));
-//                 product.offerPrice = product.price - discount;
-
-//                 console.log('product offer price.........', product.offerPrice);
-
-//             } else if (product.category && product.category.offer) {
-                
-//                 // Calculate discounted price based on category's offer percentage
-
-//                 let discount = Math.round(product.price * (product.category.offer.percentage / 100));
-//                 product.offerPrice = product.price - discount;
-
-//                 console.log('category offer price.........', product.offerPrice);
-//             } else {
-               
-//                 product.offerPrice = product.price;
-
-//                 console.log('normal price', product.offerPrice);
-//             }
-
-//             // Save the updated offerPrice
-//             product.save()
-//                 .then(savedProduct => {
-//                     console.log('Offer price saved successfully:', savedProduct.offerPrice);
-//                 })
-//                 .catch(error => {
-//                     console.error('Error saving offer price:', error);
-//                 });
-//         });
-
-
-
-
-//         const categories = await Category.find({ is_listed: 1 });
-//         res.render('users/shop', { products, allCategories, selectedCategoryId, User: user, categories });
-//     } catch (error) {
-//         console.log(error.message);
-//     }
-// };
 const loadShop = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1; // Get the page parameter from the query string or default to page 1
-        const limit = 4; // Number of products per page
+        const limit = 8; // Number of products per page
         const skip = (page - 1) * limit; // Calculate the number of products to skip
 
         const allCategories = await Category.find({ is_listed: 1 }).populate('offer');
@@ -424,7 +389,7 @@ const loadShop = async (req, res) => {
                 products = [];
             }
         } else {
-            // Handle all products
+            
             const listedCategoryIds = allCategories.map(category => category._id);
             products = await Product.find({
                 'category': { $in: listedCategoryIds },
@@ -434,7 +399,7 @@ const loadShop = async (req, res) => {
 
         const categories = await Category.find({ is_listed: 1 });
 
-        // Calculate total number of pages
+        
         const totalProductsCount = await Product.countDocuments({});
         const totalPages = Math.ceil(totalProductsCount / limit);
 
@@ -856,6 +821,20 @@ const resetPasswordVerify = async (req, res) => {
 }
 
 
+//____________________________________________________________________WALLET________________________________________________________
+
+const loadWallet = async(req,res) => {
+    try {
+        const userId = req.session.userId
+        console.log('wallet session:',userId);
+        const user = await User.findOne({_id: userId})
+        res.render('users/wallet',{user,moment})
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+
 
 module.exports = {
     userHome,
@@ -881,7 +860,8 @@ module.exports = {
     forgotPassword,
     forgotVerify,
     resetPassword,
-    resetPasswordVerify
+    resetPasswordVerify,
+    loadWallet
 
 
 }

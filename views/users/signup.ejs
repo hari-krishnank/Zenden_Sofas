@@ -132,13 +132,18 @@
 
                             <form class="row contact_form" action="" method="post" onsubmit="return validateForm()">
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="text" class="form-control" id="name" name="name" value="<%= locals.name %>"
-                                        placeholder="Username">
+                                    <% if(locals.code) {%>
+                                        <input type="hidden" name="code" id="code" value="<%= code %>">
+                                        <% } else {%>
+                                            <% } %>
+                        
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        value="<%= locals.name %>" placeholder="Username">
                                     <span id="nameError" class="error"></span>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="email" class="form-control" id="email" name="email" value="<%= locals.email %>"
-                                        placeholder="Email">
+                                    <input type="email" class="form-control" id="email" name="email"
+                                        value="<%= locals.email %>" placeholder="Email">
                                     <span id="emailError" class="error"></span>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
@@ -147,13 +152,13 @@
                                     <span id="mobileError" class="error"></span>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="password" name="password" value="<%= locals.password %>"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password"
+                                        value="<%= locals.password %>" placeholder="Password">
                                     <span id="passwordError" class="error"></span>
                                 </div>
                                 <div class="col-md-12 form-group p_star">
-                                    <input type="password" class="form-control" id="confirmPassword" value="<%= locals.confirmPassword %>"
-                                        placeholder="Confirm Password">
+                                    <input type="password" class="form-control" id="confirmPassword"
+                                        value="<%= locals.confirmPassword %>" placeholder="Confirm Password">
                                     <span id="confirmPasswordError" class="error"></span>
                                 </div>
 
@@ -330,13 +335,13 @@
             var mobileNumber = document.getElementById('mobileNumber').value.trim();
             var password = document.getElementById('password').value.trim();
             var confirmPassword = document.getElementById('confirmPassword').value.trim();
-    
+
             // Reset error messages and styles
             resetErrors();
-    
+
             // Validate name
             const nameRegex = /^[a-zA-Z][a-zA-Z0-9]*$/;
-    
+
             if (name === '') {
                 displayError('nameError', 'Name is required');
                 return false;
@@ -344,7 +349,7 @@
                 displayError('nameError', 'Name should start with an alphabet and can only contain alphanumeric characters');
                 return false;
             }
-    
+
             // Validate email
             if (email === '') {
                 displayError('emailError', 'Email is required');
@@ -356,7 +361,7 @@
                     return false;
                 }
             }
-    
+
             // Validate mobile number
             if (mobileNumber === '') {
                 displayError('mobileError', 'Mobile Number is required');
@@ -368,7 +373,7 @@
                     return false;
                 }
             }
-    
+
             // Validate password
             if (password === '') {
                 displayError('passwordError', 'Password is required');
@@ -380,7 +385,7 @@
                 displayError('passwordError', 'Password should contain at least one uppercase letter, one digit, and one special character');
                 return false;
             }
-    
+
             // Validate confirm password
             if (confirmPassword === '') {
                 displayError('confirmPasswordError', 'Confirm Password is required');
@@ -389,17 +394,17 @@
                 displayError('confirmPasswordError', 'Passwords do not match');
                 return false;
             }
-    
+
             // If all validations pass, return true to submit the form
             return true;
         }
-    
+
         function displayError(elementId, message) {
             var errorElement = document.getElementById(elementId);
             errorElement.innerHTML = message;
             errorElement.style.color = 'red'; // Set the text color to red
         }
-    
+
         function resetErrors() {
             // Reset error messages and styles
             var errorElements = document.getElementsByClassName('error');
@@ -409,7 +414,12 @@
             }
         }
     </script>
-    
+
+<script>
+    // Get the code value from the hidden input field
+    const codeValue = document.getElementById("code").value;
+    console.log("Code:", codeValue);
+</script>
 
 </body>
 

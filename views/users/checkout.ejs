@@ -259,7 +259,7 @@
                             </h2>
                         </div>
                         <input type="text" style="margin-left: 1px;" placeholder="Enter coupon code" id="code" required
-                            name="code" value=""/>
+                            name="code" value="" />
                         <a class="btn_3" href="#" style="margin-left: 1px;"
                             onclick="applyCoupon($('#code').val())">Apply Coupon</a>
                     </div>
@@ -273,7 +273,6 @@
                                     <p>
                                         <%= coupon.couponCode %>: <%= coupon.couponDescription %>
                                     </p>
-                                    <!-- You can display any other coupon details here -->
                                     <% }); %>
                                         <% } else { %>
                                             <p>No coupons available at the moment.</p>
@@ -738,14 +737,14 @@
     </script>
 
     <script>
-     
+
         document.getElementById('btn_1').addEventListener('click', async (event) => {
             event.preventDefault();
             console.log('Button clicked!');
 
             const couponCode = document.getElementById('code').value;
             applyCoupon(couponCode);
-            console.log('coupon:',couponCode);
+            console.log('coupon:', couponCode);
             // Get the selected address ID and user ID from your form
             // Validate address selection
             const selectedAddress = document.querySelector('input[name="address"]:checked');
@@ -870,7 +869,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: 'Product is not available in sufficient quantity.Please availability of product in Shop',
+                        text: 'Product is not available in sufficient quantity.Please Check availability of product in Shop',
                     });
                 }
             }

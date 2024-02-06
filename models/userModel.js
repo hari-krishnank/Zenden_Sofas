@@ -55,16 +55,36 @@ const userSchema = new mongoose.Schema({
             alternateMobile: {
                 type: Number,
             },
-            
+
 
         }
     ],
     wishlist: [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Product'
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
         }
     ],
+    wallet: {
+        type: Number,
+        default: 0,
+    },
+    wallet_history: [
+        {
+            date: {
+                type: Date,
+            },
+            amount: {
+                type: Number,
+            },
+            description: {
+                type: String,
+            },
+        },
+    ],
+    referralCode: {
+        type: String
+    }
 
 },
     { timestamps: true }

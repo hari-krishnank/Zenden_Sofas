@@ -37,6 +37,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
       <![endif]-->
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
    <style>
       .table {
          width: 100%;
@@ -210,7 +211,7 @@
 
                            <div class="table_section padding_infor_info">
                               <div class="table-responsive-sm">
-                                 <table class="table">
+                                 <table id="categoryTable" class="table">
 
                                     <thead>
                                        <tr>
@@ -343,7 +344,16 @@
    <!-- calendar file css -->
    <script src="/admin/js/semantic.min.js"></script>
 
+   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
+   <script>
+      $(document).ready(function () {
+          $('#categoryTable').DataTable({
+              "paging": true,
+              "ordering":false 
+          });
+      });
+  </script>
 </body>
 
 </html>

@@ -66,7 +66,8 @@ const applyCoupon = async (req, res) => {
         }
 
         if (subTotal < coupon.minAmount) {
-            return res.status(400).json({error: `Minimum purchase amount required: ₹${minAmount}` });
+            
+            return res.json({maxAmount:true,message: `Minimum purchase amount required:`});
         }
         
 

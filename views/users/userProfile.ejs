@@ -164,6 +164,9 @@
                     <li>
                         <a href="/wishlist" class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Wishlist</a>
                     </li>
+                    <li>
+                        <a href="/wallet" class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Wallet</a>
+                    </li>
                 </ul>
                 <a href="logout" class="font-display text-[16px] leading-[110%] font-medium capitalize text-[#636270] px-4 py-4 md:px-0">Logout</a>
             </div>
@@ -213,6 +216,17 @@
                                     <div class="w-full mb-5">
                                         <input type="text" value="<%= User.mobile %>" readonly class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
                                     </div>
+                                    <h2 style="font-size: 19px; color: brown; font-weight: 300; font-family: cursive;">REFER & EARN</h2><br>
+                                    <h2 style="font-size: 16px; color: burlywood; font-weight: 300; font-family: cursive;">Refer A Friend And You Both Earn Rewards! You Earn Rs.200 And Your Friend Earns Rs.100.</h2><br>
+                                    <div class="w-full mb-5" style="display: flex; align-items: center;">
+                                        <input type="text" id="referralLink" readonly class="input-box focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" style="flex: 1;">
+                                        <button onclick="copyReferralLink()" style="margin-left: 10px; color: #ff3368;">Copy</button><br>
+                                        
+                                    </div>
+                                    
+                                    
+                                    
+
                                     <a href="/editUserProfile" class="btn_3" style="font-size: 14px; border-radius: 5px;">Edit Profile</a>
                                 </div>
                             </div>
@@ -401,7 +415,28 @@
             document.getElementById('changeCurrentPassword').submit();
         }
     </script>
+    <script>
+        function generateReferralLink() {
+            var userReferralCode = "<%= User.referralCode %>";
     
+            var referralLink = "localhost:4000/signup?code=" + userReferralCode;
+    
+            document.getElementById("referralLink").value = referralLink;
+        }
+    
+        function copyReferralLink() {
+            var referralLinkInput = document.getElementById("referralLink");
+    
+            referralLinkInput.select();
+            referralLinkInput.setSelectionRange(0, 99999); /* For mobile devices */
+    
+            document.execCommand("copy");
+    
+            alert("Referral link copied to clipboard!");
+        }
+    
+        generateReferralLink();
+    </script>
 
 </body>
 

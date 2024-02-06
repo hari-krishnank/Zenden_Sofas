@@ -172,6 +172,9 @@
                         <a href="/wishlist"
                             class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Wishlist</a>
                     </li>
+                    <li>
+                        <a href="/wallet" class="text-[#636270] font-medium p-5 border-b border-transparent hover:text-gray-black font-display">Wallet</a>
+                    </li>
                 </ul>
                 <a href="logout"
                     class="font-display text-[16px] leading-[110%] font-medium capitalize text-[#636270] px-4 py-4 md:px-0">Logout</a>
@@ -269,10 +272,10 @@
                                         <% }) %>
                                             <% }); %>
                             </tbody>
-                        </table>
-                        <div class="pagination">
+                        </table><br>    
+                        <div class="pagination" style="display: flex; justify-content: center;">
                             <% if (currentPage > 1) { %>
-                                <a class="btn btn-success2" href="?page=<%= currentPage - 1 %>">Previous</a>
+                                <a class="btn btn-success2" href="?padisplay: flex- justify-content: center; 1 %>">Previous</a>
                             <% } %>
                             
                             <% for (let i = 1; i <= totalPages; i++) { %>

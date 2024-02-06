@@ -186,6 +186,18 @@ const placeOrder = async (req, res) => {
             return res.status(400).json({ success: false, message: 'No items in the cart' });
         }
 
+         // Check availability of each item in the cart
+         for (const cartItem of cart.items) {
+            const product = cartItem.product_id;
+            const requestedQuantity = cartItem.quantity;
+            if (product.quantity < requestedQuantity) {
+                return res.status(400).json({
+                    success: false,
+                    message: `Not enough quantity available for product ${product.name}`,
+                });
+            }
+        }
+
         let total = 0;
         const orderItems = cart.items.map((cartItem) => {
             const product = cartItem.product_id;
