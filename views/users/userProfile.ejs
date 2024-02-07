@@ -190,8 +190,8 @@
                                     <div class="pb-[26px] mx-auto">
                                         <img class="w-[200px] h-[150px] rounded-full mx-auto object-cover" src="/img/Screenshot 2024-02-01 111022.png" alt="" id="blah">
                                     </div>
-                                    <h3 class="xl:text-2xl acc-title text-[22px]  text-[#272343] font-medium mb-6 font-display text-center" style="color: #ff3368; text-align: center; font-size: 20px;">HELLO</h3>
-                                    <h2 style="font-size: 25px; color: #ff3368; text-transform: uppercase; text-align: center;"><%=User.name%></h2>
+                                    <h3 class="xl:text-2xl acc-title text-[22px]  text-[#272343] font-medium mb-6 font-display text-center" style="color: #ff3368; text-align: center; font-size: 20px; font-family: 'Times New Roman', Times, serif;">HELLO</h3>
+                                    <h2 style="font-size: 25px; color: #ff3368; text-transform: uppercase; text-align: center;font-family: 'Times New Roman', Times, serif;"><%=User.name%></h2>
 
                                     
                                 </div>
@@ -202,7 +202,7 @@
                         <div class="box xl:w-[536px]" style="margin-left: 0%;">
                             <div class="w-full ">
                                 <div class="p-6">
-                                    <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display">Personal Information</h2>
+                                    <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display" style="font-family: 'Times New Roman', Times, serif;">PERSONAL INFORMATION</h2>
                                     <div class="flex flex-col sm:flex-row gap-5 items-center mb-5">
                                         <div class="w-full">
                                             <input type="text" value="<%= User.name %>" readonly class="input-box focus:outline-none focus:ring-2 focus:ring-accents transition duration-300 ease-in-out">
@@ -216,8 +216,8 @@
                                     <div class="w-full mb-5">
                                         <input type="text" value="<%= User.mobile %>" readonly class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
                                     </div>
-                                    <h2 style="font-size: 19px; color: brown; font-weight: 300; font-family: cursive;">REFER & EARN</h2><br>
-                                    <h2 style="font-size: 16px; color: burlywood; font-weight: 300; font-family: cursive;">Refer A Friend And You Both Earn Rewards! You Earn Rs.200 And Your Friend Earns Rs.100.</h2><br>
+                                    <h2 style="font-size: 19px; color: black; font-weight: 800; font-family:'Times New Roman', Times, serif;">REFER & EARN</h2><br>
+                                    <h2 style="font-size: 16px; color: black; font-weight: 700; font-family: 'Times New Roman', Times, serif;">Refer A Friend And You Both Earn Rewards! You Earn Rs.200 And Your Friend Earns Rs.100.</h2><br>
                                     <div class="w-full mb-5" style="display: flex; align-items: center;">
                                         <input type="text" id="referralLink" readonly class="input-box focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" style="flex: 1;">
                                         <button onclick="copyReferralLink()" style="margin-left: 10px; color: #ff3368;">Copy</button><br>
@@ -238,7 +238,7 @@
                             <div class="box xl:w-[424px]">
                                 <form action="/changePassword" method="POST" id="changeCurrentPassword">
                                     <div class="p-6">
-                                        <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display">Change Password</h2>
+                                        <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display" style="font-family: 'Times New Roman', Times, serif;">CHANGE PASSWORD</h2>
                             
                                         <div class="relative">
                                             <input type="password" placeholder="Current password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="oldPassword">

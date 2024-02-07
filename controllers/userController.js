@@ -240,7 +240,7 @@ const verifyOtp = async (req, res) => {
                             wallet_history:{
                                 date:new Date(),
                                 amount:200,
-                                description:`Referral Bonus for refferring ${userData.user_name}`
+                                description:`Referral Bonus for refferring ${User.user_name}`
                             }
                         }
                     }
@@ -361,11 +361,11 @@ const loadBlockedUser = async (req, res) => {
 
 
 
-const loadShop = async (req, res) => {
+const loadShop = async (req, res) => { 
     try {
-        const page = parseInt(req.query.page) || 1; // Get the page parameter from the query string or default to page 1
-        const limit = 8; // Number of products per page
-        const skip = (page - 1) * limit; // Calculate the number of products to skip
+        const page = parseInt(req.query.page) || 1; 
+        const limit = 8;
+        const skip = (page - 1) * limit; 
 
         const allCategories = await Category.find({ is_listed: 1 }).populate('offer');
         const selectedCategoryId = req.query.category;

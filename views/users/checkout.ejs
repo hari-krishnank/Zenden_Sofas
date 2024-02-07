@@ -29,13 +29,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-
 <style>
     /* Styles for demonstration purposes only, adjust as needed */
     .modal {
         display: none;
         position: fixed;
-        z-index: 1;
+        
         left: 0;
         top: 0;
         width: 100%;
@@ -44,25 +43,47 @@
         background-color: rgba(0, 0, 0, 0.4);
     }
 
+    .modal-dialog {
+        margin: 15% auto;
+    }
+
     .modal-content {
         background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
         border: 1px solid #888;
-        width: 80%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        padding: 1rem;
+        border-bottom: 1px solid #dee2e6;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .modal-body {
+        padding: 1rem;
+        max-height: 400px; /* Adjust the height as needed */
+        overflow-y: auto;
+    }
+
+    .modal-footer {
+        padding: 1rem;
+        border-top: 1px solid #dee2e6;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
     }
 
     .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
+        font-size: 1.5rem;
         font-weight: bold;
+        color: #000;
+        opacity: 0.5;
+        transition: opacity 0.3s;
     }
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
+    .close:hover {
+        opacity: 1;
         cursor: pointer;
     }
 </style>
@@ -265,21 +286,36 @@
                     </div>
 
                     <div id="couponModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <p>Available Coupons:</p>
-                            <% if (coupons.length> 0) { %>
-                                <% coupons.forEach(coupon=> { %>
-                                    <p>
-                                        <%= coupon.couponCode %>: <%= coupon.couponDescription %>
-                                    </p>
-                                    <% }); %>
-                                        <% } else { %>
-                                            <p>No coupons available at the moment.</p>
-                                            <% } %>
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">All Coupons</h5>
+                                    <span class="close">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="coupon-item" style="height: 600px; overflow-y: scroll;">
+                                    <!-- Your coupon items here -->
+                                    <% if (coupons.length > 0) { %>
+                                        <% coupons.forEach(coupon => { %>
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <p class="card-text" style="font-weight: bold; font-size: 16px; font-family: 'Times New Roman', Times, serif;" ><%= coupon.couponName %></p>
+                                                    <button class="btn btn-success"><%= coupon.couponCode %></button>
+                                                    <p class="card-text" style="font-weight: 500; font-size: 14px; font-family: 'Times New Roman', Times, serif;" ><%= coupon.couponDescription %></p>
+                                                </div>
+                                            </div>
+                                        <% }); %>
+                                    <% } else { %>
+                                        <p>No coupons available at the moment.</p>
+                                    <% } %>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary close" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            </div>
                         </div>
                     </div>
-
 
                     <div class="card mb-3">
 
@@ -878,22 +914,23 @@
     </script>
 
 
+<script>
+    document.getElementById("openModal").addEventListener("click", function () {
+        document.getElementById("couponModal").style.display = "block";
+    });
 
-    <script>
-        document.getElementById("openModal").addEventListener("click", function () {
-            document.getElementById("couponModal").style.display = "block";
-        });
-
-        document.getElementsByClassName("close")[0].addEventListener("click", function () {
+    document.querySelectorAll(".close").forEach(function (el) {
+        el.addEventListener("click", function () {
             document.getElementById("couponModal").style.display = "none";
         });
+    });
 
-        window.addEventListener("click", function (event) {
-            if (event.target == document.getElementById("couponModal")) {
-                document.getElementById("couponModal").style.display = "none";
-            }
-        });
-    </script>
+    window.addEventListener("click", function (event) {
+        if (event.target == document.getElementById("couponModal")) {
+            document.getElementById("couponModal").style.display = "none";
+        }
+    });
+</script>
 
 
     <script>

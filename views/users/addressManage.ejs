@@ -197,56 +197,64 @@
                     <div class="col-lg-12 col-md-8" style="margin-top: 20px;">
 
                         <form id="newAddressForm" action="/addAddress" method="post" style="display: block;"
-                            class="border p-4">
+                            class="border p-4" onsubmit="return validateForm()">
                             <h3 class="mt-10" style="font-size: medium;">ADD A NEW ADDRESS</h3>
 
                             <div class="mt-30">
                                 <input type="text" name="name" placeholder="Name" onfocus="this.placeholder = 'Name'"
-                                    onblur="this.placeholder = 'Name'" required class="single-input-primary">
+                                    onblur="this.placeholder = 'Name'" class="single-input-primary">
+                                    <p id="nameError" class="error" style="color: red;"></p> 
                             </div>
 
                             <div class="mt-10">
                                 <input type="text" name="mobile" placeholder="10-digit Mobile Number"
                                     onfocus="this.placeholder = '10-digit Mobile Number'"
-                                    onblur="this.placeholder = '10-digit Mobile Number'" required
+                                    onblur="this.placeholder = '10-digit Mobile Number'"
                                     class="single-input-primary">
+                                    <p id="mobileError" class="error" style="color: red;"></p>
                             </div>
 
                             <div class="mt-10">
                                 <input type="text" name="pincode" placeholder="pincode"
                                     onfocus="this.placeholder = 'pincode'" onblur="this.placeholder = 'pincode'"
-                                    required class="single-input-primary">
+                                    class="single-input-primary">
+                                    <p id="pincodeError" class="error" style="color: red;"></p>
                             </div>
 
                             <div class="mt-10">
                                 <input type="text" name="address" placeholder="Address"
                                     onfocus="this.placeholder = 'Address'" onblur="this.placeholder = 'Address'"
-                                    required class="single-input-primary">
+                                    class="single-input-primary">
+                                    <p id="addressError" class="error" style="color: red;"></p>
                             </div>
 
                             <div class="mt-10">
                                 <input type="text" name="city" placeholder="City/District/Town"
                                     onfocus="this.placeholder = 'City/District/Town'"
-                                    onblur="this.placeholder = 'City/District/Town'" required
+                                    onblur="this.placeholder = 'City/District/Town'"
                                     class="single-input-primary">
+                                    <p id="cityError" class="error" style="color: red;"></p> 
                             </div>
 
                             <div class="mt-10">
                                 <input type="text" name="state" placeholder="State" onfocus="this.placeholder = 'State'"
-                                    onblur="this.placeholder = 'State'" required class="single-input-primary">
+                                    onblur="this.placeholder = 'State'" class="single-input-primary">
+                                    <p id="stateError" class="error" style="color: red;"></p>
                             </div>
 
 
                             <div class="mt-10">
                                 <input type="text" name="landmark" placeholder="Landmark "
                                     onfocus="this.placeholder = 'Landmark '" onblur="this.placeholder = 'Landmark '"
-                                    required class="single-input-primary">
+                                    class="single-input-primary" >
+                                    <p id="landmarkError" class="error" style="color: red;"></p>
                             </div>
 
                             <div class="mt-10">
                                 <input type="text" name="alternateMobile" placeholder="Alternate Phone"
                                     onfocus="this.placeholder = 'Alternate Phone'"
-                                    onblur="this.placeholder = 'Alternate Phone'" required class="single-input-primary">
+                                    onblur="this.placeholder = 'Alternate Phone'" class="single-input-primary">
+                                    <p id="alternateMobileError" class="error" style="color: red;"></p>
                             </div>
                             <div class="mt-30"></div>
                             <button type="submit" class="btn_3" style="font-size: 14px; border-radius: 5px;"><span
@@ -680,6 +688,72 @@
             });
         }
     </script>
+
+
+<script>
+    function validateForm() {
+        var name = document.forms["newAddressForm"]["name"].value;
+        var mobile = document.forms["newAddressForm"]["mobile"].value;
+        var pincode = document.forms["newAddressForm"]["pincode"].value;
+        var address = document.forms["newAddressForm"]["address"].value;
+        var city = document.forms["newAddressForm"]["city"].value;
+        var state = document.forms["newAddressForm"]["state"].value;
+        var landmark = document.forms["newAddressForm"]["landmark"].value;
+        var alternateMobile = document.forms["newAddressForm"]["alternateMobile"].value;
+
+        document.getElementById("nameError").innerText = "";
+        document.getElementById("mobileError").innerText = "";
+        document.getElementById("pincodeError").innerText = "";
+        document.getElementById("addressError").innerText = "";
+        document.getElementById("cityError").innerText = "";
+        document.getElementById("stateError").innerText = "";
+        document.getElementById("landmarkError").innerText = "";
+        document.getElementById("alternateMobileError").innerText = "";
+
+        
+        if (name == "") {
+            document.getElementById("nameError").innerText = "Name is required.";
+            isValid = false;
+        }
+
+        if (mobile == "" || mobile.length !== 10 || isNaN(mobile)) {
+            document.getElementById("mobileError").innerText = "Mobile number must contain exactly 10 digits.";
+            isValid = false;
+        }
+
+        if (pincode == "" || pincode.length !== 6 || isNaN(pincode)) {
+            document.getElementById("pincodeError").innerText = "Pincode must contain exactly 6 digits.";
+            isValid = false;
+        }
+
+        if (address === "") {
+            document.getElementById("addressError").innerText = "Address is required.";
+            isValid = false;
+        }
+
+        if (city === "") {
+            document.getElementById("cityError").innerText = "City is required.";
+            isValid = false;
+        }
+
+        if (state === "") {
+            document.getElementById("stateError").innerText = "State is required.";
+            isValid = false;
+        }
+
+        if (landmark === "") {
+            document.getElementById("landmarkError").innerText = "Landmark is required.";
+            isValid = false;
+        }
+        if (alternateMobile === "") {
+            document.getElementById("alternateMobileError").innerText = "Alternate Mobile is required.";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+
 
 
 </body>

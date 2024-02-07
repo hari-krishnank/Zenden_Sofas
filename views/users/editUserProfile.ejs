@@ -201,26 +201,26 @@
                         <!-- account inforamation start -->
                         <div class="box xl:w-[536px]" style="margin-left: 0%;">
                             <div class="w-full ">
-                                <form id="editProfileForm" action="/editUserProfile" method="post"  onsubmit="return validateForm()">
-                                <div class="p-6">
-                                    
-                                    <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display">Personal Information</h2>
-                                    <div class="flex flex-col sm:flex-row gap-5 items-center mb-5">
-                                        <div class="w-full">
-                                            <input type="text" value="<%= User.name %>" class="input-box focus:outline-none focus:ring-2 focus:ring-accents transition duration-300 ease-in-out" name="name">
+                                <form id="editProfileForm" action="/editUserProfile" method="post" onsubmit="return validateForm()">
+                                    <div class="p-6">
+                                        <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display" style="font-family: 'Times New Roman', Times, serif;">PERSONAL INFORMATION</h2>
+                                        <div class="flex flex-col sm:flex-row gap-5 items-center mb-5">
+                                            <div class="w-full">
+                                                <input type="text" value="<%= User.name %>" class="input-box focus:outline-none focus:ring-2 focus:ring-accents transition duration-300 ease-in-out"  id="name" name="name">
+                                                <div id="nameError" style="color: red;"></div>
+                                            </div>
                                         </div>
-                                        
+                                
+                                        <div class="w-full mb-5">
+                                            <input type="text" value="<%= User.email %>" readonly class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="email" name="email">
+                                        </div>
+                                        <div class="w-full mb-5">
+                                            <input type="text" value="<%= User.mobile %>" class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="mobile" name="mobile">
+                                            <div id="mobileError" style="color: red;"></div>
+                                        </div>
+                                        <button type="submit" class="btn_3" style="font-size: 14px; border-radius: 5px;">Save Changes</button>
                                     </div>
-
-                                    <div class="w-full mb-5">
-                                        <input type="text" value="<%= User.email %>" readonly class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="email">
-                                    </div>
-                                    <div class="w-full mb-5">
-                                        <input type="text" value="<%= User.mobile %>"  class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="mobile">
-                                    </div>
-                                    <button type="submit" onclick="saveChanges()" class="btn_3" style="font-size: 14px; border-radius: 5px;">Save Changes</button>
-                                </div>
-                            </form>
+                                </form>
                             </div>
                         </div>
                         <!-- account inforamation end -->
@@ -228,27 +228,29 @@
                         <div class="flex flex-col md:flex-row gap-6">
                             <!-- user password change start -->
                             <div class="box xl:w-[424px]">
-                                <form action="/changePassword" method="POST" id="changeCurrentPassword">
+                                <form action="/changePassword" method="POST" id="changeCurrentPassword" >
                                     <div class="p-6">
-                                        <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display">Change Password</h2>
-                            
+                                        <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display" style="font-family: 'Times New Roman', Times, serif;">CHANGE PASSWORD</h2>
+                                
                                         <div class="relative">
                                             <input type="password" placeholder="Current password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="oldPassword">
                                         </div>
-                            
+                                
                                         <div class="relative">
-                                            <input type="password" placeholder="New password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out"  name="newPassword">
+                                            <input type="password" placeholder="New password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="newPassword" id="newPassword">
+                                            <div id="newPasswordError" style="color: red;"></div>
                                         </div>
-                            
+                                
                                         <div class="relative">
-                                            <input type="password" placeholder="Confirm password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="confirmPassword">
+                                            <input type="password" placeholder="Confirm password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="confirmPassword" id="confirmPassword">
+                                            <div id="confirmPasswordError" style="color: red;"></div>
                                         </div><br>
-
-                                        <% if (typeof message !=='undefined' ) { %>
-                                            <p style="color: red;font-weight: 500;"><%- message %></p>
-                                            <% } %>
-                                            
-                                        <button type="submit" onclick="saveChanges()" class="btn_3" style="font-size: 14px; border-radius: 5px;">Save Changes</button>
+                                
+                                        <% if (typeof message !== 'undefined') { %>
+                                        <p style="color: red;font-weight: 500;"><%- message %></p>
+                                        <% } %>
+                                
+                                        <button type="submit" class="btn_3" style="font-size: 14px; border-radius: 5px;">Save Changes</button>
                                     </div>
                                 </form>
                             </div>
@@ -364,63 +366,6 @@
     </footer>
     <!--::footer_part end::-->
 
-
-
-
-
-    <!-- <div class="container light-style flex-grow-1 container-p-y">
-       
-        <div class="card overflow-hidden">
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action " href="/userProfile">PROFILE</a>
-                        <a class="list-group-item list-group-item-action active" href="/editUserProfile">EDIT
-                            PROFILE</a>
-                        <a class="list-group-item list-group-item-action" href="/changePassword">CHANGE PASSWORD</a>
-                        <a class="list-group-item list-group-item-action" href="/userOrders">ORDER</a>
-                        <a class="list-group-item list-group-item-action" href="/addressManage">MANAGE ADDRESS</a>
-                        <a class="list-group-item list-group-item-action" href="#account-connections"></a>
-                        <a class="list-group-item list-group-item-action" href="#account-notifications"></a>
-                    </div>
-                </div>
-
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade active show" id="account-general" >
-
-                            <hr class="border-light m-0">
-                            <form id="editProfileForm" action="/editUserProfile" method="post"  onsubmit="return validateForm()">
-
-
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label class="form-label">Username</label>
-                                        <input type="text" class="form-control mb-1" value="<%= User.name %>" name="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Email</label>
-                                        <input type="text" class="form-control" value="<%= User.email %>" readonly name="email">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="form-label">Mobile</label>
-                                        <input type="text" class="form-control" value="<%= User.mobile %>" name="mobile">
-                                    </div>
-                                </div>
-
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-right mt-3" style="margin-bottom: 80px;">
-            <button type="button" onclick="saveChanges()" class="genric-btn primary-border">Save Changes</button>
-            <a href="/userProfile" class="genric-btn danger-border radius">Cancel</a>
-        </div>
-    </div> -->
    
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -473,31 +418,52 @@
         }
     </script>
 
-    <script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const nameInput = document.getElementById("name");
+        const mobileInput = document.getElementById("mobile");
+        const form = document.getElementById("editProfileForm");
+
+        nameInput.addEventListener("input", validateName);
+        mobileInput.addEventListener("input", validateMobile);
+
+        function validateName() {
+            const nameValue = nameInput.value.trim();
+            const nameError = document.getElementById("nameError");
+            if (nameValue === "") {
+                nameError.textContent = "Name is required";
+                nameInput.classList.add("invalid");
+            } else {
+                nameError.textContent = "";
+                nameInput.classList.remove("invalid");
+            }
+        }
+
+        function validateMobile() {
+            const mobileValue = mobileInput.value.trim();
+            const mobileError = document.getElementById("mobileError");
+            const mobileRegex = /^\d{10}$/;
+            if (!mobileRegex.test(mobileValue)) {
+                mobileError.textContent = "Mobile number must be 10 digits";
+                mobileInput.classList.add("invalid");
+            } else {
+                mobileError.textContent = "";
+                mobileInput.classList.remove("invalid");
+            }
+        }
+
         function validateForm() {
-            // Get form inputs
-            var name = document.forms["editProfileForm"]["name"].value;
-            var mobile = document.forms["editProfileForm"]["mobile"].value;
-    
-            // Simple validation for username (not empty)
-            if (name == "") {
-                alert("Username must be filled out");
-                return false;
+            validateName();
+            validateMobile();
+
+            if (form.querySelectorAll(".invalid").length > 0) {
+                return false; 
             }
-    
-            // Simple validation for mobile (not empty and numeric)
-            if (mobile == "") {
-                alert("Mobile must be filled out");
-                return false;
-            } else if (isNaN(mobile)) {
-                alert("Mobile must be a number");
-                return false;
-            }
-    
-            // If all validations pass, you can submit the form
             return true;
         }
-    </script>
+    });
+</script>
+
     
 </body>
 

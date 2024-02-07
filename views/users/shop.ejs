@@ -283,7 +283,7 @@
 
 
     <!--================Category Product Area =================-->
-    <section class="cat_product_area section_padding">
+    <section class="cat_product_area section_padding">  
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -353,27 +353,32 @@
                                         </a>
 
                                         <div class="single_product_text">
-                                            <h6 class="mt-3">
+                                            <h6 class="mt-3" style="color: black; font-weight: bold;">
                                                 <%= productData.name %>
                                             </h6>
-                                            <h6>
+                                            <h6 style="font-family: 'Times New Roman', Times, serif; font-size: 12px; font-weight: 500;">
                                                 <%= productData.category?.name %>
                                             </h6>
                                             <span class="stext-105 cl3">
                                                 <% if (productData.offer || productData.category?.offer) { %>
                                                     <span>
-                                                        <b style="color: rgb(27, 218, 68); font-size: 16px;">₹ <%= productData.offerPrice %></b>
+                                                        <% if (productData.offer) { %>
+                                                            <b style="color: rgb(27, 218, 68); font-size: 16px;">₹ <%= productData.offerPrice %></b>
+                                                        <% } else if (productData.category?.offer) { %>
+                                                            <b style="color: rgb(27, 218, 68); font-size: 16px;">₹ <%= productData.price - (productData.price * productData.category.offer.percentage / 100) %></b>
+                                                        <% } %>
                                                     </span>
                                                     <span style="text-decoration: line-through; color: red;">₹ <%= productData.price %></span>
                                                     <% if (productData.offer) { %>
                                                         <span style="color: red; font-weight: 500;"><%= productData.offer.percentage %> % OFF</span>
-                                                    <% } else { %>
+                                                    <% } else if (productData.category?.offer) { %>
                                                         <span style="color: red; font-weight: 500;"><%= productData.category.offer.percentage %> % OFF</span>
                                                     <% } %>
                                                 <% } else { %>
                                                     <b>₹ <%= productData.price %></b>
                                                 <% } %>
                                             </span>
+                                            
                                             
 
                                             <h3></h3>
@@ -392,8 +397,8 @@
                                 </div>
                                 <% } %>
                                     <% } else { %>
-                                        <div class="col-md-12">
-                                            <p>No listed products available.</p>
+                                        <div class="col-md-12" style="text-align: center;">
+                                            <p style="font-size: 20px; color: red; font-weight: 500; font-family: 'Times New Roman', Times, serif;"> Oops! It looks like there are no listed products available at the moment.</p>
                                         </div>
                                         <% } %>
                     </div>

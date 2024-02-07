@@ -190,7 +190,14 @@
                 <div class="shopping-cart w-full">
                     <div class="px-6 py-6 overflow-x-auto">
                         <!-- Add pagination links above or below the table -->
-
+                        <% if (orders.length === 0) { %>
+                            <div class="text-center py-6">
+                                <h2 style="font-size: 20px; font-weight: 600;">You have no orders</h2><br>
+                                
+                                <a href="/shop" class="btn_3"style="font-size: 14px; border-radius: 5px;">START SHOPPING</a>
+    
+                            </div>
+                        <% } else { %>
 
                         <table class="min-w-[1270px] w-full leading-normal">
                             <thead>
@@ -227,8 +234,7 @@
                                     <% order.items.forEach(item=> { %>
 
                                         <tr>
-                                            <!-- <td><img src="/resizedImages/<%= item.product_id.image[0] %>"
-                                            alt="" style="width: 100px; height: 75px;"></td> -->
+                                           
                                             <td class="py-6 text-sm">
                                                 <a href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">
                                                     <%= order._id%>
@@ -239,9 +245,12 @@
                                                     href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">
                                                     <%= order.date %>
                                                 </a></td>
-                                            <td class="py-6 text-sm"><a
-                                                    href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">
-                                                    <%= item.product_id.name %>
+                                                <td class="py-6 text-sm"><a href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">
+                                                    <% if (item.product_id) { %>
+                                                        <%= item.product_id.name %>
+                                                    <% } else { %>
+                                                        No product available
+                                                    <% } %>
                                                 </a></td>
                                             <td class="py-6 text-sm">
 
@@ -272,7 +281,7 @@
                                         <% }) %>
                                             <% }); %>
                             </tbody>
-                        </table><br>    
+                        </table><% } %><br>    
                         <div class="pagination" style="display: flex; justify-content: center;">
                             <% if (currentPage > 1) { %>
                                 <a class="btn btn-success2" href="?padisplay: flex- justify-content: center; 1 %>">Previous</a>

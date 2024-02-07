@@ -245,11 +245,20 @@
                                                 <div class="flex justify-between items-center">
                                                     <div class="flex items-center gap-3">
                                                         <div>
-                                                            <img src="/resizedImages/<%= item.product_id.image[0] %>"
-                                                                alt="" style="width: 100px; height: 75px;">
+                                                            <% if (item.product_id && item.product_id.image && item.product_id.image.length > 0) { %>
+                                                                <img src="/resizedImages/<%= item.product_id.image[0] %>" alt="" style="width: 100px; height: 75px;">
+                                                            <% } else { %>
+                                                                No image available
+                                                            <% } %>
                                                         </div>
 
-                                                        <p><%= item.product_id.name %> x <%= item.quantity %></p>
+                                                        <p>
+                                                            <% if (item.product_id && item.product_id.name) { %>
+                                                                <%= item.product_id.name %> x <%= item.quantity %>
+                                                            <% } else { %>
+                                                                Product not available x <%= item.quantity %>
+                                                            <% } %>
+                                                        </p>
 
                                                     </div>
 
@@ -257,8 +266,15 @@
                                             </td>
                                             <!-- <td> <%= item.quantity %></td> -->
                                             <td class="text-sm">
-                                                <p class="mb-0"><%= item.product_id.price %></p>
+                                                <p class="mb-0">
+                                                    <% if (item.product_id && item.product_id.price) { %>
+                                                        <%= item.product_id.price %>
+                                                    <% } else { %>
+                                                        Price not available
+                                                    <% } %>
+                                                </p>
                                             </td>
+                                            
                                             <td class="text-sm" style="width: 25%;">
                                                 <p> <%= moment( (order.expected_delivery)).format('dddd, MMMM Do YYYY') %></p>
                                             </td>

@@ -36,12 +36,12 @@ const loadSingleOrderDetails = async (req, res) => {
 const loadOrderDetails = async (req, res) => {
     try {
         const userId = req.session.userId;
-        const page = parseInt(req.query.page) || 1; // Get the page parameter from the query string or default to page 1
-        const limit = 1; // Number of orders per page
-        const skip = (page - 1) * limit; // Calculate the number of documents to skip
+        const page = parseInt(req.query.page) || 1; 
+        const limit = 3; 
+        const skip = (page - 1) * limit; 
 
         const ordersCount = await Order.countDocuments({ user_id: userId });
-        const totalPages = Math.ceil(ordersCount / limit); // Calculate total number of pages
+        const totalPages = Math.ceil(ordersCount / limit); 
 
         const orders = await Order.find({ user_id: userId })
             .populate('items.product_id')

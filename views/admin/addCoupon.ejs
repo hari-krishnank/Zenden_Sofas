@@ -160,7 +160,7 @@
                                                        id="couponCode"
                                                        name="couponCode"
                                                        required>
-                                                <div id="nameError" style="color: red;"></div>
+                                                <div id="codeError" style="color: red;"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="discount">Discount Amount</label>
@@ -172,19 +172,19 @@
                                                        min="0"
                                                        max="100"
                                                        required>
-                                                <div id="priceError" style="color: red;"></div>
+                                                <div id="discountError" style="color: red;"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="quantity">Minimum Amount</label>
                                                 <input type="text"
                                                        placeholder="Minimum Amount"
                                                        class="form-control"
-                                                       id="quantity"
+                                                       id="minAmount"
                                                        name="minAmount"
                                                        min="0"
                                                        max="100"
                                                        required>
-                                                <div id="priceError" style="color: red;"></div>
+                                                <div id="minAmountError" style="color: red;"></div>
                                             </div>
                                         
                                             <div class="form-group">
@@ -211,7 +211,7 @@
                                                        min="0"
                                                        max="100"
                                                        required>
-                                                <div id="priceError" style="color: red;"></div>
+                                                <div id="quantityError" style="color: red;"></div>
                                             </div>
                                         
                                             <div class="form-group">
@@ -222,7 +222,7 @@
                                                        id="expireDate"
                                                        name="expiryDate"
                                                        required>
-                                                <div id="priceError" style="color: red;"></div>
+                                                <div id="expiryError" style="color: red;"></div>
                                             </div>
                                         
                                             <div class="form-group row">
@@ -300,6 +300,135 @@
     <script src="/admin/js/custom.js"></script>
     <!-- calendar file css -->
     <script src="/admin/js/semantic.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const nameInput = document.getElementById("couponName");
+            const couponCodeInput = document.getElementById("couponCode");
+            const discountInput = document.getElementById("discount");
+            const minAmountInput = document.getElementById("minAmount");
+            const descriptionInput = document.getElementById("description");
+            const quantityInput = document.getElementById("quantity");
+            const expiryInput = document.getElementById("expireDate");
+            const form = document.getElementById("addCouponForm");
+    
+            nameInput.addEventListener("input", validateName);
+            couponCodeInput.addEventListener("input", validateCouponCode);
+            discountInput.addEventListener("input", validateDiscount);
+            minAmountInput.addEventListener("input", validateMinAmount);
+            descriptionInput.addEventListener("input", validateDescription);
+            quantityInput.addEventListener("input", validateQuantity);
+            expiryInput.addEventListener("input", validateExpiry);
+    
+            form.addEventListener("submit", function (event) {
+                const isValidName = validateName();
+                const isValidCouponCode = validateCouponCode();
+                const isValidDiscount = validateDiscount();
+                const isValidMinAmount = validateMinAmount();
+                const isValidDescription = validateDescription();
+                const isValidQuantity = validateQuantity();
+                const isValidExpiry = validateExpiry();
+    
+                if (!isValidName || !isValidCouponCode || !isValidDiscount || !isValidMinAmount || !isValidDescription || !isValidQuantity || !isValidExpiry) {
+                    event.preventDefault();
+                }
+            });
+    
+        });
+    
+        function validateName() {
+        const nameInput = document.getElementById("couponName");
+        const nameError = document.getElementById("nameError");
+        const name = nameInput.value.trim();
+        if (name === "") {
+            nameError.textContent = "Coupon name is required";
+            return false;
+        } else {
+            nameError.textContent = "";
+            return true;
+        }
+    }
+
+        function validateCouponCode() {
+            const couponCodeInput = document.getElementById("couponCode");
+            const codeError = document.getElementById("codeError");
+            const code = couponCodeInput.value.trim();
+            if (code === "") {
+                codeError.textContent = "Coupon code is required";
+                return false;
+            } else {
+                codeError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateDiscount() {
+            const discountInput = document.getElementById("discount");
+            const discountError = document.getElementById("discountError");
+            const discount = parseFloat(discountInput.value);
+            if (isNaN(discount)) {
+                discountError.textContent = "Discount must be a number ";
+                return false;
+            } else {
+                discountError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateMinAmount() {
+            const minAmountInput = document.getElementById("minAmount");
+            const minAmountError = document.getElementById("minAmountError");
+            const minAmount = parseFloat(minAmountInput.value);
+            if (isNaN(minAmount) || minAmount < 0) {
+                minAmountError.textContent = "Minimum amount must be a non-negative number";
+                return false;
+            } else {
+                minAmountError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateDescription() {
+            const descriptionInput = document.getElementById("description");
+            const descriptionError = document.getElementById("descriptionError");
+            const description = descriptionInput.value.trim();
+            if (description === "") {
+                descriptionError.textContent = "Description is required";
+                return false;
+            } else {
+                descriptionError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateQuantity() {
+            const quantityInput = document.getElementById("quantity");
+            const quantityError = document.getElementById("quantityError");
+            const quantity = parseFloat(quantityInput.value);
+            if (isNaN(quantity) || quantity < 0 || quantity > 100) {
+                quantityError.textContent = "Quantity must be a number between 0 and 100";
+                return false;
+            } else {
+                quantityError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateExpiry() {
+            const expiryInput = document.getElementById("expireDate");
+            const expiryError = document.getElementById("expiryError");
+            const expiryDate = new Date(expiryInput.value);
+            const currentDate = new Date();
+            if (expiryDate <= currentDate) {
+                expiryError.textContent = "Expiry date must be in the future";
+                return false;
+            } else {
+                expiryError.textContent = "";
+                return true;
+            }
+        }
+    </script>
+    
     
 </body>
 
