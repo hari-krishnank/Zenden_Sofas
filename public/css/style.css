@@ -39,7 +39,7 @@ input:focus {
 
 /* line 24, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
 .section_padding {
-  padding: 100px 0px;
+  padding: 60px 0px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {

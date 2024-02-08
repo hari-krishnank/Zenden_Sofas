@@ -23,7 +23,25 @@ const userHome = async (req, res) => {
     }
 }
 
+const loadAbout = async(req,res) => {
+    try {
+        const id = req.session.userId;
+        const userData = await User.findOne({ _id: id })
+        res.render('users/about',{User:userData})
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
+const loadContact = async(req,res)=>{
+    try {
+        const id = req.session.userId;
+        const userData = await User.findOne({ _id: id })
+        res.render('users/contact',{User:userData})
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 const loadRegister = async (req, res) => {
     try {
@@ -402,6 +420,47 @@ const loadShop = async (req, res) => {
         
         const totalProductsCount = await Product.countDocuments({});
         const totalPages = Math.ceil(totalProductsCount / limit);
+
+
+        // console.log('all...............Products.........:', products);
+
+
+
+        products.forEach(product => {
+            
+            if (product.offer) {
+
+                // Calculate discounted price based on product's offer percentage
+
+                let discount = Math.round(product.price * (product.offer.percentage / 100));
+                product.offerPrice = product.price - discount;
+
+                console.log('product offer price.........', product.offerPrice);
+
+            } else if (product.category && product.category.offer) {
+                
+                // Calculate discounted price based on category's offer percentage
+
+                let discount = Math.round(product.price * (product.category.offer.percentage / 100));
+                product.offerPrice = product.price - discount;
+
+                console.log('category offer price.........', product.offerPrice);
+            } else {
+               
+                product.offerPrice = product.price;
+
+                console.log('normal price', product.offerPrice);
+            }
+
+            // Save the updated offerPrice
+            product.save()
+                .then(savedProduct => {
+                    console.log('Offer price saved successfully:', savedProduct.offerPrice);
+                })
+                .catch(error => {
+                    console.error('Error saving offer price:', error);
+                });
+        });
 
         res.render('users/shop', { products, allCategories, selectedCategoryId, User: user, categories, currentPage: page, totalPages });
     } catch (error) {
@@ -848,6 +907,8 @@ module.exports = {
     logoutUser,
     loadShop,
     loadProductDetails,
+    loadAbout,
+    loadContact,
     loadBlockedUser,
     loadUserProfile,
     loadEditUserProfile,

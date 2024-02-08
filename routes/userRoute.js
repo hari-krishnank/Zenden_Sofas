@@ -33,6 +33,10 @@ userRouter.get('/logout', userauth.isLogin, userController.logoutUser)
 
 userRouter.get('/shop', userauth.checkBlocked, userController.loadShop)
 
+userRouter.get('/about',userauth.checkBlocked,userController.loadAbout)
+
+userRouter.get('/contact',userauth.checkBlocked,userController.loadContact)
+
 
 userRouter.get('/singleProduct',userauth.checkBlocked, userController.loadProductDetails)
 

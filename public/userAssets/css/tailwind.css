@@ -557,44 +557,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 0rem;
-  padding-left: 0rem;
-}
-
-@media (min-width: 600px) {
-  .container {
-    max-width: 600px;
-  }
-}
-
-@media (min-width: 728px) {
-  .container {
-    max-width: 728px;
-  }
-}
-
-@media (min-width: 920px) {
-  .container {
-    max-width: 920px;
-  }
-}
-
-@media (min-width: 980px) {
-  .container {
-    max-width: 980px;
-  }
-}
-
-@media (min-width: 1320px) {
-  .container {
-    max-width: 1320px;
-  }
-}
-
 .visible {
   visibility: visible;
 }
