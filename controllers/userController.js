@@ -422,7 +422,7 @@ const loadShop = async (req, res) => {
         const totalPages = Math.ceil(totalProductsCount / limit);
 
 
-        // console.log('all...............Products.........:', products);
+
 
 
 

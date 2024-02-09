@@ -37,13 +37,15 @@ const productsModel = new mongoose.Schema({
     },
     offerPrice: {
         type: Number,
-        default:0,
+        default: 0,
     },
     is_listed: {
         type: Number,
         default: 0,
     }
 
-})
+},
+    { timestamps: true }
+)
 const Product = mongoose.model('Product', productsModel)
 module.exports = Product;
