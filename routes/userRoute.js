@@ -15,7 +15,7 @@ userRouter.get('/signup', userauth.isLogout, userController.loadRegister)
 userRouter.post('/signup', userController.verifyRegister)
 
 userRouter.get('/verifyOTP', userauth.isLogout, userController.loadOtpPage)
-userRouter.post('/verifyOTP', userController.verifyOtp)
+userRouter.post('/verifyOTP', userController.verifyOtp)  
 userRouter.post('/resendOtp',userController.resendOtp)
 
 

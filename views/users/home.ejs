@@ -325,111 +325,36 @@
             </div>
             <div class="swiper featureSwiper overflow-hidden">
                 <div class="swiper-wrapper">
+                    <% latestProducts.forEach(product=> { %>
+                        <div class="swiper-slide">
 
-                    <div class="swiper-slide">
-                        <div class="product-card">
+                            <div class="row align-items-center latest_product_inner">
+                                <div class="col-lg-12 col-md-4 col-sm-6 mb-4">
+                                    <div class="single_product_item">
+                                        <img src="/resizedImages/<%= product.image[0] %>" alt="<%= product.name %>">
+                                        <div class="single_product_text">
+                                            <h6 class="mt-2" style="color: black; font-weight: bold;">
+                                                <%= product.name %>
+                                            </h6>
+                                            <h6 class="mt-1"
+                                                style="font-family: 'Times New Roman', Times, serif; font-size: 12px; font-weight: 500;">
+                                                <%= product.category?.name %>
+                                            </h6>
+                                            <h3 class="mt-2" style="color: red; font-weight: 500; font-size: small;">₹ <%= product.price %>
+                                            </h3>
 
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>a</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                            <div class="button-container" style="display: flex; align-items: center;margin-top: 14px;">
+                                                <a href="#" class="add_cart" onclick="addToCart(event, '')" style="font-size: small;">+ Add to Cart</a>
+                                                <a href="#" style="margin-left: 70px;" onclick="addToWishlist('')"><i class="ti-heart" style="font-size: small;"></i></a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>b</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>c</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>d</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>e</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>f</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>g</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-card">
-
-                            <div class="single_product_item">
-                                <img src="img/product/product_1.png" alt="">
-                                <div class="single_product_text">
-                                    <h4>h</h4>
-                                    <h3>$150.00</h3>
-                                    <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        <% }); %>
                 </div>
             </div>
     </section>

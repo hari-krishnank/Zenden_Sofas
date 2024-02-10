@@ -17,27 +17,42 @@ const userHome = async (req, res) => {
         const id = req.session.userId;
         const userData = await User.findOne({ _id: id })
 
-        res.render('users/home', { User: userData, currentRoute: '/' })
+        const latestProducts = await Product.find()
+            .sort({ _id: -1 })
+            .limit(8)
+            .populate({
+                path: "offer",
+                
+            })
+            .populate({
+                path: "category",
+                populate: {
+                    path: "offer",
+                    
+                },
+            });
+
+        res.render('users/home', { User: userData, currentRoute: '/', latestProducts })
     } catch (error) {
         console.log(error.message);
     }
 }
 
-const loadAbout = async(req,res) => {
+const loadAbout = async (req, res) => {
     try {
         const id = req.session.userId;
         const userData = await User.findOne({ _id: id })
-        res.render('users/about',{User:userData})
+        res.render('users/about', { User: userData })
     } catch (error) {
         console.log(error.message);
     }
 }
 
-const loadContact = async(req,res)=>{
+const loadContact = async (req, res) => {
     try {
         const id = req.session.userId;
         const userData = await User.findOne({ _id: id })
-        res.render('users/contact',{User:userData})
+        res.render('users/contact', { User: userData })
     } catch (error) {
         console.log(error.message);
     }
@@ -46,7 +61,7 @@ const loadContact = async(req,res)=>{
 const loadRegister = async (req, res) => {
     try {
         const code = req.query.code;
-        res.render('users/signup',{ code })
+        res.render('users/signup', { code })
     } catch (error) {
         console.log(error.message);
     }
@@ -65,9 +80,9 @@ const securePassword = async (password) => {
 const verifyRegister = async (req, res) => {
     try {
         console.log(req.body);
-        const { name, email, mobileNumber,code } = req.body;
-        console.log('cooooooooooodeeeeee:',code);
-        if(code){
+        const { name, email, mobileNumber, code } = req.body;
+        console.log('cooooooooooodeeeeee:', code);
+        if (code) {
             req.session.referralCode = code;
         }
         const existUser = await User.findOne({ email: req.body.email })
@@ -96,7 +111,7 @@ const verifyRegister = async (req, res) => {
                 password: sPassword,
                 confirmPassword: req.body.confirmPassword,
                 is_Admin: 0,
-                referralCode:referralCode
+                referralCode: referralCode
             })
             // console.log(req.body);
 
@@ -130,7 +145,7 @@ function generateReferralCode() {
 
 // send OTP Verification Email -------------------------------------------------------
 
-const sendOTPVerificationEmail = async ({ email,referralCode }, res) => {
+const sendOTPVerificationEmail = async ({ email, referralCode }, res) => {
     try {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -148,7 +163,7 @@ const sendOTPVerificationEmail = async ({ email,referralCode }, res) => {
         console.log('email:', email);
         console.log('from:', process.env.AUTH_MAIL);
 
-        const expiresIn = 1 * 60 * 1000;
+        const expiresIn = 2 * 60 * 1000;
 
         const expiresAt = Date.now() + expiresIn;
 
@@ -196,6 +211,13 @@ const sendOTPVerificationEmail = async ({ email,referralCode }, res) => {
 
         res.redirect(`/verifyOTP?email=${email}&referralCode=${referralCode}`);
 
+          // Schedule deletion of expired OTP
+          setTimeout(async () => {
+            await UserOTPVerification.deleteOne({ email: email });
+            console.log("Expired OTP deleted.");
+        }, expiresIn);
+
+
     } catch (error) {
         console.log(error.message);
     }
@@ -206,7 +228,7 @@ const sendOTPVerificationEmail = async ({ email,referralCode }, res) => {
 const loadOtpPage = async (req, res) => {
     try {
         const email = req.query.email
-        
+
         res.render('users/verifyOTP', { email: email })
     } catch (error) {
         console.log(error.message);
@@ -244,34 +266,34 @@ const verifyOtp = async (req, res) => {
             req.session.userId = userData._id
             const referralCode = req.session.referralCode;
 
-            console.log('reeeeeeeeeeeeeeeeeeeeeeef',referralCode);
+            console.log('reeeeeeeeeeeeeeeeeeeeeeef', referralCode);
             const userId = req.session.userId;
-            console.log('useeeeeeeeeeeeeerrrrrrrrrIIIIIIId',userId);
+            console.log('useeeeeeeeeeeeeerrrrrrrrrIIIIIIId', userId);
 
 
-            if(referralCode){
+            if (referralCode) {
                 await User.findOneAndUpdate(
-                    {referralCode:referralCode},
+                    { referralCode: referralCode },
                     {
-                        $inc:{wallet:200},
-                        $push:{
-                            wallet_history:{
-                                date:new Date(),
-                                amount:200,
-                                description:`Referral Bonus for refferring ${User.user_name}`
+                        $inc: { wallet: 200 },
+                        $push: {
+                            wallet_history: {
+                                date: new Date(),
+                                amount: 200,
+                                description: `Referral Bonus for refferring ${User.user_name}`
                             }
                         }
                     }
                 );
                 await User.findOneAndUpdate(
-                    {_id:userId},
+                    { _id: userId },
                     {
-                        $inc:{wallet:100},
-                        $push:{
-                            wallet_history:{
-                                date:new Date(),
-                                amount:100,
-                                description:`Welcome Bonus for Using Referral link`
+                        $inc: { wallet: 100 },
+                        $push: {
+                            wallet_history: {
+                                date: new Date(),
+                                amount: 100,
+                                description: `Welcome Bonus for Using Referral link`
                             }
                         }
                     }
@@ -379,11 +401,11 @@ const loadBlockedUser = async (req, res) => {
 
 
 
-const loadShop = async (req, res) => { 
+const loadShop = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1; 
+        const page = parseInt(req.query.page) || 1;
         const limit = 8;
-        const skip = (page - 1) * limit; 
+        const skip = (page - 1) * limit;
 
         const allCategories = await Category.find({ is_listed: 1 }).populate('offer');
         const selectedCategoryId = req.query.category;
@@ -407,7 +429,7 @@ const loadShop = async (req, res) => {
                 products = [];
             }
         } else {
-            
+
             const listedCategoryIds = allCategories.map(category => category._id);
             products = await Product.find({
                 'category': { $in: listedCategoryIds },
@@ -417,7 +439,7 @@ const loadShop = async (req, res) => {
 
         const categories = await Category.find({ is_listed: 1 });
 
-        
+
         const totalProductsCount = await Product.countDocuments({});
         const totalPages = Math.ceil(totalProductsCount / limit);
 
@@ -427,7 +449,7 @@ const loadShop = async (req, res) => {
 
 
         products.forEach(product => {
-            
+
             if (product.offer) {
 
                 // Calculate discounted price based on product's offer percentage
@@ -438,7 +460,7 @@ const loadShop = async (req, res) => {
                 console.log('product offer price.........', product.offerPrice);
 
             } else if (product.category && product.category.offer) {
-                
+
                 // Calculate discounted price based on category's offer percentage
 
                 let discount = Math.round(product.price * (product.category.offer.percentage / 100));
@@ -446,7 +468,7 @@ const loadShop = async (req, res) => {
 
                 console.log('category offer price.........', product.offerPrice);
             } else {
-               
+
                 product.offerPrice = product.price;
 
                 console.log('normal price', product.offerPrice);
@@ -485,7 +507,7 @@ const loadProductDetails = async (req, res) => {
 
 
         const product = await Product.findOne({ _id: productId }).populate({ path: 'category', populate: { path: 'offer' } }).populate('offer');
-        
+
         if (product.offer) {
             // Calculate discounted price based on product's offer percentage
             let discount = Math.round(product.price * (product.offer.percentage / 100));
@@ -882,12 +904,12 @@ const resetPasswordVerify = async (req, res) => {
 
 //____________________________________________________________________WALLET________________________________________________________
 
-const loadWallet = async(req,res) => {
+const loadWallet = async (req, res) => {
     try {
         const userId = req.session.userId
-        console.log('wallet session:',userId);
-        const user = await User.findOne({_id: userId})
-        res.render('users/wallet',{user,moment})
+        console.log('wallet session:', userId);
+        const user = await User.findOne({ _id: userId })
+        res.render('users/wallet', { user, moment })
     } catch (error) {
         console.log(error.message);
     }

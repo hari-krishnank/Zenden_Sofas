@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/otpstyle.css">
     <link rel="stylesheet" href="/css/style.css">
+
     <script src="/js/otp.js" defer></script>
-    <title>OTP Verification Page</title>
+
+    <title>ZENDEN SOFAS</title>
 </head>
 
 <body>
@@ -26,20 +28,23 @@
                 <input type="number" name="four" disabled>
             </div>
             <button class="btn">VERIFY OTP</button>
-            
-            <div id="expirationMessage"></div>
-            <span id="countdown"></span>
-            
-            <button class="genric-btn success-border radius" type="button" onclick="resendOTP()" id="resendLink" style="margin-top: 3px;">RESEND OTP</button>
+
+
         </form>
+      
+        <span id="countdown"></span>
+        <div id="toaster"></div>
 
         <% if (typeof message !=='undefined' ) { %>
             <h5 style="color: red;">
                 <%= message %>
             </h5>
             <% } %>
+
+        <a href="#" id="resendLink"  style="display: none; font-family: 'Times New Roman', Times, serif; font-size: large;" >RESEND OTP</a>
     </div>
-    
+
+  
 </body>
 
 

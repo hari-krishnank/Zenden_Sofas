@@ -49,52 +49,89 @@ inputs.forEach((input, index1) => {
 //focus the first input which index is 0 on window load
 window.addEventListener("load", () => inputs[0].focus());
 
+document.addEventListener("DOMContentLoaded", function() {
+  const resendLink = document.getElementById("resendLink");
+  const countdownSpan = document.getElementById("countdown");
+  let countdownValue = 120;
+  let timer;
 
-window.addEventListener("load",resendOTP );
+  // Function to update countdown timer
+  function updateCountdown() {
+      const minutes = Math.floor(countdownValue / 60);
+      const seconds = countdownValue % 60;
 
-function resendOTP() {
-  const email = document.querySelector('input[name="email"]').value;
-  const resendLink = document.getElementById('resendLink');
-  const countdownElement = document.getElementById('countdown');
-  const expirationMessageElement = document.getElementById('expirationMessage');
+      // Display the countdown in minutes:seconds format
+      countdownSpan.textContent = `RESEND OTP IN - ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      countdownValue--;
 
-  resendLink.style.pointerEvents = 'none';
+      if (countdownValue < 0) {
+          clearInterval(timer);
+          countdownSpan.textContent = "";
+          resendLink.style.display = "inline"; 
+      }
+  }
 
-  fetch('/resendOtp', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ email }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data.message);
-      // You can update the UI here if needed
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      // Handle error if needed
-    });
+  // Start countdown timer
+  function startCountdown() {
+      updateCountdown();
+      timer = setInterval(updateCountdown, 1000);
+  }
 
-  // Set the timer for 30 seconds
-  let seconds = 60;
-  let countdownInterval = setInterval(() => {
-    seconds--;
+  // Call startCountdown to begin the countdown immediately
+  startCountdown();
 
-    // Update the countdown display
-    countdownElement.textContent = `OTP expires in ${seconds} seconds`;
-    expirationMessageElement.textContent = `You Can Resend OTP after The Expiration...!`;
+  // Event listener for Resend OTP link
+  resendLink.addEventListener("click", async function(event) {
+      event.preventDefault();
 
-    // Check if the countdown has reached 0
-    if (seconds <= 0) {
-      // Enable the resend link and clear the interval
-      resendLink.style.pointerEvents = 'auto';
-      countdownElement.textContent = '';
-      expirationMessageElement.textContent = '';
-      clearInterval(countdownInterval);
-    }
-  }, 1000);
+      // Disable the "Resend OTP" link and start the countdown
+      resendLink.disabled = true;
+      countdownValue = 120;
+      clearInterval(timer);
+      startCountdown();
 
-}
+      const emailInput = document.querySelector("input[name='email']");
+      const email = emailInput.value;
+
+      try {
+          const response = await fetch("/resendOtp", {
+              method: "POST",
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ email })
+          });
+
+          if (!response.ok) {
+              throw new Error("Failed to resend OTP");
+          }
+
+          displayToasterMessage("OTP resent successfully"); // Display toaster message on success
+
+          resendLink.style.display = "none";
+      } catch (error) {
+          console.error("Error resending OTP:", error.message);
+          displayToasterMessage("Failed to resend OTP. Please try again later.", true); // Display toaster message on error
+
+          clearInterval(timer);
+          countdownSpan.textContent = "";
+          resendLink.style.display = "none"; 
+      }
+  });
+
+  // Function to display toaster messages
+  function displayToasterMessage(message, isError = false) {
+      const toaster = document.getElementById("toaster");
+      toaster.textContent = message;
+      toaster.classList.toggle("error", isError);
+      toaster.classList.add("show");
+
+      // Hide the toaster message after a few seconds
+      setTimeout(() => {
+          toaster.classList.remove("show");
+      }, 5000); // 5000 milliseconds (5 seconds)
+  }
+});
+
+
 
