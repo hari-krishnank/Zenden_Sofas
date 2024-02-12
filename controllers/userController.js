@@ -909,7 +909,7 @@ const loadWallet = async (req, res) => {
         const userId = req.session.userId
         console.log('wallet session:', userId);
         const user = await User.findOne({ _id: userId })
-        res.render('users/wallet', { user, moment })
+        res.render('users/wallet', { user, moment,User:user})
     } catch (error) {
         console.log(error.message);
     }

@@ -27,6 +27,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/zoomify/1.4.0/zoomify.min.css"
     integrity="sha256-H2RRaz3D3T/dmiZZ0Et0oKTt1wbQlHsZXy8+jxb1SFo=" crossorigin="anonymous" />
 
+
+   <!-- css link here  -->
+   <link rel="stylesheet" href="/userAssets/css/swipper.css">
+   <link rel="stylesheet" href="/userAssets/css/select2.css">
+   <link rel="stylesheet" href="/userAssets/css/tailwind.css">
+   <link rel="stylesheet" href="/userAssets/css/styles.css">
+   <link rel="stylesheet" href="/userAssets/css/responsive.css">
+
+
   <style>
     .full-heart {
       color: red;
@@ -52,7 +61,7 @@
       <div class="row align-items-center">
         <div class="col-lg-12">
           <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html"> <img src="" alt=""> </a>
+            <a class="navbar-brand" href=""> <img src="/img/Screenshot 2024-02-12 170232.png" alt=""> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="menu_icon"><i class="fas fa-bars"></i></span>
@@ -67,29 +76,18 @@
                   <a class="nav-link" href="shop" id="navbarDropdown_1">
                     SHOP
                   </a>
-                  <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                    <a class="dropdown-item" href="category.html"> SHOP CATEGORY</a>
-                                    <a class="dropdown-item" href="single-product.html">product details</a>
-                                    
-                                </div> -->
+                 
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link " href="blog.html" id="navbarDropdown_3">
+                  <a class="nav-link " href="about" id="navbarDropdown_3">
                     ABOUT
                   </a>
-                  <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                    <a class="dropdown-item" href="login.html"> login</a>
-                                    <a class="dropdown-item" href="tracking.html">tracking</a>
-                                    <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                    <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                    <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                    <a class="dropdown-item" href="elements.html">elements</a>
-                                </div> -->
+                
                 </li>
 
 
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">CONTACT</a>
+                  <a class="nav-link" href="contact">CONTACT</a>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -106,13 +104,13 @@
 
                         <a class="dropdown-item" href="login">LOGIN</a>
                         <% } %>
-                          <!-- <a class="dropdown-item" href="single-blog.html">Single blog</a> -->
+                         
                   </div>
                 </li>
               </ul>
             </div>
             <div class="hearer_icon d-flex">
-              <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+              
               <a href=""><i class="ti-heart"></i></a>
               <div class="dropdown cart">
                 <a href="cart" role="button">
@@ -126,31 +124,30 @@
     </div>
     <div class="search_input" id="search_input_box">
       <div class="container ">
-        <form class="d-flex justify-content-between search-inner">
-          <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-          <button type="submit" class="btn"></button>
-          <span class="ti-close" id="close_search" title="Close Search"></span>
-        </form>
+        
       </div>
     </div>
   </header>
   <!-- Header part end-->
 
   <!-- breadcrumb start-->
-  <section class="breadcrumb breadcrumb_bg">
+  <section class="breadcrumb " style="margin-top: 80px; background-color: #f6f6f6;">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="breadcrumb_iner">
-            <div class="breadcrumb_iner_item">
-              <h2>SHOP SINGLE</h2>
-              <p>HOME <span>-</span> SINGLE PRODUCT</p>
-            </div>
-          </div>
+        <div class="flex items-center gap-1 py-[1.5px]">
+            <a href="#" class="text-[14px] font-normal leading-[110%] text-dark-gray">Home</a>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.125 5.25L10.875 9L7.125 12.75" stroke="#636270" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <a href="#" class="text-[14px] font-normal leading-[110%] text-dark-gray">Shop</a>
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.125 5.25L10.875 9L7.125 12.75" stroke="#636270" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="text-[14px] font-medium leading-[110%] font-display text-gray-black inline-block">Product details</span>
         </div>
-      </div>
+
+        <h2 class="pt-[13.5px] xl:text-2xl text-[18px] font-semibold text-gray-black font-display">Product details</h2>
     </div>
-  </section>
+</section>
   <!-- breadcrumb start-->
   <!--================End Home Banner Area =================-->
 

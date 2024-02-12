@@ -71,7 +71,7 @@ const loadOrderSingle = async (req, res) => {
         const user = await User.findOne({ _id: userId });
 
         const item = mainOrder.items.find(item => item._id.toString() === req.query.itemId);
-        res.render('users/orderSingle', { order: mainOrder, user, item, moment })
+        res.render('users/orderSingle', { order: mainOrder, user, item, moment ,User:user})
     } catch (error) {
         console.log(error.message);
     }
