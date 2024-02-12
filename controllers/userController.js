@@ -817,7 +817,7 @@ const sendResetPasswordEmail = async ({ email, token }, res) => {
         
             <p style="text-align: center; font-size: 16px; color: #555;">Thank you for signing up with Zenden Sofa. To Reset your Password, please go through the Provided Link :</p>
         
-            <p style="color: #2ecc71; text-align: center; font-size: 36px; margin: 20px 0;"><a href="zendensofas.shop/resetPassword?token=${token}" style="text-decoration: none; color: #2ecc71;">Reset Your Password Here</a></p>
+            <p style="color: #2ecc71; text-align: center; font-size: 36px; margin: 20px 0;"><a href="https://zendensofas.shop/resetPassword?token=${token}" style="text-decoration: none; color: #2ecc71;">Reset Your Password Here</a></p>
         
             <p style="text-align: center; font-size: 16px; color: #555;"> If you did not initiate this action, please ignore this email.</p>
         
