@@ -22,13 +22,13 @@ const userHome = async (req, res) => {
             .limit(8)
             .populate({
                 path: "offer",
-                
+
             })
             .populate({
                 path: "category",
                 populate: {
                     path: "offer",
-                    
+
                 },
             });
 
@@ -211,8 +211,8 @@ const sendOTPVerificationEmail = async ({ email, referralCode }, res) => {
 
         res.redirect(`/verifyOTP?email=${email}&referralCode=${referralCode}`);
 
-          // Schedule deletion of expired OTP
-          setTimeout(async () => {
+        // Schedule deletion of expired OTP
+        setTimeout(async () => {
             await UserOTPVerification.deleteOne({ email: email });
             console.log("Expired OTP deleted.");
         }, expiresIn);
@@ -400,12 +400,13 @@ const loadBlockedUser = async (req, res) => {
 //-------------------------------------------SHOP-----------------------------------------------------
 
 
-
 const loadShop = async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = 8;
         const skip = (page - 1) * limit;
+        const sort = req.query.sort;
+        const selectedPriceRange = req.query.priceRange;
 
         const allCategories = await Category.find({ is_listed: 1 }).populate('offer');
         const selectedCategoryId = req.query.category;
@@ -416,75 +417,74 @@ const loadShop = async (req, res) => {
             user = await User.findOne({ _id: id });
         }
 
-        let products;
+        let query = {
+            is_listed: 1
+        };
+
         if (selectedCategoryId) {
             // Handle products by category
             const category = await Category.findById(selectedCategoryId);
             if (category && category.is_listed) {
-                products = await Product.find({
-                    category: selectedCategoryId,
-                    is_listed: 1
-                }).populate('category').populate('offer').skip(skip).limit(limit);
+                query.category = selectedCategoryId;
             } else {
-                products = [];
+                // Return empty array if category not found or not listed
+                return res.render('users/shop', { products: [], allCategories, selectedCategoryId, User: user, categories: [], currentPage: page, totalPages: 0, sort });
             }
         } else {
-
             const listedCategoryIds = allCategories.map(category => category._id);
-            products = await Product.find({
-                'category': { $in: listedCategoryIds },
-                is_listed: 1
-            }).populate({ path: 'category', populate: { path: 'offer' } }).populate('offer').skip(skip).limit(limit);
+            query.category = { $in: listedCategoryIds };
         }
 
-        const categories = await Category.find({ is_listed: 1 });
+        
+        // Filter by price range
+        if (selectedPriceRange) {
+            const [minPrice, maxPrice] = selectedPriceRange.split('-');
+            query.price = { $gte: parseInt(minPrice), $lte: parseInt(maxPrice) };
+        }
 
 
-        const totalProductsCount = await Product.countDocuments({});
+        let sortQuery = {};
+        if (sort === 'asc') {
+            sortQuery = { offerPrice: 1 };
+        } else if (sort === 'desc') {
+            sortQuery = { offerPrice: -1 };
+        }
+        
+
+        const totalProductsCount = await Product.countDocuments(query);
         const totalPages = Math.ceil(totalProductsCount / limit);
 
+        const products = await Product.find(query)
+            .populate({
+                path: 'category',
+                populate: { path: 'offer' }
+            })
+            .populate('offer')
+            .sort(sortQuery)
+            .skip(skip)
+            .limit(limit);
 
-
-
-
-
+        // Manipulate offerPrice for each product
         products.forEach(product => {
 
             if (product.offer) {
-
-                // Calculate discounted price based on product's offer percentage
-
                 let discount = Math.round(product.price * (product.offer.percentage / 100));
+                console.log(product.offer.percentage);
                 product.offerPrice = product.price - discount;
-
-                console.log('product offer price.........', product.offerPrice);
+                console.log('product offer :', product.offerPrice);
 
             } else if (product.category && product.category.offer) {
-
-                // Calculate discounted price based on category's offer percentage
-
                 let discount = Math.round(product.price * (product.category.offer.percentage / 100));
+                console.log(product.category.offer.percentage);
                 product.offerPrice = product.price - discount;
+                console.log('category offer :', product.offerPrice);
 
-                console.log('category offer price.........', product.offerPrice);
             } else {
-
                 product.offerPrice = product.price;
-
-                console.log('normal price', product.offerPrice);
             }
-
-            // Save the updated offerPrice
-            product.save()
-                .then(savedProduct => {
-                    console.log('Offer price saved successfully:', savedProduct.offerPrice);
-                })
-                .catch(error => {
-                    console.error('Error saving offer price:', error);
-                });
         });
 
-        res.render('users/shop', { products, allCategories, selectedCategoryId, User: user, categories, currentPage: page, totalPages });
+        res.render('users/shop', { products, allCategories, selectedCategoryId, User: user, categories: allCategories, currentPage: page, totalPages, sort });
     } catch (error) {
         console.log(error.message);
     }
@@ -909,7 +909,7 @@ const loadWallet = async (req, res) => {
         const userId = req.session.userId
         console.log('wallet session:', userId);
         const user = await User.findOne({ _id: userId })
-        res.render('users/wallet', { user, moment,User:user})
+        res.render('users/wallet', { user, moment, User: user })
     } catch (error) {
         console.log(error.message);
     }
