@@ -268,7 +268,7 @@ const verifyOtp = async (req, res) => {
 
             console.log('reeeeeeeeeeeeeeeeeeeeeeef', referralCode);
             const userId = req.session.userId;
-            console.log('useeeeeeeeeeeeeerrrrrrrrrIIIIIIId', userId);
+            console.log('useeeeeeeeeeeeeerrrrrrrrrIIIIIIId', userId); 
 
 
             if (referralCode) {

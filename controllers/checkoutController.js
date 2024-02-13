@@ -179,7 +179,7 @@ const placeOrder = async (req, res) => {
                 },
             ],
         });
-        console.log('caaaaaaaaart........', cart);
+        console.log('caaaaaaaaart........', cart); 
 
 
         if (!cart || !cart.items || cart.items.length === 0) {
@@ -350,7 +350,7 @@ const verifyPayment = async (req, res) => {
 
             await Order.findByIdAndUpdate(
                 { _id: details.razorpayOrder.receipt },
-                { $set: { status: "placed" } }
+                { $set: { "items.$[].ordered_status": "placed" } }
             );
             await Cart.deleteOne({ user_id: userId });
             // const userData = await User.findOne({ _id: req.session.userId })

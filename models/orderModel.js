@@ -56,7 +56,7 @@ const orderModel = new mongoose.Schema({
       required: true
     },
     quantity: {
-      type: Number,
+      type: Number, 
       required: true
     },
     price: {
@@ -69,7 +69,7 @@ const orderModel = new mongoose.Schema({
     },
     ordered_status: {
       type: String,
-      default: "placed"
+      default: "pending"
     },
     cancellationReason: {
       type: String
