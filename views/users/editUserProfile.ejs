@@ -52,7 +52,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="" alt=""> </a>
+                        <a class="navbar-brand" href=""> <img src="/img/Screenshot 2024-02-12 170232.png" alt=""> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -68,29 +68,18 @@
                                     <a class="nav-link" href="shop" id="navbarDropdown_1">
                                         SHOP
                                     </a>
-                                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="category.html"> SHOP CATEGORY</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
-                                        
-                                    </div> -->
+                                    
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link " href="blog.html" id="navbarDropdown_3">
+                                    <a class="nav-link " href="about" id="navbarDropdown_3">
                                         ABOUT
                                     </a>
-                                    <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="login.html"> login</a>
-                                        <a class="dropdown-item" href="tracking.html">tracking</a>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
-                                    </div> -->
+                                    
                                 </li>
 
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">CONTACT</a>
+                                    <a class="nav-link" href="contact">CONTACT</a>
                                 </li>
 
                                 <li class="nav-item dropdown">
@@ -107,7 +96,7 @@
 
                                                 <a class="dropdown-item" href="login">LOGIN</a>
                                                 <% } %>
-                                                    <!-- <a class="dropdown-item" href="single-blog.html">Single blog</a> -->
+                                                   
                                     </div>
                                 </li>
                             </ul>
@@ -188,10 +177,10 @@
                                     
 
                                     <div class="pb-[26px] mx-auto">
-                                        <img class="w-[200px] h-[150px] rounded-full mx-auto object-cover" src="/img/Screenshot 2024-02-01 111022.png" alt="" id="blah">
+                                        <img class="w-[0px] h-[0px] rounded-full mx-auto object-cover" src="/img/Screenshot 2024-02-12 170609.png" alt="" id="blah">
                                     </div>
-                                    <h3 class="xl:text-2xl acc-title text-[22px]  text-[#272343] font-medium mb-6 font-display text-center" style="color: #ff3368; text-align: center; font-size: 20px;">HELLO</h3>
-                                    <h2 style="font-size: 25px; color: #ff3368; text-transform: uppercase; text-align: center;"><%=User.name%></h2>
+                                    <h3 class="xl:text-2xl acc-title text-[22px]  text-[#272343] font-medium mb-6 font-display text-center" style="color: #ff3368; text-align: center; font-size: 20px; font-family: 'Times New Roman', Times, serif;">HELLO</h3>
+                                    <h2 style="font-size: 25px; color: #ff3368; text-transform: uppercase; text-align: center;font-family: 'Times New Roman', Times, serif;"><%=User.name%></h2>
 
                                     
                                 </div>
@@ -233,16 +222,16 @@
                                         <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display" style="font-family: 'Times New Roman', Times, serif;">CHANGE PASSWORD</h2>
                                 
                                         <div class="relative">
-                                            <input type="password" placeholder="Current password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="oldPassword">
+                                            <input type="password" readonly placeholder="Current password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="oldPassword">
                                         </div>
                                 
                                         <div class="relative">
-                                            <input type="password" placeholder="New password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="newPassword" id="newPassword">
+                                            <input type="password" readonly placeholder="New password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="newPassword" id="newPassword">
                                             <div id="newPasswordError" style="color: red;"></div>
                                         </div>
                                 
                                         <div class="relative">
-                                            <input type="password" placeholder="Confirm password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="confirmPassword" id="confirmPassword">
+                                            <input type="password" readonly placeholder="Confirm password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="confirmPassword" id="confirmPassword">
                                             <div id="confirmPasswordError" style="color: red;"></div>
                                         </div><br>
                                 
@@ -430,12 +419,16 @@
         function validateName() {
             const nameValue = nameInput.value.trim();
             const nameError = document.getElementById("nameError");
+            const nameRegex = /^[a-zA-Z][a-zA-Z0-9]*$/;
             if (nameValue === "") {
                 nameError.textContent = "Name is required";
                 nameInput.classList.add("invalid");
-            } else {
+            } else if (isNaN(nameValue)) {
                 nameError.textContent = "";
                 nameInput.classList.remove("invalid");
+            } else {
+                nameError.textContent = "Name cannot be a number";
+                nameInput.classList.add("invalid");
             }
         }
 

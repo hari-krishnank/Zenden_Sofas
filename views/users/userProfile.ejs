@@ -227,27 +227,26 @@
                         <div class="flex flex-col md:flex-row gap-6">
                             <!-- user password change start -->
                             <div class="box xl:w-[424px] ">
-                                <form action="/changePassword" method="POST" id="changeCurrentPassword">
+                                <form action="/changePassword" method="POST" id="changeCurrentPassword" onsubmit="return validateForm()">
                                     <div class="p-6">
                                         <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display" style="font-family: 'Times New Roman', Times, serif;">CHANGE PASSWORD</h2>
-                            
                                         <div class="relative">
-                                            <input type="password" placeholder="Current password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="oldPassword">
+                                            <input type="password" placeholder="Current password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="oldPassword" id="oldPassword">
+                                            <span id="oldPasswordError" class="error"></span>
                                         </div>
-                            
                                         <div class="relative">
-                                            <input type="password" placeholder="New password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out"  name="newPassword">
+                                            <input type="password" placeholder="New password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out"  name="newPassword" id="newPassword">
+                                            <span id="newPasswordError" class="error"></span>
                                         </div>
-                            
                                         <div class="relative">
-                                            <input type="password" placeholder="Confirm password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="confirmPassword">
-                                        </div><br>
-
+                                            <input type="password" placeholder="Confirm password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" name="confirmPassword" id="confirmNewPassword">
+                                            <span id="confirmNewPasswordError" class="error"></span>
+                                        </div>
+                                        <br>
                                         <% if (typeof message !=='undefined' ) { %>
-                                            <p style="color: red;font-weight: 500;"><%- message %></p>
-                                            <% } %>
-                            
-                                        <button type="submit" onclick="saveChanges()" class="btn_3" style="font-size: 14px; border-radius: 5px;">Save Changes</button>
+                                        <p style="color: red;font-weight: 500;"><%- message %></p>
+                                        <% } %>
+                                        <button type="submit" class="btn_3" style="font-size: 14px; border-radius: 5px;">Save Changes</button>
                                     </div>
                                 </form>
                             </div>
@@ -425,6 +424,61 @@
     
         generateReferralLink();
     </script>
+
+    <script>
+        function validateForm() {
+            // Get form elements
+            var oldPassword = document.getElementById('oldPassword').value.trim();
+            var newPassword = document.getElementById('newPassword').value.trim();
+            var confirmPassword = document.getElementById('confirmNewPassword').value.trim();
+
+            // Reset error messages and styles
+            resetErrors();
+
+            // Validate current password
+            if (oldPassword === '') {
+                displayError('oldPasswordError', 'Current Password is required');
+                return false;
+            }
+
+            // Validate new password
+            if (newPassword === '') {
+                displayError('newPasswordError', 'New Password is required');
+                return false;
+            } else if (!/(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])/.test(newPassword)) {
+                displayError('newPasswordError', 'Password should contain at least one uppercase letter, one digit, and one special character');
+                return false;
+            }
+
+            // Validate confirm password
+            if (confirmPassword === '') {
+                displayError('confirmNewPasswordError', 'Confirm Password is required');
+                return false;
+            } else if (confirmPassword !== newPassword) {
+                displayError('confirmNewPasswordError', 'Passwords do not match');
+                return false;
+            }
+
+            // If all validations pass, return true to submit the form
+            return true;
+        }
+
+        function displayError(elementId, message) {
+            var errorElement = document.getElementById(elementId);
+            errorElement.innerHTML = message;
+            errorElement.style.color = 'red'; // Set the text color to red
+        }
+
+        function resetErrors() {
+            // Reset error messages and styles
+            var errorElements = document.getElementsByClassName('error');
+            for (var i = 0; i < errorElements.length; i++) {
+                errorElements[i].innerHTML = '';
+                errorElements[i].style.color = ''; // Reset the text color
+            }
+        }
+    </script>
+
 
 </body>
 
