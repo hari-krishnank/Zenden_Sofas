@@ -183,7 +183,7 @@
                             <div class="px-8 py-8 flex flex-col md:flex-row md:flex-wrap gap-6 xl:gap-2 xl:justify-between md:items-center">
                                 <div class="flex-wrap">
                                     <p class="text-[#9A9CAA] font-display text-[14px] leading-[100%] capitalize pb-[10px]">Order ID:</p>
-                                    <span class="text-gray-black font-display text-[20px] leading-[120%] font-medium" style="font-size: medium;"><%=order._id%></span>
+                                    <span class="text-gray-black font-display text-[20px] leading-[120%] font-medium" style="font-size: medium;"><%=order.order_id%></span>
                                 </div>
                                 <div class="flex-wrap">
                                     <p class="text-[#9A9CAA] font-display text-[14px] leading-[100%] capitalize pb-[10px]">Date:</p>
@@ -303,12 +303,9 @@
 
                                     <div class="flex justify-between pb-4">
                                         <p>Subtotal</p>
-                                        <p>$1,435.00</p>
+                                        <p>₹ <%= order.total_amount %></p>
                                     </div>
-                                    <div class="flex justify-between pb-4">
-                                        <p>discount</p>
-                                        <p>26%</p>
-                                    </div>
+                                   
                                     <div class="flex justify-between">
                                         <p>shipping</p>
                                         <p>Free</p>
@@ -316,7 +313,7 @@
                                     <hr>
                                     <div class="flex justify-between">
                                         <p class="text-[18px] font-display text-dark-gray ">Total:</p>
-                                        <p class="text-[22px] font-display leading-[120%] font-sem">$1026.23</p>
+                                        <p class="text-[22px] font-display leading-[120%] font-sem">₹ <%= order.total_amount %></p>
                                     </div>
                                 </div>
                             </div>

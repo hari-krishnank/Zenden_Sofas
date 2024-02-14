@@ -179,15 +179,15 @@ const placeOrder = async (req, res) => {
                 },
             ],
         });
-        console.log('caaaaaaaaart........', cart); 
+        console.log('caaaaaaaaart........', cart);
 
 
         if (!cart || !cart.items || cart.items.length === 0) {
             return res.status(400).json({ success: false, message: 'No items in the cart' });
         }
 
-         // Check availability of each item in the cart
-         for (const cartItem of cart.items) {
+        // Check availability of each item in the cart
+        for (const cartItem of cart.items) {
             const product = cartItem.product_id;
             const requestedQuantity = cartItem.quantity;
             if (product.quantity < requestedQuantity) {
@@ -197,6 +197,11 @@ const placeOrder = async (req, res) => {
                 });
             }
         }
+
+        const randomNum = Math.floor(10000 + Math.random() * 90000);
+
+        const orderID = "ZENDEN" + randomNum;
+    
 
         let total = 0;
         const orderItems = cart.items.map((cartItem) => {
@@ -241,27 +246,29 @@ const placeOrder = async (req, res) => {
 
             if (!userClaimed) {
                 const coupon = await Coupon.findOne({ couponCode: couponCode })
-                console.log('cthogrh',couponCode);
+                console.log('cthogrh', couponCode);
                 totalAmount -= coupon.discountAmount;
-                console.log('tooooootal:',totalAmount);
+                console.log('tooooootal:', totalAmount);
 
                 await Coupon.updateOne(
-                    {_id:coupon._id},
-                    {$push:{userUsed:{user_id:userId}}}
+                    { _id: coupon._id },
+                    { $push: { userUsed: { user_id: userId } } }
                 );
 
 
             } else {
                 return res.status(400).json({
-                    success:false, error:'already claimed'
+                    success: false, error: 'already claimed'
                 })
             }
         }
 
         console.log('ordeeeeerrrrr iteeemmmmms:', orderItems);
         const userData = await User.findOne({ _id: userId });
+        console.log("user",userData);
 
         const order = new Order({
+            order_id: orderID,  
             user_id: userId,
             items: orderItems,
             delivery_address: address,
@@ -277,6 +284,8 @@ const placeOrder = async (req, res) => {
 
         let orderData = await order.save();
         const orderId = orderData._id;
+
+        
 
 
 
@@ -295,9 +304,39 @@ const placeOrder = async (req, res) => {
         if (payment == "COD") {
             await Cart.deleteOne({ user_id: userId });
             console.log("order placed");
-            await Order.findByIdAndUpdate(orderId, { status: 'Placed' });
+            await Order.findByIdAndUpdate(orderId, {
+                status: 'Placed',
+                $set: { 'items.$[].ordered_status': 'placed' }
+            });
             return res.json({ success: true, params: orderId });
 
+        } else if(payment == "Wallet"){
+       
+            
+            console.log("order placed");
+            await Order.findByIdAndUpdate(orderId, {
+                status: 'Placed',
+                $set: { 'items.$[].ordered_status': 'placed' }
+            });
+            
+            // Check if the wallet has sufficient balance
+            console.log('waaaalet:',userData.wallet);
+            if (userData.wallet < totalAmount) {
+                return res.status(400).json({ success: false, insufficientBalance: true, message: 'Insufficient balance in wallet' });
+            }
+
+            // Deduct total amount from user's wallet
+            userData.wallet -= totalAmount;
+            userData.wallet_history.push({
+                date: new Date(),
+                amount: totalAmount,
+                description: `Placed Order From Wallet`
+            });
+            
+            await userData.save();
+            await Cart.deleteOne({ user_id: userId });
+            return res.json({ success: true, params: orderId });
+        
         } else {
             const orderid = orderData._id;
             const total = orderData.total_amount;

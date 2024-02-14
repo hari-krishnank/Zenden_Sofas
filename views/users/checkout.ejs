@@ -464,8 +464,13 @@
                                 </a>
                             </li>
                             <li>
+                                <a>DISCOUNT 
+                                    <span id="discount">- Use Coupons</span>
+                                </a>
+                            </li><br>
+                            <li>
                                 <a>DELIVERY CHARGES
-                                    <span id="discount">- Free</span>
+                                    <span >- Free</span>
                                 </a>
                             </li><br>
                             <li>
@@ -485,6 +490,11 @@
                             <div class="radion_btn">
                                 <input type="radio" id="razor-pay" name="payment" value="RazorPay" />
                                 <label for="razor-pay">online payment </label>
+                                <div class="check"></div>
+                            </div>
+                            <div class="radion_btn">
+                                <input type="radio" id="wallet-pay" name="payment" value="Wallet" />
+                                <label for="wallet-pay">Wallet payment </label>
                                 <div class="check"></div>
                             </div>
                         </div>
@@ -775,8 +785,7 @@
             const couponCode = document.getElementById('code').value;   
             applyCoupon(couponCode);
             console.log('coupon:', couponCode);
-            // Get the selected address ID and user ID from your form
-            // Validate address selection
+            
             const selectedAddress = document.querySelector('input[name="address"]:checked');
             if (!selectedAddress) {
                 // Display SweetAlert for address not selected
@@ -819,11 +828,26 @@
 
             const result = await response.json();
 
+            if (result.insufficientBalance) {
+            // Display an error message indicating insufficient balance
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Insufficient balance in your wallet. Please add funds to your wallet to complete the order.',
+            });
+            return;
+            }
+
             if (result.success) {
                 if (selectPayment.value === "COD") {
                     // Redirect to the order success page for COD
                     const param = result.params;
                     window.location.href = '/orderSuccess/' + param;
+                } else if (selectPayment.value === "Wallet"){
+            
+                    const param = result.params;
+                    window.location.href = '/orderSuccess/' + param;
+                
                 } else {
                     const razorpayOrder = result.razorpayOrder; // Assuming this is how the order object is returned
                     console.log("RazorPay Order:", razorpayOrder);

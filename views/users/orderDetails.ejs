@@ -194,28 +194,25 @@
                         <table class="min-w-[1270px] w-full leading-normal">
                             <thead>
                                 <tr>
-                                    <th
+                                    <th style="width: 15%;"
                                         class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[160px]">
                                         Order
                                     </th>
-                                    <th
+                                    <th style="width: 15%;"
                                         class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[200px]">
                                         Date
                                     </th>
-                                    <th
+                                    <th style="width: 25%;"
                                         class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[160px]">
                                         Product Name
                                     </th>
-                                    <th
-                                        class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[160px]">
-                                        Total Product
-                                    </th>
+                                    
 
-                                    <th
+                                    <th style="width: 15%;"
                                         class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[140px]">
                                         Toral price
                                     </th>
-                                    <th
+                                    <th style="width: 15%;"
                                         class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[120px]">
                                         Status
                                     </th>
@@ -229,7 +226,7 @@
                                            
                                             <td class="py-6 text-sm">
                                                 <a href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">
-                                                    <%= order._id%>
+                                                    <%= order.order_id%>
                                                 </a>
                                             </td>
 
@@ -239,19 +236,12 @@
                                                 </a></td>
                                                 <td class="py-6 text-sm"><a href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">
                                                     <% if (item.product_id) { %>
-                                                        <%= item.product_id.name %>
+                                                        <%= item.product_id.name %> x <%= item.quantity %>
                                                     <% } else { %>
                                                         No product available
                                                     <% } %>
                                                 </a></td>
-                                            <td class="py-6 text-sm">
-
-
-                                                <a href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">
-                                                    <%= item.quantity %>
-                                                </a><br>
-
-                                            </td class="py-6 text-sm">
+                                           
 
                                             <td class="py-6 text-sm"><a
                                                     href="/orderSingle?orderId=<%= order._id %>&itemId=<%= item._id %>">

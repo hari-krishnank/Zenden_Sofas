@@ -1,6 +1,7 @@
 
 const User = require('../models/userModel')
 const Order = require('../models/orderModel')
+
 const moment = require('moment')
 
 
@@ -36,12 +37,12 @@ const loadSingleOrderDetails = async (req, res) => {
 const loadOrderDetails = async (req, res) => {
     try {
         const userId = req.session.userId;
-        const page = parseInt(req.query.page) || 1; 
-        const limit = 3; 
-        const skip = (page - 1) * limit; 
+        const page = parseInt(req.query.page) || 1;
+        const limit = 3;
+        const skip = (page - 1) * limit;
 
         const ordersCount = await Order.countDocuments({ user_id: userId });
-        const totalPages = Math.ceil(ordersCount / limit); 
+        const totalPages = Math.ceil(ordersCount / limit);
 
         const orders = await Order.find({ user_id: userId })
             .populate('items.product_id')
@@ -71,7 +72,7 @@ const loadOrderSingle = async (req, res) => {
         const user = await User.findOne({ _id: userId });
 
         const item = mainOrder.items.find(item => item._id.toString() === req.query.itemId);
-        res.render('users/orderSingle', { order: mainOrder, user, item, moment ,User:user})
+        res.render('users/orderSingle', { order: mainOrder, user, item, moment, User: user })
     } catch (error) {
         console.log(error.message);
     }
@@ -139,6 +140,27 @@ const updateOrderStatus = async (req, res) => {
 
         const order = await Order.findOne({ _id: orderId });
         const orderItem = order.items.find(item => item._id.toString() === itemId);
+        console.log('orderItem:',orderItem);
+
+        if (orderItem) {
+            if (
+                (order.payment == "RazorPay" && (newStatus === "cancelled" || newStatus === "returned")) || newStatus === "returned"
+            ) {
+                const user = await User.findById(order.user_id)
+                console.log('order.user_id', user);
+                const currentDate = new Date()
+                const walletHistoryEntry = {
+                    date: currentDate,
+                    amount: orderItem.total_price,
+                    description: `Refund for order`,
+                };
+
+                // Update wallet history and wallet amount
+                user.wallet_history.push(walletHistoryEntry);
+                user.wallet += orderItem.total_price;
+                await user.save();
+            }
+        }
         orderItem.ordered_status = newStatus;
         await order.save();
         res.json({ success: true });

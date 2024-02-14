@@ -11,32 +11,34 @@ const moment = require('moment')
 const mongoose = require('mongoose')
 const randomString = require('randomstring')
 
-
 const userHome = async (req, res) => {
     try {
         const id = req.session.userId;
-        const userData = await User.findOne({ _id: id })
+        const userData = await User.findOne({ _id: id });
 
-        const latestProducts = await Product.find()
+        const latestProducts = await Product.find({ is_listed: 1 })
             .sort({ _id: -1 })
             .limit(8)
             .populate({
-                path: "offer",
-
+                path: "offer"
             })
             .populate({
                 path: "category",
+               
                 populate: {
-                    path: "offer",
-
-                },
+                    path: "offer"
+                }
             });
 
-        res.render('users/home', { User: userData, currentRoute: '/', latestProducts })
+        
+        const filteredLatestProducts = latestProducts.filter(product => product.category && product.category.is_listed);
+
+        res.render('users/home', { User: userData, currentRoute: '/', latestProducts: filteredLatestProducts });
     } catch (error) {
         console.log(error.message);
     }
-}
+};
+
 
 const loadAbout = async (req, res) => {
     try {
@@ -268,7 +270,7 @@ const verifyOtp = async (req, res) => {
 
             console.log('reeeeeeeeeeeeeeeeeeeeeeef', referralCode);
             const userId = req.session.userId;
-            console.log('useeeeeeeeeeeeeerrrrrrrrrIIIIIIId', userId); 
+            console.log('useeeeeeeeeeeeeerrrrrrrrrIIIIIIId', userId);
 
 
             if (referralCode) {
@@ -435,7 +437,7 @@ const loadShop = async (req, res) => {
             query.category = { $in: listedCategoryIds };
         }
 
-        
+
         // Filter by price range
         if (selectedPriceRange) {
             const [minPrice, maxPrice] = selectedPriceRange.split('-');
@@ -449,7 +451,7 @@ const loadShop = async (req, res) => {
         } else if (sort === 'desc') {
             sortQuery = { offerPrice: -1 };
         }
-        
+
 
         const totalProductsCount = await Product.countDocuments(query);
         const totalPages = Math.ceil(totalProductsCount / limit);
@@ -909,6 +911,7 @@ const loadWallet = async (req, res) => {
         const userId = req.session.userId
         console.log('wallet session:', userId);
         const user = await User.findOne({ _id: userId })
+        user.wallet_history.sort((a, b) => b.date - a.date);
         res.render('users/wallet', { user, moment, User: user })
     } catch (error) {
         console.log(error.message);
